@@ -24,14 +24,17 @@ https://document.keigan-motor.com/apiSample/KMConnector/examples/browser_webblue
 3. Web Bluetooth (Browser only. andoroid or chrome on macos)
 
 ## Installation
-###Node.js
+
+### Node.js
+
     $ npm install kmconnector
 
-###Browser(Web Bluetooth)
+### Browser(Web Bluetooth)
+
     <script src="kmconnector/indexBrowser.js"></script>
 
-
 ## Examples
+
 ### BLE
     let KMConnector = require('kmconnector');
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
@@ -75,7 +78,7 @@ Exsample file is /examples/nodejs/
     }
 
 ### Web Bluetooth (Browser only. Chrome on Android or Mac)
-####html
+#### html
 
     <head>
     <script src="kmconnector/indexBrowser.js"></script>
@@ -84,7 +87,7 @@ Exsample file is /examples/nodejs/
         <a href="javascript:KMB.connect();">connect</a>
     </body>
     
-####javascript 
+#### javascript 
 
     let KMB=new KMMotorOneWebBLE();
     KMB.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
@@ -99,29 +102,29 @@ Exsample file is /examples/nodejs/
 Exsample file is /examples/browser_webbluetooh/
 
 ## BLE connection Api (Node.js)
-###Methods
-####BLE Scanninng and Stopping (Static Methods)
+### Methods
+#### BLE Scanninng and Stopping (Static Methods)
 
     KMConnector.KMMotorOneBLE.startScanToCreateInstance(15000);
     KMConnector.KMMotorOneBLE.stopScan();
    
-####Collective disconnection (Static Methods)
+#### Collective disconnection (Static Methods)
 
      KMConnector.KMMotorOneBLE.allDisConnect();
 
-####Connect and disConnect(instance Methods)
+#### Connect and disConnect(instance Methods)
 
     kMMotorOneBLE.connect();
     kMMotorOneBLE.disConnect();
 
-###Events(Scan)
-####discoverMotor (Static)
+### Events(Scan)
+#### discoverMotor (Static)
 
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverMotor,function(kMMotorOneBLE){
         console.log('onDiscoverMotor:'+kMMotorOneBLE.deviceInfo.name);
     });
     
-####discoverNewMotor (Static)
+#### discoverNewMotor (Static)
 Only when new motor is found.
 
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
@@ -129,7 +132,7 @@ Only when new motor is found.
         //todo::Motor initialization processing
     });
     
-####scanTimeout (Static)
+#### scanTimeout (Static)
 
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.scanTimeout,function(){        
          //Connected to all motors
@@ -141,8 +144,8 @@ Only when new motor is found.
          });
     });
     
-###Events(Motors)
-####init
+### Events(Motors)
+#### init
 
      kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
             //Motor operation
@@ -151,7 +154,7 @@ Only when new motor is found.
             kMMotorOneBLE.cmdRunForward();
         });
         
-####Connect and disconnect
+#### Connect and disconnect
 
     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.connect,function(kMDeviceInfo){
         console.log("onConnect:"+kMDeviceInfo.isConnect);
@@ -165,13 +168,13 @@ Only when new motor is found.
         console.log("onConnectFailure:"+err);
     });
 
-####motorMeasurement
+#### motorMeasurement
 
     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.motorMeasurement,function(kMRotState){
         console.log(kMRotState.GetValObj());//{position,velocity,torque}
     });
 
-####imuMeasurement
+#### imuMeasurement
 It is output only when the gyro is enabled (kMMotorOneBLE.cmdEnableIMU())
 
     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.imuMeasurement,function(kMImuState){
@@ -180,14 +183,14 @@ It is output only when the gyro is enabled (kMMotorOneBLE.cmdEnableIMU())
     
 
 ## Web Bluetooth Api (Browser)
-###Methods
-####Connect and disConnect
+### Methods
+#### Connect and disConnect
     kMMotorOneWebBLE.connect()
     kMMotorOneWebBLE.disConnect()
 
-###Events
+### Events
 
-####init
+#### init
 When the motor is first connected and initialized
 
     kMMotorOneWebBLE.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
@@ -195,7 +198,7 @@ When the motor is first connected and initialized
         kMMotorOneWebBLE.cmdEnable();//For safety, the motor operation at startup is disabled
         kMMotorOneWebBLE.cmdSpeed_rpm(10);
     });
-####Connect and disconnect
+#### Connect and disconnect
 
     kMMotorOneWebBLE.on(KMB.EVENT_TYPE.connect,function(kMDeviceInfo){
             console.log("onConnect:"+kMDeviceInfo.isConnect);
@@ -207,12 +210,12 @@ When the motor is first connected and initialized
         console.log("onConnectFailure:"+err);
     });
     
-####motorMeasurement
+#### motorMeasurement
     kMMotorOneWebBLE.on(KMB.EVENT_TYPE.motorMeasurement,function(kMRotState){
         console.log(kMRotState.GetValObj());//{position,velocity,torque}
     });
 
-####imuMeasurement
+#### imuMeasurement
 It is output only when the gyro is enabled (kMMotorOneWebBLE.cmdEnableIMU())
 
     kMMotorOneWebBLE.on(KMB.EVENT_TYPE.imuMeasurement,function(kMImuState){
@@ -226,7 +229,7 @@ The command of the motor is defined by "cmd [CommandName] (prame, ...)"
     kMMotorOneBLE.cmdEnable();//Enable motor action
     kMMotorOneBLE.cmdRunForward();//Run forward (ccw)
     
-####For details of the command, see the following site
+#### For details of the command, see the following site
 - Motor command Api(English)
 https://en.document.keigan-motor.com/motor-control-command/command-motor-action.html
 
