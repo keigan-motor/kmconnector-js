@@ -1,0 +1,213 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <title>Demo</title>
+
+    <script src="../../indexBrowser.js"></script>
+    <script src="library/jquery-3.1.1.min.js"></script>
+    <style>
+        body *{
+
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            line-height: 1.5;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+        table th {
+            font-size: 70%;
+            font-weight: bold;
+            vertical-align: middle;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #fff;
+            border-left: 1px solid #fff;
+            background: #eee;
+        }
+        table td {
+            font-size: 70%;
+            vertical-align: top;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        #control{}
+        #control.disable{
+            pointer-events: none;
+            opacity: 0.4;
+
+        }
+        #status{
+            white-space : pre;
+        }
+        input{
+            margin: 10px 5px;
+        }
+        #taskSetSelectTD{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            align-items: stretch;
+        }
+        #taskSetSelectCmdinfo{
+
+        }
+        #taskSetSelectArrow{margin: 0 4px;}
+    </style>
+</head>
+<body>
+
+<table id="info">
+    <tr><th>WebBle接続<br></th><td><input type="button" onclick="KMB.connect();" value="モーター接続"> <input type="button" onclick="KMB.disConnect();" value="モーター切断"></td><td rowspan="3"><input id="allRegisterInfoUpdateBtn" type="button" disabled onclick="allRegisterInfoUpdate();" value="RegisterValUpdate"><div id="allRegisterInfo"></div></td></tr>
+   <tr><th>Name:</th><td id="kmName"></td></tr>
+    <tr><th>position(radian)<br>velocity(radian/sec)<br>torque(N*m)</th><td id="status"></td></tr>
+
+</table>
+
+<br>
+<table id="control" class="disable">
+    <tr>
+        <th>モーター動作ON/OFF</th>
+        <td><input type="button" onclick="KMB.cmdEnable();" value="動作ON"><input type="button" onclick="KMB.cmdDisable();" value="動作OFF"></td>
+    </tr>
+    <tr>
+        <th>全体の移動速度rpm</th>
+        <td><p>変更した速度は次回のコマンド実行時に反映されます。</p>
+            <input type="button" onclick="KMB.cmdSpeed_rpm(250);" value="250rpm"><input type="button" onclick="KMB.cmdSpeed_rpm(100);" value="100rpm"><input type="button" onclick="KMB.cmdSpeed_rpm(10);" value="10rpm"><input type="button" onclick="KMB.cmdSpeed_rpm(0.5);" value="0.5rpm"></td>
+    </tr>
+
+    <tr>
+        <th>回転</th>
+        <td><input type="button" onclick="KMB.cmdRunForward()" value="正転(無限)"><input type="button" onclick="KMB.cmdRunReverse()" value="逆転(無限)"></td>
+    </tr>
+    <tr>
+        <th>回転2</th>
+        <td><input type="button" onclick="KMB.cmdMoveByDistance(KMUtl.degreeToRadian(10))" value="10度回転"><input type="button" onclick="KMB.cmdMoveByDistance(KMUtl.degreeToRadian(-10))" value="-10度回転"></td>
+    </tr>
+    <tr>
+        <th>座標指定</th>
+        <td><input type="button" onclick="KMB.cmdPresetPosition(0)" value="現在位置を原点に設定"><br>
+            <input type="button" onclick="KMB.cmdMoveToPosition(3.14)" value="bleMoveToPosition(3.14)">
+            <input type="button" onclick="KMB.cmdMoveToPosition(0)" value="bleMoveToPosition(0)">
+            <input type="button" onclick="KMB.cmdMoveToPosition(-3.14)" value="bleMoveToPosition(-3.14)">
+        </td>
+    </tr>
+    <tr>
+        <th>座標指定2</th>
+        <td>
+            <input type="button" onclick="KMB.cmdMoveToPosition(KMUtl.degreeToRadian(0))" value="原点位置">
+            <input type="button" onclick="KMB.cmdMoveToPosition(KMUtl.degreeToRadian(45))" value="原点+45度">
+            <input type="button" onclick="KMB.cmdMoveToPosition(KMUtl.degreeToRadian(90))" value="原点+90度">
+            <input type="button" onclick="KMB.cmdMoveToPosition(KMUtl.degreeToRadian(-720))" value="原点-720度">
+        </td>
+    </tr>
+
+    <tr>
+        <th>停止</th>
+        <td><input type="button" onclick="KMB.cmdStop()" value="停止--＞ホールド"><input type="button" onclick="KMB.cmdFree();" value="停止--＞空転">
+            完全フリー(無通電)状態にする場合は、bleFree();bleDisable()として下さい。</td>
+    </tr>
+
+    <tr>
+        <th>LED</th>
+        <td>
+            <input type="button" onclick="KMB.cmdLed(KMMotorOneWebBLE.cmdLed_LED_STATE.LED_STATE_ON_SOLID,Math.random()*256,Math.random()*256,Math.random()*256)" value="ランダムカラー">
+            <input type="button" onclick="KMB.cmdLed(KMMotorOneWebBLE.cmdLed_LED_STATE.LED_STATE_ON_FLASH,Math.random()*256,Math.random()*256,Math.random()*256)" value="点滅">
+            <input type="button" onclick="KMB.cmdLed(KMMotorOneWebBLE.cmdLed_LED_STATE.LED_STATE_OFF,0,0,0)" value="OFF">
+        </td>
+    </tr>
+    <tr>
+        <th>加速曲線</th>
+        <td>
+            <div id="curveRegisterInfo"><br/></div>
+            <input type="button" onclick="KMB.cmdCurveType(KMMotorOneWebBLE.cmdCurveType_CURVE_TYPE.CURVE_TYPE_NONE);curveRegisterInfoUpdate();" value="CURVE_TYPE_NONE 無し">
+            <input type="button" onclick="KMB.cmdCurveType(KMMotorOneWebBLE.cmdCurveType_CURVE_TYPE.CURVE_TYPE_TRAPEZOID);curveRegisterInfoUpdate();" value="CURVE_TYPE_TRAPEZOID あり">
+            <p>「CURVE_TYPE_TRAPEZOID あり」の場合</p>
+            <input type="button" onclick="KMB.cmdAcc(10);KMB.cmdDec(10);curveRegisterInfoUpdate();" value="加速10 減速10">
+            <input type="button" onclick="KMB.cmdAcc(10);KMB.cmdDec(200);curveRegisterInfoUpdate();" value="加速10 減速200">
+            <input type="button" onclick="KMB.cmdAcc(200);KMB.cmdDec(10);curveRegisterInfoUpdate();" value="加速200 減速10">
+            <p>テスト<input type="button" onclick="KMB.cmdMoveByDistance(6.28*5);" value="+回転"><input type="button" onclick="KMB.cmdMoveByDistance(-6.28*5);" value="-回転"></p>
+        </td>
+
+    </tr>
+    <tr>
+        <th>トルク調整</th>
+        <td>
+            <p>手で回し続けると、反発トルクが増大し重くなります</p>
+            <div id="torqueDemoInfo"><br/></div>
+            <input type="button" onclick="torqueDemo();" value="開始/リセット">
+            <input type="button" onclick="torqueDemo(true);" value="停止">
+            <p><input type="checkbox"  id="torqueDemoCheckB">ダイヤルモード</p>
+        </td>
+    </tr>
+    <tr>
+        <th>ティーチング</th>
+        <td>
+            <p>手動で動かしたモータの動作を記録します。記録時間は最大60秒×10個</p>
+            <div id="teachingCountInfo"><br/></div>
+            <ul style="list-style: none;padding-left: 10px;">
+                <li>0 <input type="button" class="teachingRecB" onclick="teachingRec(0);" value="■記録/停止"><input type="button" class="teachingPlayB" onclick="teachingPlay(0);" value=">>再生/停止" disabled></li>
+                <li>1 <input type="button" class="teachingRecB" onclick="teachingRec(1);" value="■記録/停止"><input type="button" class="teachingPlayB" onclick="teachingPlay(1);" value=">>再生/停止" disabled></li>
+                <li>2 <input type="button" class="teachingRecB" onclick="teachingRec(2);" value="■記録/停止"><input type="button" class="teachingPlayB" onclick="teachingPlay(2);" value=">>再生/停止" disabled></li>
+            </ul>
+
+        </td>
+    </tr>
+    <tr>
+        <th>タスクセット</th>
+        <td>
+            <p>手動で動かしたモータの動作を記録します。記録時間は最大60秒×10個</p>
+            <div id="taskSetInfo"><br/></div>
+            <table>
+                <tr>
+                    <th>タスク</th>
+                    <th>保存/再生</th>
+                </tr>
+                <tr>
+                    <td id="taskSetSelectTD">
+                        <select id="#taskSetSelectCmdS" size="11" onchange="taskSetAdd(this)">
+                            <option value="cmdLed(1,0,0,250)">cmdLed(1,0,0,250)</option>
+                            <option value="cmdLed(1,250,0,250)">cmdLed(1,250,0,250)</option>
+                            <option value="cmdSpeed(10)">cmdSpeed(10)</option>
+                            <option value="cmdSpeed(100)">cmdSpeed(100)</option>
+                            <option value="cmdWait(1000)">cmdWait(1000)</option>
+                            <option value="cmdWait(3000)">cmdWait(3000)</option>
+                            <option value="cmdRunForward()">cmdRunForward()</option>
+                            <option value="cmdRunReverse()">cmdRunReverse()</option>
+                            <option value="cmdMoveByDistance(1.57)">cmdMoveByDistance(1.57)</option>
+                            <option value="cmdMoveByDistance(-1.57)">cmdMoveByDistance(-1.57)</option>
+                            <option value="cmdStop()">cmdStop()</option>
+                        </select>
+                        <div id="taskSetSelectArrow">＞</div>
+                        <div id="taskSetSelectCmdinfo"></div>
+                        <div>
+                        <input type="button" class="taskSetClearB" onclick="taskSetResetList()" value="消去"><br>
+                        <input type="button" class="taskSetTestB" onclick="taskSetTest()" value="テスト">
+                        </div>
+                    </td>
+                    <td>
+                        <ul style="list-style: none;padding-left: 10px;">
+                            <li>0<input type="button" class="taskSetSaveB" id="taskSetSaveB0" onclick="taskSetSave(0)" value="■保存"><input type="button" class="taskSetPlayB" id="taskSetPlayB0" onclick="taskSetPlay(0)" value=">>再生" disabled></li>
+                            <li>1<input type="button" class="taskSetSaveB" id="taskSetSaveB1" onclick="taskSetSave(1)" value="■保存"><input type="button" class="taskSetPlayB" id="taskSetPlayB1" onclick="taskSetPlay(1)" value=">>再生" disabled></li>
+                            <li>2<input type="button" class="taskSetSaveB" id="taskSetSaveB2" onclick="taskSetSave(2)" value="■保存"><input type="button" class="taskSetPlayB" id="taskSetPlayB2" onclick="taskSetPlay(2)" value=">>再生" disabled></li>
+                        </ul>
+                        <div style="text-align:center;"><input type="button" class="taskSetSaveStopB" id="taskSetSaveStopB" onclick="taskSetStop()" value="　停止　">
+                        </div>
+                    </td>
+
+                </tr>
+            </table>
+
+
+        </td>
+    </tr>
+
+
+</table>
+
+<script src="Demo.js"></script>
+</body>
+</html>

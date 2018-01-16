@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GyroGraph</title>
+    <style>
+
+
+        body {
+            font-family: sans-serif;
+            font-size: 12px;
+            margin: 20px;
+            max-width: 300px;
+        }
+
+        #placeholder {
+            width: 300px;
+            height: 250px;
+            padding: 10px 5px 0 0;
+            margin: 15px auto 30px auto;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+
+    </style>
+    <script src="../library/jquery-3.1.1.min.js"></script>
+    <script src="../../../indexBrowser.js"></script>
+
+    <script src="uqfgC.js"></script>
+
+
+</head>
+<body ontouchmove="event.stopPropagation()">
+<p><input type="button" onclick="KMB.connect();" value="モーター接続"></p>
+
+<h3>加速度・ジャイロ・方位をグラフ表示</h3>
+
+<div >x:加速度 <span id="xx">...</span></div>
+<div >y:加速度 <span id="yy">...</span></div>
+<div >z:加速度 <span id="zz">...</span></div>
+<div >axisZ <span id="aa">...</span></div>
+<div >axisX <span id="bb">...</span></div>
+<div >axisY <span id="gg">...</span></div>
+<!--<div id="aC">compass=<span id="cc">...</span></div>-->
+<div >tmp <span id="temp">...</span></div>
+<div id="placeholder"></div>
+<script src="GyroGraph.js" ></script>
+</body>
+</html>
