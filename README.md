@@ -1,59 +1,50 @@
-<style>
-J { color:#a25a09;font-size: 0.8em;}
-</style>  
-
 
 # KMConnector
 
 Node.js and Browser javascript Library for Keigan Motor.  
-<J>Keigan Motor用のNode.jsとBrowser JavaScriptライブラリ</J>
+<p>Keigan Motor用のNode.jsとBrowser JavaScriptライブラリ</p>
 
 ## Description
 You can control USB Serial and BLE in Node.js. Browser can control Web Bluetooth.
 https://www.keigan-motor.com/  
-<J>Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続出来ます。</J>
+<p>Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続出来ます。</p>
 
 ***DEMO:***
 
-- WebBluetooh (Browser only. Chrome on Android or Mac)  
-<J>WebBluetoothでのデモ(Android又はMac上のChromeで動作)</J>
+- WebBluetooh (Browser only. Chrome on Android or Mac)  <p>WebBluetoothでのデモ(Android又はMac上のChromeで動作)</p>
 **<a href="https://document.keigan-motor.com/apiSample/kmconnector-js/examples/browser_webbluetooh/Demo.html" target="_brank">https://document.keigan-motor.com/apiSample/kmconnector-js/sampleWebBle/Demo.html</a>**
 
-- other exsample file is /examples/  
-<J>サンプルファイルは/examples/にあります。</J>
+- other exsample file is /examples/  <p>サンプルファイルは/examples/にあります。</p>
 
 ## Requirement
 
 - noble 1.8+
 
-## Usage 
+## Usage
 
-1. BLE (Node.js only. Raspberrypi needs to run with administrator privilege to launch Bluetooh.(sudo))  
-<J>BLE Node.js用。RaspberryPiは管理者権限で実行する必要があります。</J>
-2. USB Serial (Node.js only)comming soon. <J>現在開発中。</J>
-3. Web Bluetooth (Browser only. andoroid or chrome on macos)  
-<J>Web Bluetoothは現在andoroid及びMacOSのchromeのみで動作します。</J>
+- BLE (Node.js only. Raspberrypi needs to run with administrator privilege to launch Bluetooh.(sudo))  <p>BLE Node.js用。RaspberryPiは管理者権限で実行する必要があります。</p>
+
+- USB Serial (Node.js only)comming soon. <p>現在開発中。</p>
+
+- Web Bluetooth (Browser only. andoroid or chrome on macos)  <p>Web Bluetoothは現在andoroid及びMacOSのchromeのみで動作します。</p>
 
 ## Installation
 
 ### Node.js
-
-<J>npmからインストール</J>  
+<p>npmからインストール</p>  
 
     $ npm install kmconnector
 
 
 ### Browser(Web Bluetooth)
-
-<J>ブラウザはhtmlのヘッダーにindexBrowser.jsを読み込んで下さい</J> 
+<p>ブラウザはhtmlのヘッダーにindexBrowser.jsを読み込んで下さい</p> 
  
     <script src="kmconnector/indexBrowser.js"></script>
 
 ## Examples
 
 ### BLE 
-
-<J>BLEでの接続例。サンプルファイルはexamples/nodejs/  </J>
+<p>BLEでの接続例。サンプルファイルはexamples/nodejs/  </p>
  
     let KMConnector = require('kmconnector');
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
@@ -70,8 +61,7 @@ https://www.keigan-motor.com/
 Exsample file is /examples/nodejs/
 
 ### BLE (When directly using noble API)
-
-<J>BLE通信(noble)を既に使用している物に組み込む場合の例</J>
+<p>BLE通信(noble)を既に使用している物に組み込む場合の例</p>
 
     let noble = require('noble');
     noble.on('discover',(nobleperipheral)=>{
@@ -99,8 +89,7 @@ Exsample file is /examples/nodejs/
     }
 
 ### Web Bluetooth (Browser only. Chrome on Android or Mac)
-
-<j>Web Bluetoothでの例。 サンプルファイルは/examples/browser_webbluetooh/</j>
+<p>Web Bluetoothでの例。 サンプルファイルは/examples/browser_webbluetooh/</p>
 
 #### html
 
@@ -127,36 +116,33 @@ Exsample file is /examples/browser_webbluetooh/
 
 **Https(https://) connection is required for Web Bluetooth operation.**  
 
-<j>※Web Bluetoothはセキュリティの為、https://での接続が必須です</j>
+<p>※Web Bluetoothはセキュリティの為、https://での接続が必須です</p>
 
-## BLE connection Api (Node.js) <j>Node.jsでのBLE接続例</j>
 
+## BLE connection Api (Node.js) <p>Node.jsでのBLE接続例</p>
 ### Methods
-
-#### BLE Scanninng and Stopping (Static Methods) <j>BLEスキャンと停止</j>
+#### BLE Scanninng and Stopping (Static Methods) <p>BLEスキャンと停止</p>
 
     KMConnector.KMMotorOneBLE.startScanToCreateInstance(15000);
     KMConnector.KMMotorOneBLE.stopScan();
    
-#### Collective disconnection (Static Methods) <j>接続したモーターの全切断</j>
+#### Collective disconnection (Static Methods) <p>接続したモーターの全切断</p>
 
      KMConnector.KMMotorOneBLE.allDisConnect();
 
-#### Connect and disConnect(instance Methods) <j>個々のモーターの切断</j>
+#### Connect and disConnect(instance Methods) <p>個々のモーターの切断</p>
 
     kMMotorOneBLE.connect();
     kMMotorOneBLE.disConnect();
 
 ### Events(Scan)
-
-#### discoverMotor (Static) <j>スキャン中のモーター発見時のイベント例</j>
+#### discoverMotor (Static) <p>スキャン中のモーター発見時のイベント例</p>
 
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverMotor,function(kMMotorOneBLE){
         console.log('onDiscoverMotor:'+kMMotorOneBLE.deviceInfo.name);
     });
     
-#### discoverNewMotor (Static) <j>未接続の新規モーター発見時</j>
-
+#### discoverNewMotor (Static) <p>未接続の新規モーター発見時</p>
 Only when new motor is found.
 
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
@@ -164,7 +150,7 @@ Only when new motor is found.
         //todo::Motor initialization processing
     });
     
-#### scanTimeout (Static) <j>スキャンがタイムアウトで終了した時</j>
+#### scanTimeout (Static) <p>スキャンがタイムアウトで終了した時</p>
 
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.scanTimeout,function(){        
          //Connected to all motors
@@ -177,8 +163,7 @@ Only when new motor is found.
     });
     
 ### Events(Motors)
-
-#### init <j>モーターの初期化完了時のイベント例</j>
+#### init <p>モーターの初期化完了時のイベント例</p>
 
      kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
             //Motor operation
@@ -187,7 +172,7 @@ Only when new motor is found.
             kMMotorOneBLE.cmdRunForward();
         });
         
-#### Connect and disconnect <j>モーター接続・切断時イベント</j>
+#### Connect and disconnect <p>モーター接続・切断時イベント</p>
 
     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.connect,function(kMDeviceInfo){
         console.log("onConnect:"+kMDeviceInfo.isConnect);
@@ -201,13 +186,13 @@ Only when new motor is found.
         console.log("onConnectFailure:"+err);
     });
 
-#### motorMeasurement <j>モーター回転情報受信時</j>
+#### motorMeasurement <p>モーター回転情報受信時</p>
 
     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.motorMeasurement,function(kMRotState){
         console.log(kMRotState.GetValObj());//{position,velocity,torque}
     });
 
-#### imuMeasurement <j>ジャイロ情報受信時(受信するには別途cmdEnableIMU()を有効にする)</j>
+#### imuMeasurement <p>ジャイロ情報受信時(受信するには別途cmdEnableIMU()を有効にする)</p>
 It is output only when the gyro is enabled (kMMotorOneBLE.cmdEnableIMU())  
 
     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.imuMeasurement,function(kMImuState){
@@ -215,19 +200,15 @@ It is output only when the gyro is enabled (kMMotorOneBLE.cmdEnableIMU())
     });
     
 
-## Web Bluetooth Api (Browser) <j>ブラウザでの接続例</j>
-
+## Web Bluetooth Api (Browser) <p>ブラウザでの接続例</p>
 ### Methods
-
-#### Connect and disConnect <j>接続・切断</j>
-
+#### Connect and disConnect <p>接続・切断</p>
     kMMotorOneWebBLE.connect()
     kMMotorOneWebBLE.disConnect()
 
-### Events  <j>Node.jsと同様</j>
+### Events  <p>Node.jsと同様</p>
 
 #### init
-
 When the motor is first connected and initialized
 
     kMMotorOneWebBLE.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
@@ -235,7 +216,6 @@ When the motor is first connected and initialized
         kMMotorOneWebBLE.cmdEnable();//For safety, the motor operation at startup is disabled
         kMMotorOneWebBLE.cmdSpeed_rpm(10);
     });
-
 #### Connect and disconnect
 
     kMMotorOneWebBLE.on(KMB.EVENT_TYPE.connect,function(kMDeviceInfo){
@@ -249,39 +229,36 @@ When the motor is first connected and initialized
     });
     
 #### motorMeasurement
-
     kMMotorOneWebBLE.on(KMB.EVENT_TYPE.motorMeasurement,function(kMRotState){
         console.log(kMRotState.GetValObj());//{position,velocity,torque}
     });
 
 #### imuMeasurement
-
 It is output only when the gyro is enabled (kMMotorOneWebBLE.cmdEnableIMU())
 
     kMMotorOneWebBLE.on(KMB.EVENT_TYPE.imuMeasurement,function(kMImuState){
         console.log(kMImuState.GetValObj());//{accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ}
     });
     
-## Motor command Api (common) <j>モーター操作コマンド</j>
-
+## Motor command Api (common) <p>モーター操作コマンド</p>
 The command of the motor is defined by "cmd [CommandName] (prame, ...)"  
-<j>操作コマンドは「cmdコマンド名()」の書式になります。</j>
+<p>操作コマンドは「cmdコマンド名()」の書式になります。</p>
 
     kMMotorOneBLE.cmdSpeed_rpm(10);//Set the speed 10rpm
     kMMotorOneBLE.cmdEnable();//Enable motor action
     kMMotorOneBLE.cmdRunForward();//Run forward (ccw)
     
 #### For details of the command, see the following site 
+<p>詳細なドキュメント</p>
 
-<j>詳細なドキュメント</j>
 - Motor command Api(English)  
 https://en.document.keigan-motor.com/motor-control-command/command-motor-action.html
-- KeiganMotor javascript Libraryリファレンス(日本語)  
+- KeiganMotor javascript Libraryリファレンス(日本語)   
 https://document.keigan-motor.com/apiDocument/kmconnector-js/
-- モーターコマンド一覧 https://document.keigan-motor.com/motor-control-command
+- モーターコマンド一覧  
+https://document.keigan-motor.com/motor-control-command
 
 ## Author
-
 [Keigan Inc.](https://keigan-motor.com/)
 
 ## License
