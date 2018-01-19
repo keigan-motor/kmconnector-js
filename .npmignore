@@ -1,0 +1,6 @@
+.npmignore
+.gitignore
+.idea/
+node_modules/
+jsdoc/
+webpack.config.js/

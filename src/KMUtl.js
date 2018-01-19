@@ -8,68 +8,82 @@
  * http://opensource.org/licenses/mit-license.php
  */
 'use strict';
-var KMUtl = (function () {
-    function KMUtl() {
-    }
+
+/**
+ * @classdesc ユーティリティ
+ */
+class KMUtl{
 
     /**
-     * 数値にキャストする関数 (C)　
-     * 数値以外は0を返す
+     * 数値にキャストする関数
+     * 数値以外は0を返す<br>
      * Infinityも0とする
+     * @param {number} val
+     * @param {number} defaultval valが数値に変換出来ない場合のデフォルト
+     * @returns {number}
      */
-    KMUtl.toNumber=function toNumber(val, defaultval = 0) {
-        var v = parseFloat(val, 10);
+    static toNumber(val, defaultval = 0) {
+        let v = parseFloat(val, 10);
         return (isNaN(v) || val === Infinity ? defaultval : v);
     };
+
     /**
-     * 単位変換　degree >> radian
-     * @param degree
-     * @returns {number}
-     * @constructor
+     * 角度の単位変換　degree >> radian
+     * @param {number} degree 度
+     * @returns {number} radian
      */
-        KMUtl.degreeToRadian= function degreeToRadian(degree) {
+    static degreeToRadian(degree) {
         return degree * 0.017453292519943295;
     };
+
     /**
-     * 単位変換　radian >> degree
-     * @param radian
-     * @returns {number}
-     * @constructor
+     * 角度の単位変換　radian >> degree
+     * @param {number} radian radian角
+     * @returns {number} 度
      */
-    KMUtl.radianToDegree= function radianToDegree(radian) {
+    static radianToDegree(radian) {
         return radian / 0.017453292519943295;
     };
+
     /**
      * 速度 rpm ->radian/sec に変換
-     * @param rpm
-     * @returns {number}
-     * @constructor
+     * @param {number} rpm
+     * @returns {number} radian/sec
      */
-    KMUtl.rpmToRadianSec= function rpmToRadianSec(rpm) {
+    static rpmToRadianSec(rpm) {
         //速度 rpm ->radian/sec(Math.PI*2/60)
         return rpm * 0.10471975511965977;
     };
     /**
      * 2点間の距離と角度を求める
-     * @param from_x,from_y,to_x,to_y
+     * @param {number} from_x
+     * @param {number} from_y
+     * @param {number} to_x
+     * @param {number} to_y
      * @returns {number}
-     * @constructor
      */
-    KMUtl.twoPointDistanceAngle= function twoPointDistanceAngle(from_x, from_y, to_x, to_y) {
-        var distance = Math.sqrt(Math.pow(from_x - to_x, 2) + Math.pow(from_y - to_y, 2));
-        var radian = Math.atan2(from_y - to_y, from_x - to_x);
+    static twoPointDistanceAngle(from_x, from_y, to_x, to_y) {
+        let distance = Math.sqrt(Math.pow(from_x - to_x, 2) + Math.pow(from_y - to_y, 2));
+        let radian = Math.atan2(from_y - to_y, from_x - to_x);
         return {dist: distance, radi: radian, deg: KMUtl.radianToDegree(radian)};
     };
 
-
-    /* utf.js - UTF-8 <=> UTF-16 convertion
+    /**
+     * @# info:: BLEのDEVICE INFORMATION SERVICEのパースにKMComBLE.jsで主に使用
+     * utf.js - UTF-8 <=> UTF-16 convertion
      *
+     * @ignore
+     * @param array
+     * @returns {string}
+     * @constructor
+     *
+     * @desc
      * Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
      * Version: 1.0
      * LastModified: Dec 25 1999
      * This library is free.  You can redistribute it and/or modify it.
      */
-    KMUtl.Utf8ArrayToStr=function(array) {
+    static Utf8ArrayToStr(array) {
         let out, i, len, c;
         let char2, char3;
 
@@ -101,8 +115,6 @@ var KMUtl = (function () {
         }
         return out;
     };
-
-    return KMUtl;
-}());
+}
 
 module.exports = KMUtl;

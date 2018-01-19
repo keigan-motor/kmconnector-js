@@ -10,25 +10,26 @@
 'use strict';
 let KMUtl = require('./KMUtl');
 let KMStructures=require('./KMStructures');
-
+/**
+ * @classdesc 通信クラスの基底
+ * @ignore
+ */
 class KMComBase{
     /**********************
      * 定数
     **********************/
     /**
      * constructor　
-     * @param arg
-     *
      */
-    constructor(arg){
+    constructor(){
         this._peripheral=null;
-        this._commandCount=65530;
+        this._commandCount=0;
         this._deviceInfo=new KMStructures.KMDeviceInfo();
 
         this._motorMeasurement=new KMStructures.KMRotState();
         this._motorLed=new KMStructures.KMLedState();
         this._motorImuMeasurement=new KMStructures.KMImuState();
-        //
+
         this._onInitHandler=function(connector){};
         this._onConnectHandler=function(connector){};
         this._onDisconnectHandler=function(connector){};
@@ -39,8 +40,12 @@ class KMComBase{
         this._onMotorSettingCB=function(){};
 
         this._isInit=false;
-        
-        //_onBleMotorSettingのコマンド　モーター設定情報の通知受信時にパースする用
+
+        /**
+         * _onBleMotorSettingのコマンド　モーター設定情報の通知受信時にパースする用
+         * @type {{maxSpeed: number, minSpeed: number, curveType: number, acc: number, dec: number, maxTorque: number, qCurrentP: number, qCurrentI: number, qCurrentD: number, speedP: number, speedI: number, speedD: number, positionP: number, ownColor: number}}
+         * @ignore
+         */
         this._MOTOR_SETTING_READREGISTER_COMMAND={
                 "maxSpeed":0x02,
                 "minSpeed":0x03,
@@ -64,7 +69,7 @@ class KMComBase{
      **********************/
     /**
      * デバイス情報
-     * @returns {{name: string, id: string, info: null}}
+     * @type {KMDeviceInfo}
      *
      */
     get deviceInfo(){
@@ -73,7 +78,7 @@ class KMComBase{
 
     /**
      * 有効無効
-     * @returns {*|boolean}
+     * @type {boolean}
      */
     get isConnect(){
         return this._deviceInfo.isConnect;
@@ -81,16 +86,16 @@ class KMComBase{
 
     /**
      * モーターコマンド順監視用連番の発行
-     * @returns {number}
+     * @type {number}
      */
     get createCommandID(){
-        this._commandCount=(++this._commandCount)&0b1111111111111111;//65535でループ
+       return this._commandCount=(++this._commandCount)&0b1111111111111111;//65535でループ
     }
 
     /**
      * isConnectの設定変更(子クラスから使用)
-     * @param bool
-     * @private
+     * @param {boolean} bool
+     * @ignore
      */
     _statusChange_isConnect(bool){
         this._deviceInfo.isConnect=bool;
@@ -105,8 +110,8 @@ class KMComBase{
 
     /**
      * 初期化状態の設定(子クラスから使用)
-     * @param bool
-     * @private
+     * @param {boolean} bool
+     * @ignore
      */
     _statusChange_init(bool){
         this._isInit=bool;
@@ -119,8 +124,7 @@ class KMComBase{
      **********************/
     /**
      * 初期化完了して利用できるようになった
-     * @param handlerFunction
-     * @constructor
+     * @type {function(KMComBase)}
      */
     set onInit(handlerFunction){
         if(typeof handlerFunction ==="function"){
@@ -129,8 +133,7 @@ class KMComBase{
     }
     /**
      * 応答・再接続に成功した
-     * @param handlerFunction
-     * @constructor
+     * @type {function(KMComBase)}
      */
     set onConnect(handlerFunction){
         if(typeof handlerFunction ==="function"){
@@ -139,8 +142,7 @@ class KMComBase{
     }
     /**
      * 応答が無くなった・切断された
-     * @param handlerFunction
-     * @constructor
+     * @type {function(KMComBase)}
      */
     set onDisconnect(handlerFunction){
         if(typeof handlerFunction ==="function"){
@@ -149,8 +151,7 @@ class KMComBase{
     }
     /**
      * 接続に失敗
-     * @param handlerFunction
-     * @constructor
+     * @type {function(KMComBase,string)}
      */
     set onConnectFailure(handlerFunction){
         if(typeof handlerFunction ==="function"){
@@ -160,7 +161,7 @@ class KMComBase{
 
     /**
      * モーターの回転情報callback
-     * @param func ({position,velocity,torque})
+     * @type {function(position:number,velocity:number,torque:number)}
      */
     set onMotorMeasurement(func){
         if(typeof func==="function"){
@@ -169,7 +170,7 @@ class KMComBase{
     }
     /**
      * モーターのジャイロ情報callback
-     * @param func ({accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ})
+     * @type {function({accelX:number,accelY:number,accelZ:number,temp:number,gyroX:number,gyroY:number,gyroZ:number})}
      */
     set onImuMeasurement(func){
         if(typeof func==="function"){
@@ -179,7 +180,7 @@ class KMComBase{
 
     /**
      * モーター設定情報取得callback
-     * @param func (registerCmd,res)
+     * @type {function(registerCmd:number,res:number)}
      */
     set onMotorSetting(func){
         if(typeof func==="function"){

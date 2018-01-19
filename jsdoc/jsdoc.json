@@ -1,0 +1,38 @@
+{
+    "source": {
+        "include": ["src"]
+    },
+    "opts": {
+        "encoding": "utf8",
+        "destination": "jsdoc/output",
+        "recurse": true
+    },
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "plugins": ["plugins/markdown"],
+    "templates": {
+        "logoFile": "//document.keigan-motor.com/wp-content/image/logo_m.png",
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "dateFormat": "YYYY MMM ddd Do ",
+        "outputSourceFiles": true,
+        "outputSourcePath": true,
+        "systemName": "KeiganMotor Javascript Library",
+        "footer": "",
+        "copyright": "©Copyright 2017 Keigan Inc. All rights reserved.",
+        "navType": "inline",
+        "theme": "simplex",
+        "linenums": true,
+        "collapseSymbols": false,
+        "inverseNav": true,
+        "protocol": "html://",
+        "analytics":{"ua":"UA-110466329-1", "domain":"document.keigan-motor.com"},
+        "methodHeadingReturns": false,
+        "sort":"KMMotor,KMUtl"
+    },
+    "markdown": {
+        "parser": "gfm",
+        "hardwrap": true
+    }
+}

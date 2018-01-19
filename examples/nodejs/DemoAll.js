@@ -24,6 +24,7 @@ reader.on('line', function(inputst) {
             break;
         case 'discon':
             KMConnector.KMMotorOneBLE.allDisConnect();
+            console.log('>');
             break;
         case 'exit':
             KMConnector.KMMotorOneBLE.allDisConnect();
@@ -37,6 +38,7 @@ function help(){
     console.log('[play]:Motor demonstration playback. 接続したモータのデモ再生');
     console.log('[discon]:BLE disconnection of all motors. 全てのモーターのBLE接続を解除');
     console.log('[exit]:exit 終了');
+    console.log('>');
 }
 
 help();
@@ -68,6 +70,7 @@ KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMot
 KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.scanTimeout,function(){
     console.log('onScanTimeout');
     allConnect();//info::ex2-2) モーターの一括接続
+    console.log('>');
 });
 
 //-----------------------------------------

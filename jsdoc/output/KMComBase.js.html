@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>KeiganMotor Javascript Library Source: KMComBase.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html"><img class="branding-logo" src="//document.keigan-motor.com/wp-content/image/logo_m.png"
+		alt="logo"/>KeiganMotor Javascript Library</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="KMMotorOneBLE.html">KMMotorOneBLE</a></li><li><a href="KMMotorOneWebBLE.html">KMMotorOneWebBLE</a></li><li><a href="KMImuState.html">KMImuState</a></li><li><a href="KMLedState.html">KMLedState</a></li><li><a href="KMRotState.html">KMRotState</a></li><li><a href="KMDeviceInfo.html">KMDeviceInfo</a></li><li><a href="KMUtl.html">KMUtl</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: KMComBase.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/***
+ * KMComBase.js
+ * version 0.1.0 alpha
+ * Created by Harada Hiroshi on 2017/12/07.
+ *
+ * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+'use strict';
+let KMUtl = require('./KMUtl');
+let KMStructures=require('./KMStructures');
+/**
+ * @classdesc 通信クラスの基底
+ * @ignore
+ */
+class KMComBase{
+    /**********************
+     * 定数
+    **********************/
+    /**
+     * constructor　
+     */
+    constructor(){
+        this._peripheral=null;
+        this._commandCount=0;
+        this._deviceInfo=new KMStructures.KMDeviceInfo();
+
+        this._motorMeasurement=new KMStructures.KMRotState();
+        this._motorLed=new KMStructures.KMLedState();
+        this._motorImuMeasurement=new KMStructures.KMImuState();
+
+        this._onInitHandler=function(connector){};
+        this._onConnectHandler=function(connector){};
+        this._onDisconnectHandler=function(connector){};
+        this._onConnectFailureHandler=function(connector, msg){};
+
+        this._onMotorMeasurementCB=function(){};
+        this._onImuMeasurementCB=function(){};
+        this._onMotorSettingCB=function(){};
+
+        this._isInit=false;
+
+        /**
+         * _onBleMotorSettingのコマンド　モーター設定情報の通知受信時にパースする用
+         * @type {{maxSpeed: number, minSpeed: number, curveType: number, acc: number, dec: number, maxTorque: number, qCurrentP: number, qCurrentI: number, qCurrentD: number, speedP: number, speedI: number, speedD: number, positionP: number, ownColor: number}}
+         * @ignore
+         */
+        this._MOTOR_SETTING_READREGISTER_COMMAND={
+                "maxSpeed":0x02,
+                "minSpeed":0x03,
+                "curveType":0x05,
+                "acc":0x07,
+                "dec":0x08,
+                "maxTorque":0x0E,
+                "qCurrentP":0x18,
+                "qCurrentI":0x19,
+                "qCurrentD":0x1A,
+                "speedP":0x1B,
+                "speedI":0x1C,
+                "speedD":0x1D,
+                "positionP":0x1E,
+                "ownColor":0x3A
+        }
+    }
+
+    /**********************
+     * プロパティ
+     **********************/
+    /**
+     * デバイス情報
+     * @type {KMDeviceInfo}
+     *
+     */
+    get deviceInfo(){
+        return this._deviceInfo.Clone();
+    }
+
+    /**
+     * 有効無効
+     * @type {boolean}
+     */
+    get isConnect(){
+        return this._deviceInfo.isConnect;
+    }
+
+    /**
+     * モーターコマンド順監視用連番の発行
+     * @type {number}
+     */
+    get createCommandID(){
+       return this._commandCount=(++this._commandCount)&amp;0b1111111111111111;//65535でループ
+    }
+
+    /**
+     * isConnectの設定変更(子クラスから使用)
+     * @param {boolean} bool
+     * @ignore
+     */
+    _statusChange_isConnect(bool){
+        this._deviceInfo.isConnect=bool;
+        if(this._isInit){
+            if(bool){
+                this._onConnectHandler(this);
+            }else{
+                this._onDisconnectHandler(this);
+            }
+        }
+    }
+
+    /**
+     * 初期化状態の設定(子クラスから使用)
+     * @param {boolean} bool
+     * @ignore
+     */
+    _statusChange_init(bool){
+        this._isInit=bool;
+        if(this._isInit){
+            this._onInitHandler(this);
+        }
+    }
+    /**********************
+     * callback
+     **********************/
+    /**
+     * 初期化完了して利用できるようになった
+     * @type {function(KMComBase)}
+     */
+    set onInit(handlerFunction){
+        if(typeof handlerFunction ==="function"){
+            this._onInitHandler=handlerFunction;
+        }
+    }
+    /**
+     * 応答・再接続に成功した
+     * @type {function(KMComBase)}
+     */
+    set onConnect(handlerFunction){
+        if(typeof handlerFunction ==="function"){
+            this._onConnectHandler=handlerFunction;
+        }
+    }
+    /**
+     * 応答が無くなった・切断された
+     * @type {function(KMComBase)}
+     */
+    set onDisconnect(handlerFunction){
+        if(typeof handlerFunction ==="function"){
+            this._onDisconnectHandler=handlerFunction;
+        }
+    }
+    /**
+     * 接続に失敗
+     * @type {function(KMComBase,string)}
+     */
+    set onConnectFailure(handlerFunction){
+        if(typeof handlerFunction ==="function"){
+            this._onConnectFailureHandler=handlerFunction;
+        }
+    }
+
+    /**
+     * モーターの回転情報callback
+     * @type {function(position:number,velocity:number,torque:number)}
+     */
+    set onMotorMeasurement(func){
+        if(typeof func==="function"){
+            this._onMotorMeasurementCB=func;
+        }
+    }
+    /**
+     * モーターのジャイロ情報callback
+     * @type {function({accelX:number,accelY:number,accelZ:number,temp:number,gyroX:number,gyroY:number,gyroZ:number})}
+     */
+    set onImuMeasurement(func){
+        if(typeof func==="function"){
+            this._onImuMeasurementCB=func;
+        }
+    }
+
+    /**
+     * モーター設定情報取得callback
+     * @type {function(registerCmd:number,res:number)}
+     */
+    set onMotorSetting(func){
+        if(typeof func==="function"){
+            this._onMotorSettingCB=func;
+        }
+    }
+    
+
+//////class//
+}
+
+module.exports =KMComBase;
+
+
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	©Copyright 2017 Keigan Inc. All rights reserved.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018 Jan Sat 20th 
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+<script>
+	(function ( i, s, o, g, r, a, m ) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push( arguments )
+		}, i[r].l = 1 * new Date();
+		a = s.createElement( o ),
+			m = s.getElementsByTagName( o )[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore( a, m )
+	})( window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga' );
+
+	ga( 'create', 'UA-110466329-1', 'document.keigan-motor.com' );
+	ga( 'send', 'pageview' );
+</script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

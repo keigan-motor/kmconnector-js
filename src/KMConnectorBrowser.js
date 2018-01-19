@@ -10,7 +10,7 @@
  */
 global.KMUtl=require('./KMUtl.js');
 global.KMVector2=require('./KMStructures.js').KMVector2;
-global.KMVector3=require('./KMStructures.js').KMVector3;
+//global.KMVector3=require('./KMStructures.js').KMVector3;
 global.KMImuState=require('./KMStructures.js').KMImuState;
 global.KMLedState=require('./KMStructures.js').KMLedState;
 global.KMRotState=require('./KMStructures.js').KMRotState;

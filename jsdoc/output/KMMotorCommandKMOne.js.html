@@ -1,4 +1,77 @@
-/***
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>KeiganMotor Javascript Library Source: KMMotorCommandKMOne.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html"><img class="branding-logo" src="//document.keigan-motor.com/wp-content/image/logo_m.png"
+		alt="logo"/>KeiganMotor Javascript Library</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="KMMotorOneBLE.html">KMMotorOneBLE</a></li><li><a href="KMMotorOneWebBLE.html">KMMotorOneWebBLE</a></li><li><a href="KMImuState.html">KMImuState</a></li><li><a href="KMLedState.html">KMLedState</a></li><li><a href="KMRotState.html">KMRotState</a></li><li><a href="KMDeviceInfo.html">KMDeviceInfo</a></li><li><a href="KMUtl.html">KMUtl</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: KMMotorCommandKMOne.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/***
  * KMMotorCommandKMOne.js
  * version 0.1.0 alpha
  * Created by Harada Hiroshi on 2017/12/07.
@@ -117,12 +190,12 @@ class KMMotorCommandKMOne extends EventEmitter{
          * @enum {string}
          */
         this.EVENT_TYPE={
-            /** 初期化完了時<br>return:function({KMDeviceInfo}) */ init:"init",
-            /** 接続時<br>return:function({KMDeviceInfo}) */ connect:"connect",
-            /** 切断時<br>return:function({KMDeviceInfo}) */ disconnect:"disconnect",
-            /** 接続に失敗時<br>return:function({KMDeviceInfo},{msg}) */ connectFailure:"connectFailure",
-            /** モーター回転情報受信時<br>return:function({@link KMRotState}) */ motorMeasurement:"motorMeasurement",
-            /** モーターIMU情報受信時<br>return:function({@link KMImuState}) */ imuMeasurement:"imuMeasurement"
+            /** 初期化完了時&lt;br>return:function({KMDeviceInfo}) */ init:"init",
+            /** 接続時&lt;br>return:function({KMDeviceInfo}) */ connect:"connect",
+            /** 切断時&lt;br>return:function({KMDeviceInfo}) */ disconnect:"disconnect",
+            /** 接続に失敗時&lt;br>return:function({KMDeviceInfo},{msg}) */ connectFailure:"connectFailure",
+            /** モーター回転情報受信時&lt;br>return:function({@link KMRotState}) */ motorMeasurement:"motorMeasurement",
+            /** モーターIMU情報受信時&lt;br>return:function({@link KMImuState}) */ imuMeasurement:"imuMeasurement"
         };
         Object.freeze(this.EVENT_TYPE);//info::後からフリーズしないとjsdocが生成されない。
         /**
@@ -286,7 +359,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary モーター動作を不許可とする（上位命令）
-     * @desc 安全用：この命令を入れるとモーターは動作しない<br>
+     * @desc 安全用：この命令を入れるとモーターは動作しない&lt;br>
      * コマンドはタスクセットに記録することは不可
      */
     cmdDisable(){
@@ -295,8 +368,8 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary モーター動作を許可する（上位命令）
-     * @desc 安全用：この命令を入れるとモーターは動作可能となる<br>
-     * モーター起動時は disable 状態のため、本コマンドで動作を許可する必要があり<br>
+     * @desc 安全用：この命令を入れるとモーターは動作可能となる&lt;br>
+     * モーター起動時は disable 状態のため、本コマンドで動作を許可する必要があり&lt;br>
      * コマンドはタスクセットに記録することは不可
      *
      */
@@ -406,7 +479,7 @@ class KMMotorCommandKMOne extends EventEmitter{
      * @param {number} index int タスクセット番号（0～65535）
      * @param {number} repeating int 繰り返し回数 0は無制限
      *
-     * @desc KM-1 は index: 0~49 まで。（50個のメモリバンク 各8128 Byte まで制限あり）<br>
+     * @desc KM-1 は index: 0~49 まで。（50個のメモリバンク 各8128 Byte まで制限あり）&lt;br>
      * タスクセットの記録は、コマンド（タスクセット）を参照下さい。 https://document.keigan-motor.com/motor-control-command/taskset.html
      */
     cmdDoTaskset(index = 0,repeating = 1){
@@ -420,15 +493,15 @@ class KMMotorCommandKMOne extends EventEmitter{
      * @summary モーション再生の開始地点に移動する
      * @param {number} index int モーション番号（0～65535）
      * @param {number} repeating int 繰り返し回数 0は無制限
-     * @param {KMMotorCommandKMOne.cmdPreparePlaybackMotion_START_POSITION} start_position int スタート位置の設定<br>
-     * START_POSITION_ABS:記憶された開始位置（絶対座標）からスタート<br>
+     * @param {KMMotorCommandKMOne.cmdPreparePlaybackMotion_START_POSITION} start_position int スタート位置の設定&lt;br>
+     * START_POSITION_ABS:記憶された開始位置（絶対座標）からスタート&lt;br>
      * START_POSITION_CURRENT:現在の位置を開始位置としてスタート
      *
      *
-     * @desc KM-1 は index: 0~9 まで。（10個のメモリバンク。）それぞれ 約2分記録可能。<br>
-     * ティーチング（動作の記録）は、コマンド（ティーチング）を参照下さい。<br>https://document.keigan-motor.com/motor-control-command/teaching.html<br>
+     * @desc KM-1 は index: 0~9 まで。（10個のメモリバンク。）それぞれ 約2分記録可能。&lt;br>
+     * ティーチング（動作の記録）は、コマンド（ティーチング）を参照下さい。&lt;br>https://document.keigan-motor.com/motor-control-command/teaching.html&lt;br>
      *
-     * @todo repeating, option についてはファームウェア未実装 2017.10.10<br>
+     * @todo repeating, option についてはファームウェア未実装 2017.10.10&lt;br>
      *  再生回数は１回固定であり、本コマンドを実行すると、記録した絶対位置の最初のポイントに移動する
      */
     cmdPreparePlaybackMotion(index = 0,repeating = 0,start_position = 0){
@@ -588,10 +661,10 @@ class KMMotorCommandKMOne extends EventEmitter{
     //---------------------//
     /**
      * @summary LEDの点灯状態をセットする
-     * @param {KMMotorCommandKMOne.cmdLed_LED_STATE} cmdLed_LED_STATE int 点灯状態<br>
-     *   LED_STATE_OFF:LED消灯<br>
-     *   LED_STATE_ON_SOLID:LED点灯<br>
-     *   LED_STATE_ON_FLASH:LED点滅（一定間隔で点滅）<br>
+     * @param {KMMotorCommandKMOne.cmdLed_LED_STATE} cmdLed_LED_STATE int 点灯状態&lt;br>
+     *   LED_STATE_OFF:LED消灯&lt;br>
+     *   LED_STATE_ON_SOLID:LED点灯&lt;br>
+     *   LED_STATE_ON_FLASH:LED点滅（一定間隔で点滅）&lt;br>
      *   LED_STATE_ON_DIM:LEDがゆっくり明滅する
      * @param {number} red int 0-255
      * @param {number} green int 0-255
@@ -612,7 +685,7 @@ class KMMotorCommandKMOne extends EventEmitter{
     /**
      * @summary IMU(ジャイロ)の値取得(通知)を開始する (BLE専用コマンド)
      *
-     * @desc 本コマンドを実行すると、IMUのデータはBLEのキャラクタリスティクスMOTOR_IMU_MEASUREMENTに通知される<br>
+     * @desc 本コマンドを実行すると、IMUのデータはBLEのキャラクタリスティクスMOTOR_IMU_MEASUREMENTに通知される&lt;br>
      * MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT_TYPE.imuMeasurement に通知
      */
     cmdEnableIMU(){
@@ -673,8 +746,8 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary 加減速曲線を指定する（モーションコントロールの設定）
-     * @param {KMMotorCommandKMOne.cmdCurveType_CURVE_TYPE} cmdCurveType_CURVE_TYPE int 加減速カーブオプション<br>
-     *      CURVE_TYPE_NONE:0 モーションコントロール OFF<br>
+     * @param {KMMotorCommandKMOne.cmdCurveType_CURVE_TYPE} cmdCurveType_CURVE_TYPE int 加減速カーブオプション&lt;br>
+     *      CURVE_TYPE_NONE:0 モーションコントロール OFF&lt;br>
      *      CURVE_TYPE_TRAPEZOID:1 モーションコントロール ON （台形加減速）
      */
     cmdCurveType(cmdCurveType_CURVE_TYPE = 0){
@@ -709,8 +782,8 @@ class KMMotorCommandKMOne extends EventEmitter{
      * @summary モーターの最大トルク（絶対値）を設定する
      * @param {number} maxTorque float 最大トルク [N*m]（正の値）
      *
-     * @desc maxTorque を設定することにより、トルクの絶対値が maxTorque を超えないように運転します。<br>
-     * maxTorque = 0.1 [N*m] の後に runForward （正回転）を行った場合、0.1 N*m を超えないようにその速度をなるだけ維持する。<br>
+     * @desc maxTorque を設定することにより、トルクの絶対値が maxTorque を超えないように運転します。&lt;br>
+     * maxTorque = 0.1 [N*m] の後に runForward （正回転）を行った場合、0.1 N*m を超えないようにその速度をなるだけ維持する。&lt;br>
      * ただし、トルクの最大値制限により、システムによっては制御性（振動）が悪化する可能性がある。
      *
      */
@@ -806,7 +879,7 @@ class KMMotorCommandKMOne extends EventEmitter{
      * @param {number} green int 0-255
      * @param {number} blue int 0-255
      *
-     * @desc ownColor はアイドル時の固有LEDカラー。<br>saveAllSettingsを実行し、再起動後に初めて反映される。<br>
+     * @desc ownColor はアイドル時の固有LEDカラー。&lt;br>saveAllSettingsを実行し、再起動後に初めて反映される。&lt;br>
      * この設定値を変更した場合、BLEの Device Name の下3桁が変更される。
      */
     cmdOwnColor(red,green,blue){
@@ -820,11 +893,11 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary 指定した設定値を取得 (BLE専用コマンド)
-     * @param {number | array} registers <int | []> 取得するプロパティのコマンド(レジスタ番号)値
-     * @returns {Promise.<int | array>} 取得した値 <br>registersがint=レジスタ値のプリミティブ値 <br>registersがArray=レジスタ値のオブジェクト
+     * @param {number | array} registers &lt;int | []> 取得するプロパティのコマンド(レジスタ番号)値
+     * @returns {Promise.&lt;int | array>} 取得した値 &lt;br>registersがint=レジスタ値のプリミティブ値 &lt;br>registersがArray=レジスタ値のオブジェクト
      *
-     * @none 取得する値はコマンド実行後にBLEのキャラクタリスティクスMOTOR_SETTINGに通知される。<br>
-     *       それを拾ってpromiseオブジェクトののresolveに返して処理を繋ぐ<br>
+     * @none 取得する値はコマンド実行後にBLEのキャラクタリスティクスMOTOR_SETTINGに通知される。&lt;br>
+     *       それを拾ってpromiseオブジェクトののresolveに返して処理を繋ぐ&lt;br>
      *       MOTOR_SETTINGのnotifyは_onBleMotorSettingで取得
      */
 
@@ -832,7 +905,7 @@ class KMMotorCommandKMOne extends EventEmitter{
         if(registers instanceof Array){
             return new Promise((allresolve, allreject)=> {
                 var promiseList=[];
-                for(let i=0;i<registers.length;i++){
+                for(let i=0;i&lt;registers.length;i++){
                     let register=registers[i];
                     promiseList.push( new Promise((resolve, reject)=> {
                         let ccp=new _KMNotifyPromis(register,this._REV_MOTOR_COMMAND[register],this._notifyPromisList,resolve,reject,1000);//notify経由のresultをPromisと紐付け
@@ -868,7 +941,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * モーターの全てのレジスタ値の取得
-     * @returns {Promise.<array>}
+     * @returns {Promise.&lt;array>}
      */
     cmdReadAllRegister(){
        let cm= this.constructor.cmdReadRegister_COMMAND;
@@ -924,7 +997,7 @@ class _KMNotifyPromis{
     static sendGroupNotifyResolve(groupArray,tagName,val){
         if(!groupArray instanceof Array){return;}
         //送信IDの通知 CallbackPromisで呼び出し元のメソッドのPromisに返す
-        for(let i=0; i<groupArray.length; i++){
+        for(let i=0; i&lt;groupArray.length; i++){
             if( groupArray[i].tagName===tagName ){
                 groupArray[i].callResolve(val);
                 groupArray.splice(i,1);
@@ -968,7 +1041,7 @@ class _KMNotifyPromis{
     }
 
     _removeGroup(){
-        for(let i=0; i<this.groupArray.length; i++){
+        for(let i=0; i&lt;this.groupArray.length; i++){
             if( this.groupArray===this){
                 this.groupArray.splice(i,1);
                 break;
@@ -979,3 +1052,157 @@ class _KMNotifyPromis{
 }
 
 module.exports =KMMotorCommandKMOne;
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	©Copyright 2017 Keigan Inc. All rights reserved.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018 Jan Sat 20th 
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+<script>
+	(function ( i, s, o, g, r, a, m ) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push( arguments )
+		}, i[r].l = 1 * new Date();
+		a = s.createElement( o ),
+			m = s.getElementsByTagName( o )[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore( a, m )
+	})( window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga' );
+
+	ga( 'create', 'UA-110466329-1', 'document.keigan-motor.com' );
+	ga( 'send', 'pageview' );
+</script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

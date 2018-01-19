@@ -12,18 +12,27 @@
 let KMComWebBLE = require('./KMComWebBLE');
 let KMMotorCommandKMOne=require('./KMMotorCommandKMOne.js');
 
+/**
+ * @classdesc KM-1のWebBluetooh接続用 仮想デバイス
+ */
 class KMMotorOneWebBLE extends KMMotorCommandKMOne{
     /**
      * constructor
-     * @param arg
      */
     constructor(){
         super(KMMotorCommandKMOne.KM_CONNECT_TYPE.WEBBLE,new KMComWebBLE());
     }
 
+    /**
+     * モーターと接続する
+     */
     connect(){
         this._KMCom.connect();
     }
+
+    /**
+     * モーターと切断
+     */
     disConnect(){
         this._KMCom.disConnect();
     }
