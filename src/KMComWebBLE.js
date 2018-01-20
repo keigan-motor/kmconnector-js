@@ -339,36 +339,44 @@ class KMComWebBLE extends KMComBase{
                                 );
                             });
                             return Promise.all(crs);
-                        }),
-                        //ble_firmware_revisionのサービス取得
-                        server.getPrimaryService(this._DEVICE_INFORMATION_SERVICE_UUIDS.Service).then((service) => {
-                            let ifs = [];
-                            ifs.push(
-                                service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.ManufacturerNameString)
-                                    .then(chara => {
-                                        return chara.readValue();
-                                    }).then(val => {
-                                    infomation['manufacturerName'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
-                                })
-                            );
-                            ifs.push(
-                                service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.FirmwareRevisionString)
-                                    .then(chara => {
-                                        return chara.readValue();
-                                    }).then(val => {
-                                    infomation['firmwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
-                                })
-                            );
-                            ifs.push(
-                                service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.HardwareRevisionString)
-                                    .then(chara => {
-                                        return chara.readValue();
-                                    }).then(val => {
-                                    infomation['hardwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
-                                })
-                            );
-                            return Promise.all(ifs);
+                        }).then(()=>{
+                            //ble_firmware_revisionのサービス取得 info::Androiddでは不安定な為停止
+
+                            //
+                            // return new Promise((sresolve, sreject)=> {
+                            //     server.getPrimaryService(this._DEVICE_INFORMATION_SERVICE_UUIDS.Service).then((service) => {
+                            //         let ifs = [];
+                            //         ifs.push(
+                            //             service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.ManufacturerNameString)
+                            //                 .then(chara => {
+                            //                     return chara.readValue();
+                            //                 }).then(val => {
+                            //                 infomation['manufacturerName'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                            //             })
+                            //         );
+                            //         ifs.push(
+                            //             service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.FirmwareRevisionString)
+                            //                 .then(chara => {
+                            //                     return chara.readValue();
+                            //                 }).then(val => {
+                            //                 infomation['firmwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                            //             })
+                            //         );
+                            //         ifs.push(
+                            //             service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.HardwareRevisionString)
+                            //                 .then(chara => {
+                            //                     return chara.readValue();
+                            //                 }).then(val => {
+                            //                 infomation['hardwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                            //             })
+                            //         );
+                            //         return Promise.all(ifs);
+                            //     }).then(()=>{
+                            //         sresolve();
+                            //     })
+                            // });
                         })
+
                     ];
                     return Promise.all(prs);
                 }).then(() => {
