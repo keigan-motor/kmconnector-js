@@ -327,7 +327,6 @@ class KMComWebBLE extends KMComBase{
             return new Promise((gresolve, greject)=> {
                 gatt_obj.connect().then(server => {
                     // return server.getPrimaryServices(this._MOTOR_BLE_SERVICE_UUID);
-                    let prs = [
                         server.getPrimaryService(this._MOTOR_BLE_SERVICE_UUID).then(service => {
                             let crs = [];
                             Object.keys(this._MOTOR_BLE_CRS).forEach((key) => {
@@ -341,51 +340,55 @@ class KMComWebBLE extends KMComBase{
                             return Promise.all(crs);
                         }).then(()=>{
                             //ble_firmware_revisionのサービス取得 info::Androiddでは不安定な為停止
-
-                            //
-                            // return new Promise((sresolve, sreject)=> {
-                            //     server.getPrimaryService(this._DEVICE_INFORMATION_SERVICE_UUIDS.Service).then((service) => {
-                            //         let ifs = [];
-                            //         ifs.push(
-                            //             service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.ManufacturerNameString)
-                            //                 .then(chara => {
-                            //                     return chara.readValue();
-                            //                 }).then(val => {
-                            //                 infomation['manufacturerName'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
-                            //             })
-                            //         );
-                            //         ifs.push(
-                            //             service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.FirmwareRevisionString)
-                            //                 .then(chara => {
-                            //                     return chara.readValue();
-                            //                 }).then(val => {
-                            //                 infomation['firmwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
-                            //             })
-                            //         );
-                            //         ifs.push(
-                            //             service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.HardwareRevisionString)
-                            //                 .then(chara => {
-                            //                     return chara.readValue();
-                            //                 }).then(val => {
-                            //                 infomation['hardwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
-                            //             })
-                            //         );
-                            //         return Promise.all(ifs);
-                            //     }).then(()=>{
-                            //         sresolve();
-                            //     })
-                            // });
+                            return new Promise((sresolve, sreject)=> {
+                                server.getPrimaryService(this._DEVICE_INFORMATION_SERVICE_UUIDS.Service).then((service) => {
+                                    Promise.resolve().then(()=>{
+                                        return new Promise((resolve, reject)=>{
+                                            service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.ManufacturerNameString)
+                                                .then(chara => {
+                                                    return chara.readValue();
+                                                }).then(val => {
+                                                infomation['manufacturerName'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                                                resolve();
+                                            }).catch((e)=>{reject(e);})
+                                        });
+                                    }).then(()=>{
+                                        return new Promise((resolve, reject)=>{
+                                            service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.FirmwareRevisionString)
+                                                .then(chara => {
+                                                    return chara.readValue();
+                                                }).then(val => {
+                                                infomation['firmwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                                                resolve();
+                                            }).catch((e)=>{reject(e);})
+                                        });
+                                    }).then(()=>{
+                                        return new Promise((resolve, reject)=>{
+                                            service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.HardwareRevisionString)
+                                                .then(chara => {
+                                                    return chara.readValue();
+                                                }).then(val => {
+                                                infomation['hardwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                                                resolve();
+                                            }).catch((e)=>{reject(e);})
+                                        });
+                                    }).then(()=>{
+                                        sresolve();
+                                    }).catch((e)=>{
+                                        sreject(e);
+                                    })
+                                }).catch((e)=>{
+                                    sreject(e);
+                                })
+                            });
+                        }).then(() => {
+                            gresolve({characteristics: characteristics, infomation: infomation});
+                        }).catch((e)=>{
+                            console.log(e);
                         })
-
-                    ];
-                    return Promise.all(prs);
-                }).then(() => {
-                    gresolve({characteristics: characteristics, infomation: infomation});
                 });
             });
     }
-
-
 
     /**
      * BLEコマンドの送信

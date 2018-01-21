@@ -18,6 +18,7 @@ let KMMotorCommandKMOne=require('./KMMotorCommandKMOne.js');
 class KMMotorOneWebBLE extends KMMotorCommandKMOne{
     /**
      * constructor
+     * @extends KMMotorCommandKMOne
      */
     constructor(){
         super(KMMotorCommandKMOne.KM_CONNECT_TYPE.WEBBLE,new KMComWebBLE());
