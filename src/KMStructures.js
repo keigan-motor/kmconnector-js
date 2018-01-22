@@ -72,8 +72,10 @@ class KMStructureBase{
 class KMVector2 extends KMStructureBase {
     /**
      * constructor
+     * @extends KMStructureBase
      * @param {number} x
      * @param {number} y
+     *
      * @instance
      */
     constructor (x=0, y=0) {
@@ -199,6 +201,7 @@ class KMVector2 extends KMStructureBase {
 class KMImuState extends KMStructureBase {
     /**
      * constructor
+     * @extends KMStructureBase
      * @param {number} accelX 加速度(x) [± 1]
      * @param {number} accelY 加速度(y) [± 1]
      * @param {number} accelZ 加速度(z) [± 1]
@@ -251,6 +254,7 @@ class KMLedState extends KMStructureBase {
 
     /**
      * constructor
+     * @extends KMStructureBase
      * @param {KMLedState.MOTOR_LED_STATE} state
      * @param {number} colorR int [0-255]
      * @param {number} colorG int [0-255]
@@ -307,6 +311,7 @@ class KMRotState extends KMStructureBase {
 
     /**
      * constructor
+     * @extends KMStructureBase
      * @param {number} position 座標
      * @param {number} velocity 速度
      * @param {number} torque トルク
@@ -327,7 +332,8 @@ class KMRotState extends KMStructureBase {
  */
 class KMDeviceInfo extends KMStructureBase {
     /**
-     *
+     * constructor
+     * @extends KMStructureBase
      * @param {KMMotorCommandKMOne.KM_CONNECT_TYPE} type 接続方式
      * @param {string} id デバイスUUID
      * @param {string} name モーター名

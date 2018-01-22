@@ -400,7 +400,6 @@ class KMComWebBLE extends KMComBase{
             return new Promise((gresolve, greject)=> {
                 gatt_obj.connect().then(server => {
                     // return server.getPrimaryServices(this._MOTOR_BLE_SERVICE_UUID);
-                    let prs = [
                         server.getPrimaryService(this._MOTOR_BLE_SERVICE_UUID).then(service => {
                             let crs = [];
                             Object.keys(this._MOTOR_BLE_CRS).forEach((key) => {
@@ -412,45 +411,57 @@ class KMComWebBLE extends KMComBase{
                                 );
                             });
                             return Promise.all(crs);
-                        }),
-                        //ble_firmware_revisionのサービス取得
-                        server.getPrimaryService(this._DEVICE_INFORMATION_SERVICE_UUIDS.Service).then((service) => {
-                            let ifs = [];
-                            ifs.push(
-                                service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.ManufacturerNameString)
-                                    .then(chara => {
-                                        return chara.readValue();
-                                    }).then(val => {
-                                    infomation['manufacturerName'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                        }).then(()=>{
+                            //ble_firmware_revisionのサービス取得 info::Androiddでは不安定な為停止
+                            return new Promise((sresolve, sreject)=> {
+                                server.getPrimaryService(this._DEVICE_INFORMATION_SERVICE_UUIDS.Service).then((service) => {
+                                    Promise.resolve().then(()=>{
+                                        return new Promise((resolve, reject)=>{
+                                            service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.ManufacturerNameString)
+                                                .then(chara => {
+                                                    return chara.readValue();
+                                                }).then(val => {
+                                                infomation['manufacturerName'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                                                resolve();
+                                            }).catch((e)=>{reject(e);})
+                                        });
+                                    }).then(()=>{
+                                        return new Promise((resolve, reject)=>{
+                                            service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.FirmwareRevisionString)
+                                                .then(chara => {
+                                                    return chara.readValue();
+                                                }).then(val => {
+                                                infomation['firmwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                                                resolve();
+                                            }).catch((e)=>{reject(e);})
+                                        });
+                                    }).then(()=>{
+                                        return new Promise((resolve, reject)=>{
+                                            service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.HardwareRevisionString)
+                                                .then(chara => {
+                                                    return chara.readValue();
+                                                }).then(val => {
+                                                infomation['hardwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
+                                                resolve();
+                                            }).catch((e)=>{reject(e);})
+                                        });
+                                    }).then(()=>{
+                                        sresolve();
+                                    }).catch((e)=>{
+                                        sreject(e);
+                                    })
+                                }).catch((e)=>{
+                                    sreject(e);
                                 })
-                            );
-                            ifs.push(
-                                service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.FirmwareRevisionString)
-                                    .then(chara => {
-                                        return chara.readValue();
-                                    }).then(val => {
-                                    infomation['firmwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
-                                })
-                            );
-                            ifs.push(
-                                service.getCharacteristic(this._DEVICE_INFORMATION_SERVICE_UUIDS.HardwareRevisionString)
-                                    .then(chara => {
-                                        return chara.readValue();
-                                    }).then(val => {
-                                    infomation['hardwareRevision'] = KMUtl.Utf8ArrayToStr(new Uint8Array(val.buffer));
-                                })
-                            );
-                            return Promise.all(ifs);
+                            });
+                        }).then(() => {
+                            gresolve({characteristics: characteristics, infomation: infomation});
+                        }).catch((e)=>{
+                            console.log(e);
                         })
-                    ];
-                    return Promise.all(prs);
-                }).then(() => {
-                    gresolve({characteristics: characteristics, infomation: infomation});
                 });
             });
     }
-
-
 
     /**
      * BLEコマンドの送信
@@ -539,7 +550,7 @@ module.exports =KMComWebBLE;</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018 Jan Sat 20th 
+		on 2018 Jan Mon 22nd 
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

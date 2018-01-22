@@ -75,7 +75,7 @@ class KMMotorOneBLE extends KMMotorCommandKMOne{
 
 
     /**
-     * イベント定数
+     * イベントタイプ定数
      * @readonly
      * @enum {string}
      * @property {string} discoverMotor - モーター発見時(毎回)

@@ -112,7 +112,7 @@ class KMMotorCommandKMOne extends EventEmitter{
         super();
 
         /**
-         * イベントハンドラタイプ定数
+         * イベントタイプ定数
          * @readonly
          * @enum {string}
          */
