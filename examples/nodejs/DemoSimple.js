@@ -8,7 +8,7 @@ KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMot
     let name=kMMotorOneBLE.deviceInfo.name;
     console.log('onDiscover NewMotor:'+name);
     console.log(Object.keys(KMConnector.KMMotorOneBLE.motors));//APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
-    KMConnector.KMMotorOneBLE.stopScan();
+    KMConnector.KMMotorOneBLE.stopScan();//info::End scanning when one device is detected
 
     // 応答・再接続に成功した
     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.connect,function(kMDeviceInfo){

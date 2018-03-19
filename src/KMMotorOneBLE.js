@@ -116,24 +116,26 @@ class KMMotorOneBLE extends KMMotorCommandKMOne{
     static get motorsByUUID(){
         return _motorsByUUID;
     }
+
     /**
      * BLEデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する
      * @param {number} time スキャンの継続時間(ms)
+     * @param {boolean} allowDuplicates 重複検出を許可
      */
-    static startScanToCreateInstance(time = 2000){
+    static startScanToCreateInstance(time = 2000,allowDuplicates=false){
         clearTimeout(_startScanTimeoutID);
         if(noble.state === 'poweredOn'){
             noble.removeListener('discover',KMMotorOneBLE._discoverLis);
             noble.on('discover',KMMotorOneBLE._discoverLis);
             console.log('startScanToCreateInstance');
-            noble.startScanning([KMComBLE.MOTOR_BLE_SERVICE_UUID],false);//info::UUIDを指定しないとスキャン時にadvertisement.serviceUuidsが取得出来ない
+            noble.startScanning([KMComBLE.MOTOR_BLE_SERVICE_UUID],allowDuplicates);//info::UUIDを指定しないとスキャン時にadvertisement.serviceUuidsが取得出来ない
             _startScanTimeoutID=setTimeout(()=>{
                 KMMotorOneBLE.stopScan();
                 _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.scanTimeout);
             },time);
         }else if(noble.state === 'unknown') {
             noble.once('stateChange', function(){
-                KMMotorOneBLE.startScanToCreateInstance();
+                KMMotorOneBLE.startScanToCreateInstance(time,allowDuplicates);
             });
         }else{
             //BLE無効時
@@ -172,7 +174,10 @@ class KMMotorOneBLE extends KMMotorCommandKMOne{
         //info::デバイスを選別する。startScanToCreateInstance中に別のクラスからnoble.startScanningした場合、Motor以外のデバイスも拾う可能性がある為。
         if(!(nobleperipheral.advertisement&&nobleperipheral.advertisement.serviceUuids&&nobleperipheral.advertisement.serviceUuids[0]==KMComBLE.MOTOR_BLE_SERVICE_UUID)){
             return;
-        };
+        }
+
+        console.log('Discover device:'+nobleperipheral.uuid);
+
         if(!_motorsByUUID[nobleperipheral.uuid]){
            let motor= new KMMotorOneBLE(nobleperipheral);//info::検出したモーターは全てインスタンス化
             _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,_motorsByUUID[nobleperipheral.uuid]);
