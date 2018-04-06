@@ -23,7 +23,7 @@ reader.on('line', function(inputst) {
             demoPlay();
             break;
         case 'discon':
-            KMConnector.KMMotorOneBLE.allDisConnect();
+           KMConnector.KMMotorOneBLE.allDisConnect();
             console.log('>');
             break;
         case 'exit':
@@ -152,7 +152,23 @@ function allConnect(){
             motor.connect();
         }
     });
+
+
 }
+
+//info::debug test
+// function allConnect(){
+//     Object.keys(KMConnector.KMMotorOneBLE.motors).forEach((key,i)=>{
+//         let motor=KMConnector.KMMotorOneBLE.motors[key];
+//         //モーターの接続
+//         if(!motor.isConnect){
+//             setTimeout(()=>{
+//                 motor.connect();
+//             },i*2000);
+//         }
+//     });
+// }
+
 //-----------------------------------------
 // ex3) コマンド実行
 //-----------------------------------------

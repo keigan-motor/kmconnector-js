@@ -161,6 +161,13 @@ class KMMotorOneBLE extends KMMotorCommandKMOne{
         Object.keys(_motorsByUUID).forEach((key)=> {
             _motorsByUUID[key]._KMCom.disConnect();
         });
+    }
+
+    /**
+     *  全ての仮想モーターを消去
+     */
+    static clearMotors(){
+        KMMotorOneBLE.allDisConnect();
         _motorsByUUID={};
         KMMotorOneBLE._restructMotorsByName();
     }

@@ -12,7 +12,6 @@ let KMUtl = require('./KMUtl');
 let KMComBase = require('./KMComBase');
 //let noble = require('noble');
 
-let _bleConnectSendingQue=Promise.resolve(true);
 
 /**
  * @classdesc node.js用BLE通信クラス(noble依存)
@@ -91,7 +90,6 @@ class KMComBLE extends KMComBase{
         this._peripheral=peripheral;
         this._characteristics={};
         this._bleSendingQue=Promise.resolve(true);
-
         //this._queCount=0;
 
         this._deviceInfo.type="BLE";
@@ -113,6 +111,7 @@ class KMComBLE extends KMComBase{
         this._peripheral.on('disconnect',  function(){
             console.log('disconnect');
             this._statusChange_isConnect(false);
+
         }.bind(this));
 
     }
@@ -122,40 +121,29 @@ class KMComBLE extends KMComBase{
      *
      */
     connect(){
-        //info::インスタンス毎に並列で処理すると接続出来ない事がある為、キューに溜めて逐次処理
-        _bleConnectSendingQue= _bleConnectSendingQue.then((res)=>{
-            return new Promise((resolve,reject)=> {
-                if (this._peripheral&& this._peripheral.state==='connected') {
-                    resolve(true);return;
-                }
-                this._peripheral.connect(function(error){
-                    if(error){
-                        this._onConnectFailureHandler(this,error);
-                        resolve(error);
-
-                    }else if(!this._isInit){
-                        this._discoverServices().then(()=>{
-                            resolve(true);
-                        }).catch(function(res){
-                            resolve(true);
-                        });
-
-                        // this._peripheral.discoverServices([this.constructor.MOTOR_BLE_SERVICE_UUID,this.constructor.DEVICE_INFORMATION_SERVICE_UUIDS.Service]);
-                    }else {
-                        resolve(true);
+        if (this._peripheral&& this._peripheral.state==='connected') {
+            return;
+        }
+        this._peripheral.connect(function(error){
+            if(error){
+                this._onConnectFailureHandler(this,error);
+            }else {
+                this._discoverServices().then(()=>{
+                    if(!this._isInit){
+                        this._statusChange_init(true);
+                        this._statusChange_isConnect(true);//初回のみ(comp以前は発火しない為)
                     }
-                }.bind(this));
-            }).catch(function(res){
-                resolve(true);
-            });
-        });
+                }).catch(function(res){
+                    console.log(res);
+                });
+            }
+        }.bind(this));
     }
 
     /**
      * BLEでの切断
      */
     disConnect(){
-        //info::キューに溜まっているconnectは切断出来ない
         this._peripheral.disconnect();
     }
 
@@ -290,8 +278,8 @@ class KMComBLE extends KMComBase{
                             console.log('Type mismatch of motor peripheral device:'+this._deviceInfo.name);
                             this._peripheral.disconnect();
                         }else{
-                            this._statusChange_init(true);
-                            this._statusChange_isConnect(true);//初回のみ(comp以前は発火しない為)
+                            // this._statusChange_init(true);
+                            // this._statusChange_isConnect(true);//初回のみ(comp以前は発火しない為)
                             d_resolve(true);
                         }
                     }).catch((errmsg)=>{
