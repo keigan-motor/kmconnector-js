@@ -336,7 +336,7 @@ class KMDeviceInfo extends KMStructureBase {
      * @extends KMStructureBase
      * @param {KMMotorCommandKMOne.KM_CONNECT_TYPE} type 接続方式
      * @param {string} id デバイスUUID
-     * @param {string} name モーター名
+     * @param {string} name モーター名(形式 ID LEDColor)
      * @param {boolean} isConnect 接続状態
      * @param {string} manufacturerName 製造会社名
      * @param {string} hardwareRevision
