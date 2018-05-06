@@ -831,13 +831,13 @@ class KMMotorCommandKMOne extends EventEmitter{
     cmdReadRegister(registers){
         if(registers instanceof Array){
             return new Promise((allresolve, allreject)=> {
-                var promiseList=[];
+                let promiseList=[];
                 for(let i=0;i<registers.length;i++){
-                    let register=registers[i];
+                    let register=parseInt(registers[i],10);
                     promiseList.push( new Promise((resolve, reject)=> {
                         let ccp=new _KMNotifyPromis(register,this._REV_MOTOR_COMMAND[register],this._notifyPromisList,resolve,reject,1000);//notify経由のresultをPromisと紐付け
                         let buffer = new ArrayBuffer(1);
-                        new DataView(buffer).setUint8(0, parseInt(register, 10));
+                        new DataView(buffer).setUint8(0, register);
                         this._KMCom._sendMotorCommand('MOTOR_SETTING',this._MOTOR_COMMAND.readRegister, buffer,ccp);
                     }));
                 }
@@ -851,11 +851,11 @@ class KMMotorCommandKMOne extends EventEmitter{
             });
         }else{
             return new Promise((lastresolve, lastreject)=> {
-                let register=registers;
+                let register=parseInt(registers,10);
                 new Promise((resolve, reject)=> {
                     let ccp=new _KMNotifyPromis(register,this._REV_MOTOR_COMMAND[register],this._notifyPromisList,resolve,reject,1000);//notify経由のresultをPromisと紐付け
                     let buffer = new ArrayBuffer(1);
-                    new DataView(buffer).setUint8(0, parseInt(register, 10));
+                    new DataView(buffer).setUint8(0,register);
                     this._KMCom._sendMotorCommand('MOTOR_SETTING',this._MOTOR_COMMAND.readRegister, buffer,ccp);
                 }).then((res)=>{
                     lastresolve(res[Object.keys(res)[0]]);
