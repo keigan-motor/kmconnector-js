@@ -90,7 +90,6 @@ class KMComBLE extends KMComBase{
         this._peripheral=peripheral;
         this._characteristics={};
         this._bleSendingQue=Promise.resolve(true);
-        this._tryconnect=false;
         //this._queCount=0;
 
         this._deviceInfo.type="BLE";
@@ -121,13 +120,10 @@ class KMComBLE extends KMComBase{
      *
      */
     connect(){
-        if ((this._peripheral&& this._peripheral.state==='connected')||this._tryconnect) {
+        if ((this._peripheral&& this._peripheral.state==='connected'||this._peripheral.state==='connecting')) {
             return;
         }
-        this._tryconnect=true;
-
         this._peripheral.connect(function(error){
-            this._tryconnect=false;
             if(error){
                 this._onConnectFailureHandler(this,error);
             }else {
@@ -149,7 +145,6 @@ class KMComBLE extends KMComBase{
      */
     disConnect(){
         this._peripheral.disconnect();
-        this._tryconnect=false;
     }
 
     /********************************************
