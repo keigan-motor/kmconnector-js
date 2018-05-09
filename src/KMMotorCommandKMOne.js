@@ -835,7 +835,7 @@ class KMMotorCommandKMOne extends EventEmitter{
                 for(let i=0;i<registers.length;i++){
                     let register=parseInt(registers[i],10);
                     promiseList.push( new Promise((resolve, reject)=> {
-                        let ccp=new _KMNotifyPromis(register,this._REV_MOTOR_COMMAND[register],this._notifyPromisList,resolve,reject,1000);//notify経由のresultをPromisと紐付け
+                        let ccp=new _KMNotifyPromis(register,this._REV_MOTOR_COMMAND[register],this._notifyPromisList,resolve,reject,5000);//notify経由のresultをPromisと紐付け
                         let buffer = new ArrayBuffer(1);
                         new DataView(buffer).setUint8(0, register);
                         this._KMCom._sendMotorCommand('MOTOR_SETTING',this._MOTOR_COMMAND.readRegister, buffer,ccp);
@@ -927,7 +927,6 @@ class _KMNotifyPromis{
         for(let i=0; i<groupArray.length; i++){
             if( groupArray[i].tagName===tagName ){
                 groupArray[i].callResolve(val);
-                groupArray.splice(i,1);
             }
         }
     }
@@ -969,7 +968,7 @@ class _KMNotifyPromis{
 
     _removeGroup(){
         for(let i=0; i<this.groupArray.length; i++){
-            if( this.groupArray===this){
+            if( this.groupArray[i]===this){
                 this.groupArray.splice(i,1);
                 break;
             }
@@ -979,3 +978,4 @@ class _KMNotifyPromis{
 }
 
 module.exports =KMMotorCommandKMOne;
+

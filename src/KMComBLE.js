@@ -90,7 +90,7 @@ class KMComBLE extends KMComBase{
         this._peripheral=peripheral;
         this._characteristics={};
         this._bleSendingQue=Promise.resolve(true);
-        //this._queCount=0;
+        this._queCount=0;
 
         this._deviceInfo.type="BLE";
         this._deviceInfo.id=this._peripheral.id;
@@ -423,7 +423,7 @@ class KMComBLE extends KMComBase{
                 res.ownColor=('#000000' +Number(dv.getUint8(4)<<16|dv.getUint8(5)<<8|dv.getUint8(6)).toString(16)).substr(-6);
                 break;
         }
-        //console.log(res);
+        console.log(res);
 
         this._onMotorSettingCB(registerCmd,res);
 
@@ -451,9 +451,9 @@ class KMComBLE extends KMComBase{
             new DataView(buffer).setUint8(3+i,ab.getUint8(i));
         }
         //queに追加
-      // ++this._queCount;
+        ++this._queCount;
         this._bleSendingQue= this._bleSendingQue.then((res)=>{
-         // console.log("_sendMotorCommand queCount:"+(--this._queCount));
+        //console.log("_sendMotorCommand queCount:"+(--this._queCount));
             if(notifyPromis){
                 notifyPromis.startRejectTimeOutCount();
             }
@@ -470,7 +470,7 @@ class KMComBLE extends KMComBase{
             })
         }).catch(function(res){
             //失敗時　//info::後続のコマンドは引き続き実行される
-          //console.log("ERR _sendMotorCommand:"+res+" queCount:"+(--this._queCount));
+            console.log("ERR _sendMotorCommand:"+res+" queCount:"+(--this._queCount));
             if(notifyPromis){
                 notifyPromis.callReject(res);
             }
