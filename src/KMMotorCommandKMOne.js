@@ -16,7 +16,6 @@ let KMStructures=require('./KMStructures');
 
 /**
  * @classdesc KM1コマンド送信クラス
- * @ignore
  */
 class KMMotorCommandKMOne extends EventEmitter{
     /********************************************
@@ -78,11 +77,26 @@ class KMMotorCommandKMOne extends EventEmitter{
             'CURVE_TYPE_TRAPEZOID':1
         };
     }
-    /*
+
+    /**
     * ReadRegisterで取得する時用のコマンド引数定数
     * @readonly
     * @enum {number}
-    * */
+    * @property {number} maxSpeed - 2:最大速さ
+    * @property {number} minSpeed - 3:最小速さ
+    * @property {number} curveType - 5:加減速曲線
+    * @property {number} acc - 7:加速度
+    * @property {number} dec - 8:減速度
+    * @property {number} maxTorque - 14:最大トルク
+    * @property {number} qCurrentP - 24:q軸電流PIDゲイン(P)
+    * @property {number} qCurrentI - 25:q軸電流PIDゲイン(I)
+    * @property {number} qCurrentD - 26:q軸電流PIDゲイン(D)
+    * @property {number} speedP - 27:速度PIDゲイン(P)
+    * @property {number} speedI - 28:速度PIDゲイン(I)
+    * @property {number} speedD - 29:速度PIDゲイン(D)
+    * @property {number} positionP - 30:位置PIDゲイン(P)
+    * @property {number} ownColor - 58:デバイスLEDの固有色
+    */
     static get cmdReadRegister_COMMAND(){
         return{
             "maxSpeed":0x02,
@@ -403,7 +417,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary 記憶したタスク（命令）のセットを実行する
-     * @param {number} index int タスクセット番号（0～65535）
+     * @param {number} index int タスクセット番号（0〜65535）
      * @param {number} repeating int 繰り返し回数 0は無制限
      *
      * @desc KM-1 は index: 0~49 まで。（50個のメモリバンク 各8128 Byte まで制限あり）<br>
@@ -418,7 +432,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary モーション再生の開始地点に移動する
-     * @param {number} index int モーション番号（0～65535）
+     * @param {number} index int モーション番号（0〜65535）
      * @param {number} repeating int 繰り返し回数 0は無制限
      * @param {KMMotorCommandKMOne.cmdPreparePlaybackMotion_START_POSITION} start_position int スタート位置の設定<br>
      * START_POSITION_ABS:記憶された開始位置（絶対座標）からスタート<br>
@@ -495,7 +509,7 @@ class KMMotorCommandKMOne extends EventEmitter{
     /**
      * @summary タスク（命令）のセットの記録を開始する
      * @desc 記憶するインデックスのメモリはコマンド：eraseTaskset により予め消去されている必要があり
-     * @param {number} index int インデックス KM-1 の場合、インデックスの値は 0～49 （計50個記録）
+     * @param {number} index int インデックス KM-1 の場合、インデックスの値は 0〜49 （計50個記録）
      */
     cmdStartRecordingTaskSet(index = 0){
         let buffer = new ArrayBuffer(2);
@@ -537,7 +551,7 @@ class KMMotorCommandKMOne extends EventEmitter{
      * @param {number} index int インデックス
      * @param {number} time int 記録時間 [msec 0-65408]
      *
-     * @desc KM-1 の場合、インデックスの値は 0～9 （計10個記録）となる。記録時間は 65408 [msec] を超えることはできない
+     * @desc KM-1 の場合、インデックスの値は 0〜9 （計10個記録）となる。記録時間は 65408 [msec] を超えることはできない
      *       記憶するインデックスのメモリはbleEraseMotion により予め消去されている必要がある
      *
      */
@@ -567,7 +581,7 @@ class KMMotorCommandKMOne extends EventEmitter{
      * @summary 指定したインデックスのモーションを消去する
      * @param {number} index int インデックス
      *
-     * @desc KM-1 の場合、インデックスの値は 0～9 （計10個記録）となる
+     * @desc KM-1 の場合、インデックスの値は 0〜9 （計10個記録）となる
      *
      */
     cmdEraseMotion(index = 0){
