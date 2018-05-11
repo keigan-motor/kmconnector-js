@@ -34,6 +34,11 @@ process.on('exit', function() {
     KMMotorOneBLE.allDisConnect();
 });
 
+
+noble.once('stateChange', function(){
+    _KMMotorOneBLEStaticEventEmitter.emit("adapterStateChange",noble.state);
+});
+
 /**
  * @classdesc KM-1のBLE接続用 仮想デバイス
  */
@@ -78,6 +83,8 @@ class KMMotorOneBLE extends KMMotorCommandKMOne{
      * イベントタイプ定数
      * @readonly
      * @enum {string}
+     * @property {string} adapterStateChange - BLEアダプターの有効無効の変化
+     * <br>return:"poweredOn"||"unknown"
      * @property {string} discoverMotor - モーター発見時(毎回)
      * <br>return:function({@link KMMotorOneBLE})
      * @property {string} discoverNewMotor - 新規モーターの発見時(1回のみ)
@@ -87,6 +94,7 @@ class KMMotorOneBLE extends KMMotorCommandKMOne{
      */
     static get EVENT_TYPE(){
           return {
+             adapterStateChange:"adapterStateChange",
              discoverMotor:"discoverMotor",
              discoverNewMotor:"discoverNewMotor",
              scanTimeout:"scanTimeout"
@@ -96,7 +104,14 @@ class KMMotorOneBLE extends KMMotorCommandKMOne{
     /********************************************
      * static Scanning
      ********************************************/
-
+    /**
+     * BLEアダプターの状態
+     * @readonly
+     * @returns {*}
+     */
+    static get bleState(){
+        return noble.state;
+    }
     /**
      * APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
      * <br>ex) {<motorName1>:{@link KMMotorOneBLE},<motorName2>:{@link KMMotorOneBLE},,,}
