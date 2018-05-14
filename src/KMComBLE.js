@@ -83,18 +83,18 @@ class KMComBLE extends KMComBase{
      */
     constructor(peripheral){
         super();
+        this._queCount=0;
+        this._bleSendingQue=Promise.resolve(true);
         //todo::peripheral.constructor.name!=='‌Peripheral' 比較出来ない。常にtrue?
-        if(!peripheral instanceof Object||!peripheral.uuid){
-            throw new Error('Type mismatch of peripheral device');
-        }
         this._peripheral=peripheral;
         this._characteristics={};
-        this._bleSendingQue=Promise.resolve(true);
-        this._queCount=0;
 
         this._deviceInfo.type="BLE";
         this._deviceInfo.id=this._peripheral.id;
         this._deviceInfo.name=peripheral.advertisement?peripheral.advertisement.localName:null;
+        if(!peripheral instanceof Object||!peripheral.uuid){
+            throw new Error('Type mismatch of peripheral device');
+        }
         /********************************************
          * イベント
          ********************************************/
@@ -104,7 +104,7 @@ class KMComBLE extends KMComBase{
 
         this._peripheral.on('connect', function() {
             console.log('connect');
-            this._statusChange_isConnect(true);
+            //this._statusChange_isConnect(true);
         }.bind(this));
 
         this._peripheral.on('disconnect',  function(){
@@ -128,9 +128,13 @@ class KMComBLE extends KMComBase{
                 this._onConnectFailureHandler(this,error);
             }else {
                 this._discoverServices().then(()=>{
+                    console.log('BLE discoverServices comp');
                     if(!this._isInit){
+                        //初回のみ(comp以前は発火しない為)
                         this._statusChange_init(true);
-                        this._statusChange_isConnect(true);//初回のみ(comp以前は発火しない為)
+                        this._statusChange_isConnect(true);
+                    }else{
+                        this._statusChange_isConnect(true);
                     }
                 }).catch(function(res){
                     console.log(res);
@@ -278,8 +282,6 @@ class KMComBLE extends KMComBase{
                             console.log('Type mismatch of motor peripheral device:'+this._deviceInfo.name);
                             this._peripheral.disconnect();
                         }else{
-                            // this._statusChange_init(true);
-                            // this._statusChange_isConnect(true);//初回のみ(comp以前は発火しない為)
                             d_resolve(true);
                         }
                     }).catch((errmsg)=>{
@@ -451,15 +453,16 @@ class KMComBLE extends KMComBase{
             new DataView(buffer).setUint8(3+i,ab.getUint8(i));
         }
         //queに追加
+        let self=this;
         ++this._queCount;
         this._bleSendingQue= this._bleSendingQue.then((res)=>{
-        //console.log("_sendMotorCommand queCount:"+(--this._queCount));
+            //console.log("_sendMotorCommand queCount:"+(--self._queCount),"commandNum:"+commandNum);
             if(notifyPromis){
                 notifyPromis.startRejectTimeOutCount();
             }
             return new Promise((resolve,reject)=> {
                 characteristics.write(this._toBuffer(buffer),
-                    true,//withoutResponseFlg
+                    true,//withoutResponseFlg //todo::debug
                     function(error){
                         if(!error){
                             resolve(true);
@@ -470,9 +473,11 @@ class KMComBLE extends KMComBase{
             })
         }).catch(function(res){
             //失敗時　//info::後続のコマンドは引き続き実行される
-            console.log("ERR _sendMotorCommand:"+res+" queCount:"+(--this._queCount));
+            console.log("ERR _sendMotorCommand:"+res+" queCount:"+self._queCount,"commandNum:"+commandNum);
             if(notifyPromis){
                 notifyPromis.callReject(res);
+            }else{
+               // return Promise.resolve(true);
             }
         });
     }

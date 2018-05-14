@@ -1,6 +1,6 @@
 {
   "name": "kmconnector",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "main": "./index.js",
   "directories": {
     "lib": "lib"
