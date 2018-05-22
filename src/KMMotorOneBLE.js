@@ -162,6 +162,7 @@ class KMMotorOneBLE extends KMMotorCommandKMOne{
      * BLEデバイスのスキャンの停止
      */
     static stopScan(){
+        clearTimeout(_startScanTimeoutID);
         noble.removeListener('discover',KMMotorOneBLE._discoverLis);
         if(noble.state === 'poweredOn') {
             noble.stopScanning();
