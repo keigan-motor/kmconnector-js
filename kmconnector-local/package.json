@@ -1,6 +1,6 @@
 {
   "name": "kmconnector",
-  "version": "0.2.0",
+  "version": "0.1.5",
   "main": "./index.js",
   "directories": {
     "lib": "lib"
@@ -22,14 +22,7 @@
   },
    "engines" : { "node" : ">=8.2.1" } ,
   "description": "KeiganMotor connection module.",
-  "homepage":"https://keigan-motor.com/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/keigan-motor/kmconnector-js.git"
-  },
-  "bugs": {
-    "url": "https://github.com/keigan-motor/kmconnector-js/issues"
-  }
+  "homepage":"https://keigan-motor.com/"
 
 
 }

@@ -1,5 +1,6 @@
 /***
  * KMUtl.js
+ * version 0.1.0 alpha
  * CCreated by Harada Hiroshi on 2017/12/07.
  *
  * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/

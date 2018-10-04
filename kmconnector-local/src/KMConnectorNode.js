@@ -11,7 +11,6 @@
 module.exports = {
     KMUtl: require('./KMUtl'),
     KMVector2: require('./KMStructures').KMVector2,
-    //KMVector3: require('./KMStructures').KMVector3;
     KMImuState: require('./KMStructures').KMImuState,
     KMLedState: require('./KMStructures').KMLedState,
     KMRotState: require('./KMStructures').KMRotState,
