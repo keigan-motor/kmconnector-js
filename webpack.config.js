@@ -1,10 +1,11 @@
 'use strict';
-var path = require('path');
+let path = require('path');
 module.exports = [
 
     {
         entry: {//browser script
-            indexBrowser: './src/KMConnectorBrowser.js'
+            'KMConnectorBrowser': './lib/KMConnectorBrowserWPK.js',
+            'examples/browser_webbluetooh/library/KMConnectorBrowser': './lib/KMConnectorBrowserWPK.js'
         },
         output: {
             path:path.resolve(__dirname, './'),

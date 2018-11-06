@@ -5,24 +5,36 @@
   "directories": {
     "lib": "lib"
   },
-  "devDependencies": {
-    "webpack": "^3.10.0",
-    "ink-docstrap": "^1.3.2"
-  },
+
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "keywords": [
-    "KeiganMotor","motor","keigan","bluetooth","BLE","USB","serial"
+    "KeiganMotor",
+    "motor",
+    "keigan",
+    "bluetooth",
+    "BLE",
+    "USB",
+    "serial"
   ],
   "author": "Keigan Inc.",
   "license": "MIT",
   "dependencies": {
-    "noble": "^1.8.1"
+    "noble": "^1.9.1",
+    "serialport": "^7.0.2"
   },
-   "engines" : { "node" : ">=8.2.1" } ,
+  "devDependencies": {
+    "jsdoc": "^3.5.5",
+    "docdash": "^1.0.0",
+    "webpack": "^3.12.0"
+  },
+  "engines": {
+    "node": ">=8.9.2"
+  },
   "description": "KeiganMotor connection module.",
-  "homepage":"https://keigan-motor.com/",
+  "homepage": "https://keigan-motor.com/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/keigan-motor/kmconnector-js.git"
@@ -30,6 +42,4 @@
   "bugs": {
     "url": "https://github.com/keigan-motor/kmconnector-js/issues"
   }
-
-
 }

@@ -1,17 +1,17 @@
 
-
+'use strict';
 // forked from sugi346's "加速度とSMAを折れ線グラフリアルタイム表示" http://jsdo.it/sugi346/zT5C
-var NN = 1000; // 横軸の分解数
-var updateInterval = 300;  // インターバルタイマー
-var container = $('#placeholder');
-var dataX = [], dataY = [], dataZ = [], dataA = [], dataB = [], dataG = [], dataC = [];
+let NN = 1000; // 横軸の分解数
+let updateInterval = 300;  // インターバルタイマー
+let container = $('#placeholder');
+let dataX = [], dataY = [], dataZ = [], dataA = [], dataB = [], dataG = [], dataC = [];
 
-var axis = { alpha:0, beta:0, gamma:0, compass:0 }; // ジャイロセンサー
-var gra = { x:0, y:0, z:0 }; // 加速度
+let axis = { alpha:0, beta:0, gamma:0, compass:0 }; // ジャイロセンサー
+let gra = { x:0, y:0, z:0 }; // 加速度
 
 function updateAllData() {
-    var resX = [], resY = [], resZ = [], resA = [], resB = [], resG = [], resC = [];
-    for( i = 1, j = 0; i < NN; i++, j++ ) {
+    let resX = [], resY = [], resZ = [], resA = [], resB = [], resG = [], resC = [];
+    for(let i = 1,  j = 0; i < NN; i++, j++ ) {
         resX[j] = dataX[i][1]; // resに待避
         resY[j] = dataY[i][1]; // resに待避
         resZ[j] = dataZ[i][1]; // resに待避
@@ -22,21 +22,21 @@ function updateAllData() {
     }
     dataX = [], dataY = [], dataZ = [], dataA = [], dataB = [], dataG = [], dataC = []; // clear
 
-    var px = gra.x;
-    var py = gra.y;
-    var pz = gra.z;
+    let px = gra.x;
+    let py = gra.y;
+    let pz = gra.z;
 
     /*
-     var n = 10; // 単純移動平均をとる回数
-     var pMax = Math.max(px, py, pz);
-     var ps = resS[NN - 2] - ( resS[NN - 1 - n + 1] ) / n + pMax / n;
-     var pm = calcMagnitude(px, py, pz);
+     let n = 10; // 単純移動平均をとる回数
+     let pMax = Math.max(px, py, pz);
+     let ps = resS[NN - 2] - ( resS[NN - 1 - n + 1] ) / n + pMax / n;
+     let pm = calcMagnitude(px, py, pz);
      */
 
-    var pa = axis.alpha;
-    var pb = axis.beta;
-    var pg = axis.gamma;
-    var pc = axis.compass;
+    let pa = axis.alpha;
+    let pb = axis.beta;
+    let pg = axis.gamma;
+    let pc = axis.compass;
 
     $('#xx').html(px);
     $('#yy').html(py);
@@ -54,7 +54,7 @@ function updateAllData() {
     resG[NN - 1 ] = pg / 10;
     resC[NN - 1 ] = pc;
 
-    for( var i=0; i < NN; ++i) {
+    for( let i=0; i < NN; ++i) {
         dataX[i] = [ i, resX[i] ]; // 復帰
         dataY[i] = [ i, resY[i] ]; // 復帰
         dataZ[i] = [ i, resZ[i] ]; // 復帰
@@ -72,7 +72,7 @@ function calcMagnitude(x, y, z) {
 // データの初期化
 function init(){
     dataX = [], dataY = [], dataZ = [], dataA = [], dataB = [], dataG = [], dataC = [];
-    for( var i = 0; i < NN; i++) {
+    for( let i = 0; i < NN; i++) {
         dataX.push( [i, 0] );
         dataY.push( [i, 0] );
         dataZ.push( [i, 0] );
@@ -83,14 +83,14 @@ function init(){
 }
 
 // plot 描画オプション
-var series = [];
+let series = [];
 series[0] = { label: "X軸", data: dataX, lines:{lineWidth:1} };
 series[1] = { label: "Y軸", data: dataY, lines:{lineWidth:1} };
 series[2] = { label: "Z軸", data: dataZ, lines:{lineWidth:1} };
 series[3] = { label: "α/10", data: dataA, lines:{lineWidth:1} };
 series[4] = { label: "β/10", data: dataB, lines:{lineWidth:1} };
 series[5] = { label: "γ/10", data: dataG, lines:{lineWidth:1} };
-var options = {
+let options = {
     series: { data: series, shadowSize: 2 },
     colors: [ "#b3ffb3", "#b3e6ff", "#ccb3ff", "#0000FF", "#ff0000", "#00FF00"],
     legend: { position:"sw"},
@@ -98,7 +98,7 @@ var options = {
     xaxis: { show: false, min: 0, max: NN }
 };
 
-var plot = $.plot( container, series, options ); // 描画領域
+let plot = $.plot( container, series, options ); // 描画領域
 
 function update() {
     updateAllData();
@@ -136,33 +136,39 @@ function devicemotion(mx,my,mz) {
 }
 
 ///////////////////////////////////////////
-var KMB=new KMMotorOneWebBLE();
+let KMB=new KMMotorOneWebBLE();
+KMB.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
+    KMB.cmdEnableIMUMeasurement();
+});
 
-KMB.onComp= function(tar){
+KMB.on(KMB.EVENT_TYPE.connect,function(kMDeviceInfo){
+    console.log("onConnect:"+kMDeviceInfo.isConnect);
+    $("#control").toggleClass("disable",false);
+});
+KMB.on(KMB.EVENT_TYPE.disconnect,function(kMDeviceInfo){
+    console.log("onDisconnect:"+kMDeviceInfo.isConnect);
+    $("#control").toggleClass("disable",true);
+});
+KMB.on(KMB.EVENT_TYPE.connectFailure,function(kMDeviceInfo,err){
+    console.log("onConnectFailure:"+err);
+    alert("onConnectFailure:"+err);
+    $("#control").toggleClass("disable",true);
+});
+KMB.on(KMB.EVENT_TYPE.motorMeasurement,function(kMRotState){
+    //console.debug(kMRotState.GetValObj());
+});
 
-    console.log("onComp:"+tar.name);
-    /**
-     * ジャイロの取得
-     * @param KMImuState {accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ};
-     */
-    KMB.onImuMeasurement=function(imuState){
-       // console.log(data.GetValObj());
-        devicemotion(imuState.gyroX,imuState.gyroY,imuState.gyroZ);
-        deviceorientation(imuState.accelX,imuState.accelY,imuState.accelZ);
-        $("#temp").text(imuState.temp);
-        update();
-    };
-    KMB.cmdEnableIMU();
-};
-KMB.onDisconnect= function(deviceinfo){
-    console.log("onDisconnect:"+deviceinfo.isEnable);
-};
-KMB.onConnect= function(deviceinfo){
-    console.log("onConnect:"+deviceinfo.isEnable);
-};
-KMB.onConnectFailure= function(deviceinfo, msg){
-    console.log("onConnectFailure:"+msg);
-};
+/**
+ * ジャイロの取得
+ * @param KMImuState {accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ};
+ */
+KMB.on(KMB.EVENT_TYPE.imuMeasurement,function(kMImuState){
+    console.log(kMImuState.gyroZ);
+    devicemotion(kMImuState.gyroX,kMImuState.gyroY,kMImuState.gyroZ);
+    deviceorientation(kMImuState.accelX,kMImuState.accelY,kMImuState.accelZ);
+    $("#temp").text(kMImuState.temp);
+    update();
+});
 
 //KMB.cmdConnect();//手動でしないとpermission request.エラー
 

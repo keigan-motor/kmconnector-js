@@ -1,0 +1,73 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <title>Demo</title>
+
+
+    <script src="library/KMConnectorBrowser.js"></script>
+    <script src="library/jquery-3.1.1.min.js"></script>
+    <style>
+        body *{
+
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            line-height: 1.5;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+        table th {
+            font-size: 70%;
+            font-weight: bold;
+            vertical-align: middle;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #fff;
+            border-left: 1px solid #fff;
+            background: #eee;
+        }
+        table td {
+            font-size: 70%;
+            vertical-align: top;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 4px;
+        }
+
+        input{
+            margin: 10px 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>KeiganMotor WebBluetooth動作デモ</h2>
+<table id="control" >
+    <tr>
+        <th><a href="AllDemo/AllDemo.html">Demo.html</a></th>
+        <td>APIで操作可能な一連のデモ</td>
+    </tr>
+    <tr>
+        <th><a href="GyroGraph/GyroGraph.html">GyroGraph.html</a></th>
+        <td>モーターのジャイロセンサーデモ</td>
+    </tr>
+
+    <tr>
+        <th><a href="RoundTrip/roundtrip.html">roundtrip.html</a></th>
+        <td>一定距離の往復するデモ</td>
+    </tr>
+    <tr>
+        <th><a href="RoundTrip/roundtrip-taskset.html">roundtrip-taskset.html</a></th>
+        <td>一連の動作の往復をタスクセットに記憶させて再生するデモ</td>
+    </tr>
+
+
+</table>
+<p>接続にはchromeブラウザのWeb Bluetooth APIを使用しています。<br>
+    Android版Cheomeブラウザ、Mac版Chromeで動作します。</p>
+</body>
+</html>

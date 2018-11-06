@@ -1,0 +1,48 @@
+{
+  "tags": {
+    "allowUnknownTags": false
+  },
+  "source": {
+    "include": ["lib", "package.json", "README.md"],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|docs)"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "opts": {
+    "template": "./node_modules/docdash/",
+    "encoding": "utf8",
+    "destination": "./docs/",
+    "recurse": true,
+    "verbose": true
+  },
+  "docdash": {
+    "static": false,         // Display the static members inside the navbar
+    "sort": true,
+    "sectionOrder": ["Classes"],
+    "disqus": "",                   // Shortname for your disqus (subdomain during site creation)
+    "openGraph": {                  // Open Graph options (mostly for Facebook and other sites to easily extract meta information)
+      "title": "kmconnector-js",                // Title of the website
+      "type": "website",          // Type of the website
+      "image": "https://document.keigan-motor.com/wp-content/image/logo_m.png",                // Main image/logo
+      "site_name": "keigan-motor",            // Site name
+      "url": "https://github.com/keigan-motor/kmconnector-js"                   // Main canonical URL for the main page of the site
+    },
+    "search":true,         // Display seach box above navigation which allows to search/filter navigation items
+    "collapse": true,       // Collapse navigation by default except current object's navigation of the current page
+    "typedefs":false,       // Include typedefs in menu
+    "menu":{                        // Adding additional menu items after Home
+      "Project Website":{         // Menu item name
+        "href":"https://document.keigan-motor.com", //the rest of HTML properties to add to manu item
+        "target":"_blank",
+        "class":"menu-item",
+        "id":"website_link"
+      }
+    }
+  }
+}

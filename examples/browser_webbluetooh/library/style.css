@@ -1,0 +1,58 @@
+body *{
+
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+table th {
+    font-size: 70%;
+    font-weight: bold;
+    vertical-align: middle;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    background: #eee;
+}
+table td {
+    font-size: 70%;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+#control{}
+#control.disable{
+    pointer-events: none;
+    opacity: 0.4;
+
+}
+#status{
+    white-space : pre;
+}
+#motorLog{
+    min-width: 200px;
+    max-height: 290px;
+    overflow: auto;
+}
+#kmName{
+    min-width: 240px;
+    overflow: auto;
+}
+input{
+    margin: 10px 5px;
+}
+#taskSetSelectTD{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: stretch;
+}
+#taskSetSelectCmdinfo{
+
+}
+#taskSetSelectArrow{margin: 0 4px;}

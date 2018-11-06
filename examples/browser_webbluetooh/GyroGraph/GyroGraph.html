@@ -1,7 +1,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
     <title>GyroGraph</title>
+    <script src="../library/jquery-3.1.1.min.js"></script>
+    <script src="../library/KMConnectorBrowser.js"></script>
+    <script src="uqfgC.js"></script>
     <style>
 
 
@@ -22,18 +27,12 @@
         }
 
     </style>
-    <script src="../library/jquery-3.1.1.min.js"></script>
-    <script src="../../../indexBrowser.js"></script>
 
-    <script src="uqfgC.js"></script>
 
 
 </head>
 <body ontouchmove="event.stopPropagation()">
 <p><input type="button" onclick="KMB.connect();" value="モーター接続"></p>
-
-<h3>加速度・ジャイロ・方位をグラフ表示</h3>
-
 <div >x:加速度 <span id="xx">...</span></div>
 <div >y:加速度 <span id="yy">...</span></div>
 <div >z:加速度 <span id="zz">...</span></div>

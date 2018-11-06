@@ -1,0 +1,10596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>KMMotorOneUSBSerial - Documentation</title>
+    
+    
+    <meta property="og:title" content="kmconnector-js"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://document.keigan-motor.com/wp-content/image/logo_m.png"/>
+    <meta property="og:site_name" content="keigan-motor"/>
+    <meta property="og:url" content="https://github.com/keigan-motor/kmconnector-js"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://document.keigan-motor.com" target="_blank" class="menu-item" id="website_link" >Project Website</a></h2><h3>Classes</h3><ul><li><a href="KMDeviceInfo.html">KMDeviceInfo</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#Clone">Clone</a></li><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#EQ">EQ</a></li><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#GetValArray">GetValArray</a></li><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#GetValObj">GetValObj</a></li><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#SetValObj">SetValObj</a></li></ul></li><li><a href="KMImuState.html">KMImuState</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMImuState.html#Clone">Clone</a></li><li data-type='method' style='display: none;'><a href="KMImuState.html#EQ">EQ</a></li><li data-type='method' style='display: none;'><a href="KMImuState.html#GetValArray">GetValArray</a></li><li data-type='method' style='display: none;'><a href="KMImuState.html#GetValObj">GetValObj</a></li><li data-type='method' style='display: none;'><a href="KMImuState.html#SetValObj">SetValObj</a></li></ul></li><li><a href="KMLedState.html">KMLedState</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMLedState.html#Clone">Clone</a></li><li data-type='method' style='display: none;'><a href="KMLedState.html#EQ">EQ</a></li><li data-type='method' style='display: none;'><a href="KMLedState.html#GetValArray">GetValArray</a></li><li data-type='method' style='display: none;'><a href="KMLedState.html#GetValObj">GetValObj</a></li><li data-type='method' style='display: none;'><a href="KMLedState.html#SetValObj">SetValObj</a></li></ul></li><li><a href="KMMotorLog.html">KMMotorLog</a></li><li><a href="KMMotorOneBLE.html">KMMotorOneBLE</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.allDisConnect">allDisConnect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.clearMotors">clearMotors</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.on">on</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.once">once</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.removeAllListeners">removeAllListeners</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.removeListener">removeListener</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.startScanToCreateInstance">startScanToCreateInstance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.stopScan">stopScan</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdAcc">cmdAcc</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdCurveType">cmdCurveType</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdDec">cmdDec</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdDisable">cmdDisable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdDisableIMUMeasurement">cmdDisableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEnable">cmdEnable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEnableCheckSum">cmdEnableCheckSum</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEnableIMUMeasurement">cmdEnableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEnterDeviceFirmwareUpdate">cmdEnterDeviceFirmwareUpdate</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEraseAllMotion">cmdEraseAllMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEraseAllTaskset">cmdEraseAllTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEraseMotion">cmdEraseMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEraseTaskset">cmdEraseTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdFree">cmdFree</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdHoldTorque">cmdHoldTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdIMUMeasurementByDefault">cmdIMUMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdIMUMeasurementInterval">cmdIMUMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdInterface">cmdInterface</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdLed">cmdLed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMaxSpeed">cmdMaxSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMaxTorque">cmdMaxTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMinSpeed">cmdMinSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMotorMeasurementByDefault">cmdMotorMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMotorMeasurementInterval">cmdMotorMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMoveByDistance">cmdMoveByDistance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMoveToPosition">cmdMoveToPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdOwnColor">cmdOwnColor</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPauseQueue">cmdPauseQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPlaybackInterval">cmdPlaybackInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPositionP">cmdPositionP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPresetPosition">cmdPresetPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdQCurrentD">cmdQCurrentD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdQCurrentI">cmdQCurrentI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdQCurrentP">cmdQCurrentP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadAllRegister">cmdReadAllRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadDeviceInfo">cmdReadDeviceInfo</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadDeviceName">cmdReadDeviceName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadPositionOffset">cmdReadPositionOffset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadRegister">cmdReadRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadStatus">cmdReadStatus</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReboot">cmdReboot</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResetAllRegisters">cmdResetAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResetPID">cmdResetPID</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResetQueue">cmdResetQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResetRegister">cmdResetRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResumeQueue">cmdResumeQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdRunForward">cmdRunForward</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdRunReverse">cmdRunReverse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSaveAllRegisters">cmdSaveAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSetI2CSlaveAddress">cmdSetI2CSlaveAddress</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSetTasksetName">cmdSetTasksetName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeed">cmdSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeed_rpm">cmdSpeed_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeedD">cmdSpeedD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeedI">cmdSpeedI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeedP">cmdSpeedP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStartDoingTaskset">cmdStartDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStartPlaybackMotion">cmdStartPlaybackMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStartRecordingTaskSet">cmdStartRecordingTaskSet</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStartTeachingMotion">cmdStartTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStop">cmdStop</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStopDoingTaskset">cmdStopDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStopRecordingTaskset">cmdStopRecordingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStopTeachingMotion">cmdStopTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdTeachingInterval">cmdTeachingInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdWaitQueue">cmdWaitQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#connect">connect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#disConnect">disConnect</a></li></ul></li><li><a href="KMMotorOneUSBSerial.html">KMMotorOneUSBSerial</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.allDisConnect">allDisConnect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.clearMotors">clearMotors</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.on">on</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.once">once</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.removeAllListeners">removeAllListeners</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.removeListener">removeListener</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.startScanToCreateInstance">startScanToCreateInstance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdAcc">cmdAcc</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdCurveType">cmdCurveType</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdDec">cmdDec</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdDisable">cmdDisable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdDisableIMUMeasurement">cmdDisableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEnable">cmdEnable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEnableCheckSum">cmdEnableCheckSum</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEnableIMUMeasurement">cmdEnableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEnterDeviceFirmwareUpdate">cmdEnterDeviceFirmwareUpdate</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEraseAllMotion">cmdEraseAllMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEraseAllTaskset">cmdEraseAllTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEraseMotion">cmdEraseMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEraseTaskset">cmdEraseTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdFree">cmdFree</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdHoldTorque">cmdHoldTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdIMUMeasurementByDefault">cmdIMUMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdIMUMeasurementInterval">cmdIMUMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdInterface">cmdInterface</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdLed">cmdLed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMaxSpeed">cmdMaxSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMaxTorque">cmdMaxTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMinSpeed">cmdMinSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMotorMeasurementByDefault">cmdMotorMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMotorMeasurementInterval">cmdMotorMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMoveByDistance">cmdMoveByDistance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMoveToPosition">cmdMoveToPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdOwnColor">cmdOwnColor</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPauseQueue">cmdPauseQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPlaybackInterval">cmdPlaybackInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPositionP">cmdPositionP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPresetPosition">cmdPresetPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdQCurrentD">cmdQCurrentD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdQCurrentI">cmdQCurrentI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdQCurrentP">cmdQCurrentP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadAllRegister">cmdReadAllRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadDeviceInfo">cmdReadDeviceInfo</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadDeviceName">cmdReadDeviceName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadPositionOffset">cmdReadPositionOffset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadRegister">cmdReadRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadStatus">cmdReadStatus</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReboot">cmdReboot</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResetAllRegisters">cmdResetAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResetPID">cmdResetPID</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResetQueue">cmdResetQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResetRegister">cmdResetRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResumeQueue">cmdResumeQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdRunForward">cmdRunForward</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdRunReverse">cmdRunReverse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSaveAllRegisters">cmdSaveAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSetI2CSlaveAddress">cmdSetI2CSlaveAddress</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSetTasksetName">cmdSetTasksetName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeed">cmdSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeed_rpm">cmdSpeed_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeedD">cmdSpeedD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeedI">cmdSpeedI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeedP">cmdSpeedP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStartDoingTaskset">cmdStartDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStartPlaybackMotion">cmdStartPlaybackMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStartRecordingTaskSet">cmdStartRecordingTaskSet</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStartTeachingMotion">cmdStartTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStop">cmdStop</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStopDoingTaskset">cmdStopDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStopRecordingTaskset">cmdStopRecordingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStopTeachingMotion">cmdStopTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdTeachingInterval">cmdTeachingInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdWaitQueue">cmdWaitQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#connect">connect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#disConnect">disConnect</a></li></ul></li><li><a href="KMMotorOneWebBLE.html">KMMotorOneWebBLE</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdAcc">cmdAcc</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdCurveType">cmdCurveType</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdDec">cmdDec</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdDisable">cmdDisable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdDisableIMUMeasurement">cmdDisableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEnable">cmdEnable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEnableCheckSum">cmdEnableCheckSum</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEnableIMUMeasurement">cmdEnableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEnterDeviceFirmwareUpdate">cmdEnterDeviceFirmwareUpdate</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEraseAllMotion">cmdEraseAllMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEraseAllTaskset">cmdEraseAllTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEraseMotion">cmdEraseMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEraseTaskset">cmdEraseTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdFree">cmdFree</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdHoldTorque">cmdHoldTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdIMUMeasurementByDefault">cmdIMUMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdIMUMeasurementInterval">cmdIMUMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdInterface">cmdInterface</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdLed">cmdLed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMaxSpeed">cmdMaxSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMaxTorque">cmdMaxTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMinSpeed">cmdMinSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMotorMeasurementByDefault">cmdMotorMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMotorMeasurementInterval">cmdMotorMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMoveByDistance">cmdMoveByDistance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMoveToPosition">cmdMoveToPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdOwnColor">cmdOwnColor</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPauseQueue">cmdPauseQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPlaybackInterval">cmdPlaybackInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPositionP">cmdPositionP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPresetPosition">cmdPresetPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdQCurrentD">cmdQCurrentD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdQCurrentI">cmdQCurrentI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdQCurrentP">cmdQCurrentP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadAllRegister">cmdReadAllRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadDeviceInfo">cmdReadDeviceInfo</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadDeviceName">cmdReadDeviceName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadPositionOffset">cmdReadPositionOffset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadRegister">cmdReadRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadStatus">cmdReadStatus</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReboot">cmdReboot</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResetAllRegisters">cmdResetAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResetPID">cmdResetPID</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResetQueue">cmdResetQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResetRegister">cmdResetRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResumeQueue">cmdResumeQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdRunForward">cmdRunForward</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdRunReverse">cmdRunReverse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSaveAllRegisters">cmdSaveAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSetI2CSlaveAddress">cmdSetI2CSlaveAddress</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSetTasksetName">cmdSetTasksetName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeed">cmdSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeed_rpm">cmdSpeed_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeedD">cmdSpeedD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeedI">cmdSpeedI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeedP">cmdSpeedP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStartDoingTaskset">cmdStartDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStartPlaybackMotion">cmdStartPlaybackMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStartRecordingTaskSet">cmdStartRecordingTaskSet</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStartTeachingMotion">cmdStartTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStop">cmdStop</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStopDoingTaskset">cmdStopDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStopRecordingTaskset">cmdStopRecordingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStopTeachingMotion">cmdStopTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdTeachingInterval">cmdTeachingInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdWaitQueue">cmdWaitQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#connect">connect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#disConnect">disConnect</a></li></ul></li><li><a href="KMRotState.html">KMRotState</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMRotState.html#Clone">Clone</a></li><li data-type='method' style='display: none;'><a href="KMRotState.html#EQ">EQ</a></li><li data-type='method' style='display: none;'><a href="KMRotState.html#GetValArray">GetValArray</a></li><li data-type='method' style='display: none;'><a href="KMRotState.html#GetValObj">GetValObj</a></li><li data-type='method' style='display: none;'><a href="KMRotState.html#SetValObj">SetValObj</a></li></ul></li><li><a href="KMUtl.html">KMUtl</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMUtl.html#.degreeToRadian">degreeToRadian</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.radianToDegree">radianToDegree</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.rpmToRadianSec">rpmToRadianSec</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.toIntNumber">toIntNumber</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.toNumber">toNumber</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.twoPointDistanceAngle">twoPointDistanceAngle</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">KMMotorOneUSBSerial</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        KMMotorOneUSBSerial
+        </h2>
+        
+            <div class="class-description"><p>KM-1のUSBシリアル接続用 仮想デバイス</p></div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="KMMotorOneUSBSerial"><span class="type-signature"></span>new KMMotorOneUSBSerial<span class="signature">(portName, id, defaultMotorName)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line38">line 38</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>KMMotorOneUSBSerial</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>portName</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>UniqueID デバイスのユニーク名 内部生成用。通常は指定しない (手動接続時は常にnull)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultMotorName</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>string 内部生成用。通常は指定しない (手動接続時は常にnull)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".EVENT_TYPE"><span class="type-signature">(static, readonly) </span>EVENT_TYPE<span class="type-signature"> :string</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line85">line 85</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>discoverMotor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>モーター発見時(毎回)
+<br>return:function(<a href="KMMotorOneUSBSerial.html">KMMotorOneUSBSerial</a>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>discoverNewMotor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>新規モーターの発見時(1回のみ)
+<br>return:function(<a href="KMMotorOneUSBSerial.html">KMMotorOneUSBSerial</a>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scanTimeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>スキャンのタイムアウトで終了時
+<br>return:function()</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description">
+    <p>イベントタイプ定数</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".motors"><span class="type-signature">(static, readonly) </span>motors<span class="type-signature"> :_motorsByName</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line208">line 208</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
+<br>ex) {<motorName1>:<a href="KMMotorOneUSBSerial.html">KMMotorOneUSBSerial</a>,<motorName2>:<a href="KMMotorOneUSBSerial.html">KMMotorOneUSBSerial</a>,,,}
+<br>一度作成された仮想モーターは物理的に取り外してもclearMotors()を行うまで消えない</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">_motorsByName</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".motorsByUUID"><span class="type-signature">(static, readonly) </span>motorsByUUID<span class="type-signature"> :_motorsByUUID</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line219">line 219</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>APIが認識しているモーターのインスタンスリスト(プロパティはUUID)
+<br>ex) {<motorUUID1>:<a href="KMMotorOneUSBSerial.html">KMMotorOneUSBSerial</a>,<motorUUID2>:<a href="KMMotorOneUSBSerial.html">KMMotorOneUSBSerial</a>,,,}
+<br>一度作成された仮想モーターは物理的に取り外してもclearMotors()を行うまで消えない</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">_motorsByUUID</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="connectType"><span class="type-signature">(readonly) </span>connectType<span class="type-signature"> :<a href="KMMotorCommandKMOne.html#.KM_CONNECT_TYPE">KMMotorCommandKMOne.KM_CONNECT_TYPE</a></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line387">line 387</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#connectType">KMMotorCommandKMOne#connectType</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>接続方式</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="KMMotorCommandKMOne.html#.KM_CONNECT_TYPE">KMMotorCommandKMOne.KM_CONNECT_TYPE</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="deviceInfo"><span class="type-signature">(readonly) </span>deviceInfo<span class="type-signature"> :<a href="KMDeviceInfo.html">KMDeviceInfo</a></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line396">line 396</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#deviceInfo">KMMotorCommandKMOne#deviceInfo</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>デバイス情報</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="KMDeviceInfo.html">KMDeviceInfo</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="EVENT_TYPE"><span class="type-signature">(readonly) </span>EVENT_TYPE<span class="type-signature"> :string</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line201">line 201</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#EVENT_TYPE">KMMotorCommandKMOne#EVENT_TYPE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>init</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>初期化完了時<br>return:function({KMDeviceInfo})</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>connect</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>接続時<br>return:function({KMDeviceInfo})</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>disconnect</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>切断時<br>return:function({KMDeviceInfo})</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>connectFailure</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>接続に失敗時<br>return:function({KMDeviceInfo},{msg})</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>motorMeasurement</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>モーター回転情報受信時<br>return:function(<a href="KMRotState.html">KMRotState</a>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>imuMeasurement</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>モーターIMU情報受信時<br>return:function(<a href="KMImuState.html">KMImuState</a>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>motorLog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>モーターログ情報受信時<br>return:function({cmdName},{errorlogObject})</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description">
+    <p>イベントタイプ定数</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="isConnect"><span class="type-signature">(readonly) </span>isConnect<span class="type-signature"> :boolean</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line379">line 379</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#isConnect">KMMotorCommandKMOne#isConnect</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>モーターとの接続が有効か</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="name"><span class="type-signature"></span>name<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line404">line 404</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#name">KMMotorCommandKMOne#name</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>モーター名</p>
+</div>
+
+
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".allDisConnect"><span class="type-signature">(static) </span>allDisConnect<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line187">line 187</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>全てのモーターのUSB接続を解除</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".clearMotors"><span class="type-signature">(static) </span>clearMotors<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line196">line 196</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>全ての仮想モーターを消去</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".on"><span class="type-signature">(static) </span>on<span class="signature">(type, listener)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>イベントリスナを追加する. Synonym for EventEmitter</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorOneUSBSerial.html#.EVENT_TYPE">KMMotorOneUSBSerial.EVENT_TYPE</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>イベントのタイプ.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>listener</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>追加するイベントリスナ.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".once"><span class="type-signature">(static) </span>once<span class="signature">(type, listener)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line55">line 55</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>1回限りのイベントリスナを追加する. Synonym for EventEmitter</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorOneUSBSerial.html#.EVENT_TYPE">KMMotorOneUSBSerial.EVENT_TYPE</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>イベントのタイプ.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>listener</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>追加するイベントリスナ.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".removeAllListeners"><span class="type-signature">(static) </span>removeAllListeners<span class="signature">(type)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>全てのイベントリスナを削除する Synonym for EventEmitter</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorOneUSBSerial.html#.EVENT_TYPE">KMMotorOneUSBSerial.EVENT_TYPE</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>イベントのタイプ.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".removeListener"><span class="type-signature">(static) </span>removeListener<span class="signature">(type, listener)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line63">line 63</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>イベントリスナを削除する Synonym for EventEmitter</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorOneUSBSerial.html#.EVENT_TYPE">KMMotorOneUSBSerial.EVENT_TYPE</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>イベントのタイプ</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>listener</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>削除するイベントリスナ</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".startScanToCreateInstance"><span class="type-signature">(static) </span>startScanToCreateInstance<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line98">line 98</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>USBデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdAcc"><span class="type-signature"></span>cmdAcc<span class="signature">(acc)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの加速度を設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line886">line 886</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdAcc">KMMotorCommandKMOne#cmdAcc</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>acc は、モーションコントロール ON の場合、加速時に使用されます。（加速時の直線の傾き）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>acc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>float 加速度 0-200 [radian / second^2]（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdCurveType"><span class="type-signature"></span>cmdCurveType<span class="signature">(cmdCurveType_CURVE_TYPE)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>加減速曲線を指定する（モーションコントロールの設定）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line875">line 875</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdCurveType">KMMotorCommandKMOne#cmdCurveType</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cmdCurveType_CURVE_TYPE</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorCommandKMOne.html#.cmdCurveType_CURVE_TYPE">KMMotorCommandKMOne.cmdCurveType_CURVE_TYPE</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int 加減速カーブオプション<br>
+     CURVE_TYPE_NONE:0 モーションコントロール OFF<br>
+     CURVE_TYPE_TRAPEZOID:1 モーションコントロール ON （台形加減速）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdDec"><span class="type-signature"></span>cmdDec<span class="signature">(dec)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの減速度を設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line897">line 897</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdDec">KMMotorCommandKMOne#cmdDec</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>dec は、モーションコントロール ON の場合、減速時に使用されます。（減速時の直線の傾き）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dec</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>float 減速度 0-200 [radian / second^2]（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdDisable"><span class="type-signature"></span>cmdDisable<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーター動作を不許可とする（上位命令）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line428">line 428</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdDisable">KMMotorCommandKMOne#cmdDisable</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>安全用：この命令を入れるとモーターは動作しない<br>
+コマンドはタスクセットに記録することは不可</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdDisableIMUMeasurement"><span class="type-signature"></span>cmdDisableIMUMeasurement<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>IMU(ジャイロ)の値取得(通知)を停止する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line791">line 791</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdDisableIMUMeasurement">KMMotorCommandKMOne#cmdDisableIMUMeasurement</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdEnable"><span class="type-signature"></span>cmdEnable<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーター動作を許可する（上位命令）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line439">line 439</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdEnable">KMMotorCommandKMOne#cmdEnable</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>安全用：この命令を入れるとモーターは動作可能となる<br>
+モーター起動時は disable 状態のため、本コマンドで動作を許可する必要があり<br>
+コマンドはタスクセットに記録することは不可</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdEnableCheckSum"><span class="type-signature"></span>cmdEnableCheckSum<span class="signature">(isEnabled)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>チェックサム（CRC16) 有効化</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line829">line 829</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdEnableCheckSum">KMMotorCommandKMOne#cmdEnableCheckSum</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>コマンド（タスク）のチェックサムを有効化する</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>isEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>0:Disbled, 1:Enabled</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdEnableIMUMeasurement"><span class="type-signature"></span>cmdEnableIMUMeasurement<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>IMU(ジャイロ)の値取得(通知)を開始する (BLE専用コマンド)</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line784">line 784</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdEnableIMUMeasurement">KMMotorCommandKMOne#cmdEnableIMUMeasurement</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>本コマンドを実行すると、IMUのデータはBLEのキャラクタリスティクスMOTOR_IMU_MEASUREMENTに通知される<br>
+MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT_TYPE.imuMeasurement に通知</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdEnterDeviceFirmwareUpdate"><span class="type-signature"></span>cmdEnterDeviceFirmwareUpdate<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>ファームウェアアップデートモードに入る</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line839">line 839</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdEnterDeviceFirmwareUpdate">KMMotorCommandKMOne#cmdEnterDeviceFirmwareUpdate</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>ファームウェアをアップデートするためのブートローダーモードに入る。（システムは再起動される。）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdEraseAllMotion"><span class="type-signature"></span>cmdEraseAllMotion<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>全てのモーションを消去する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line747">line 747</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdEraseAllMotion">KMMotorCommandKMOne#cmdEraseAllMotion</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdEraseAllTaskset"><span class="type-signature"></span>cmdEraseAllTaskset<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>全てのタスクセットを消去する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line691">line 691</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdEraseAllTaskset">KMMotorCommandKMOne#cmdEraseAllTaskset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdEraseMotion"><span class="type-signature"></span>cmdEraseMotion<span class="signature">(index)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>指定したインデックスのモーションを消去する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line738">line 738</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdEraseMotion">KMMotorCommandKMOne#cmdEraseMotion</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>KM-1 の場合、インデックスの値は 0～19 （計20個記録）となる</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int インデックス</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdEraseTaskset"><span class="type-signature"></span>cmdEraseTaskset<span class="signature">(index)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>指定のインデックスのタスクセットを消去する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line682">line 682</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdEraseTaskset">KMMotorCommandKMOne#cmdEraseTaskset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int インデックス</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdFree"><span class="type-signature"></span>cmdFree<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの励磁を停止する（感触は残ります）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line539">line 539</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdFree">KMMotorCommandKMOne#cmdFree</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>完全フリー状態を再現する場合は、 cmdFree().cmdDisable() として下さい。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdHoldTorque"><span class="type-signature"></span>cmdHoldTorque<span class="signature">(torque)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>トルク制御を行う</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line558">line 558</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdHoldTorque">KMMotorCommandKMOne#cmdHoldTorque</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>速度や位置を同時に制御する場合は、モーター設定の 0x0E: maxTorque と 0x60: runForward 等を併用して下さい。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>torque</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float トルク 単位：N・m [-X ~ + X Nm] 推奨値 0.3-0.05</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdIMUMeasurementByDefault"><span class="type-signature"></span>cmdIMUMeasurementByDefault<span class="signature">(isEnabled)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>６軸センサー（加速度・ジャイロ）の値の通知をデフォルトで開始する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1096">line 1096</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdIMUMeasurementByDefault">KMMotorCommandKMOne#cmdIMUMeasurementByDefault</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>isEnabled = true の場合、enableIMU() を送信しなくても起動時に自動で通知が開始される</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>isEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>0:Disbled, 1:Enabled</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdIMUMeasurementInterval"><span class="type-signature"></span>cmdIMUMeasurementInterval<span class="signature">(cmdIMUMeasurementInterval_IMU_MEAS_INTERVAL)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>６軸センサー（加速度・ジャイロ）測定値の取得間隔</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1085">line 1085</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdIMUMeasurementInterval">KMMotorCommandKMOne#cmdIMUMeasurementInterval</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>有線（USB, I2C）のみ有効。BLEでは固定 100ms 間隔で通知される。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cmdIMUMeasurementInterval_IMU_MEAS_INTERVAL</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorCommandKMOne.html#.cmdIMUMeasurementInterval_IMU_MEAS_INTERVAL">KMMotorCommandKMOne.cmdIMUMeasurementInterval_IMU_MEAS_INTERVAL</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>4</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>enum 加速度・ジャイロ測定値の取得間隔</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdInterface"><span class="type-signature"></span>cmdInterface<span class="signature">(bitFlg)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーター制御手段（インターフェイス）の設定</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1057">line 1057</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdInterface">KMMotorCommandKMOne#cmdInterface</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>uint8_t flags ビットにより、含まれるパラメータを指定する（１の場合含む・0の場合含まない）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bitFlg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><hr>
+<p>bit7    bit6    bit5    bit4    bit3    bit2    bit1    bit0
+物理                     有線     有線                      無線
+ボタン    ＊      ＊      I2C     USB       ＊      ＊     BLE</p>
+<h2>デフォルト                 デフォルト  デフォルト              デフォルト</h2></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdLed"><span class="type-signature"></span>cmdLed<span class="signature">(cmdLed_LED_STATE, red, green, blue)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>LEDの点灯状態をセットする</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line765">line 765</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdLed">KMMotorCommandKMOne#cmdLed</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cmdLed_LED_STATE</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorCommandKMOne.html#.cmdLed_LED_STATE">KMMotorCommandKMOne.cmdLed_LED_STATE</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int 点灯状態<br>
+  LED_STATE_OFF:LED消灯<br>
+  LED_STATE_ON_SOLID:LED点灯<br>
+  LED_STATE_ON_FLASH:LED点滅（一定間隔で点滅）<br>
+  LED_STATE_ON_DIM:LEDがゆっくり明滅する</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>red</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int 0-255</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>green</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int 0-255</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>blue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int 0-255</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdMaxSpeed"><span class="type-signature"></span>cmdMaxSpeed<span class="signature">(maxSpeed)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの最大速さを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line850">line 850</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdMaxSpeed">KMMotorCommandKMOne#cmdMaxSpeed</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>maxSpeed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float 最大速さ [radian / second]（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdMaxTorque"><span class="type-signature"></span>cmdMaxTorque<span class="signature">(maxTorque)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの最大トルク（絶対値）を設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line912">line 912</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdMaxTorque">KMMotorCommandKMOne#cmdMaxTorque</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>maxTorque を設定することにより、トルクの絶対値が maxTorque を超えないように運転します。<br>
+maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合、0.1 N</em>m を超えないようにその速度をなるだけ維持する。<br>
+ただし、トルクの最大値制限により、システムによっては制御性（振動）が悪化する可能性がある。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>maxTorque</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float 最大トルク [N*m]（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdMinSpeed"><span class="type-signature"></span>cmdMinSpeed<span class="signature">(maxSpeed)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの最小速さを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line862">line 862</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdMinSpeed">KMMotorCommandKMOne#cmdMinSpeed</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>minSpeed は、blePreparePlaybackMotion 実行の際、開始地点に移動する速さとして使用される。通常時運転では使用されない。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>maxSpeed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float 最小速さ [radian / second]（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdMotorMeasurementByDefault"><span class="type-signature"></span>cmdMotorMeasurementByDefault<span class="signature">(isEnabled)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーター測定値の取得設定</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1040">line 1040</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdMotorMeasurementByDefault">KMMotorCommandKMOne#cmdMotorMeasurementByDefault</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>isEnabled = 1 の場合、（位置・速度・トルク）の通知を行う（起動後、interface の設定で優先される通信経路に、自動的に通知が開始される）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>isEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>0:Disbled, 1:Enabled</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdMotorMeasurementInterval"><span class="type-signature"></span>cmdMotorMeasurementInterval<span class="signature">(cmdMotorMeasurementInterval_MOTOR_MEAS_INTERVAL)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーター測定値の取得間隔設定</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1029">line 1029</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdMotorMeasurementInterval">KMMotorCommandKMOne#cmdMotorMeasurementInterval</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>有線（USB, I2C）のみ有効。BLEでは固定 100ms 間隔で通知される。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cmdMotorMeasurementInterval_MOTOR_MEAS_INTERVAL</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorCommandKMOne.html#.cmdMotorMeasurementInterval_MOTOR_MEAS_INTERVAL">KMMotorCommandKMOne.cmdMotorMeasurementInterval_MOTOR_MEAS_INTERVAL</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>4</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>enum モーター測定値の取得間隔</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdMoveByDistance"><span class="type-signature"></span>cmdMoveByDistance<span class="signature">(distance, speed)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>相対位置に移動する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line521">line 521</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdMoveByDistance">KMMotorCommandKMOne#cmdMoveByDistance</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>速さは cmdSpeed で保存された速度が採用される</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>distance</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>float 角度：radians[左:+radians 右:-radians]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>speed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>float 速度の大きさ 単位：角度（ラジアン）/秒 [0-X rps]　(正の数)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdMoveToPosition"><span class="type-signature"></span>cmdMoveToPosition<span class="signature">(position, speed)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>絶対位置に移動する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line501">line 501</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdMoveToPosition">KMMotorCommandKMOne#cmdMoveToPosition</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>速さは cmdSpeed で保存された速度が採用される</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>float 角度：radians</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>speed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>float 速度の大きさ 単位：角度（ラジアン）/秒 [0-X rps]　(正の数)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdOwnColor"><span class="type-signature"></span>cmdOwnColor<span class="signature">(red, green, blue)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの起動時固有LEDカラーを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1072">line 1072</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdOwnColor">KMMotorCommandKMOne#cmdOwnColor</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>ownColor はアイドル時の固有LEDカラー。<br>saveAllSettingsを実行し、再起動後に初めて反映される。<br>
+この設定値を変更した場合、BLEの Device Name の下3桁が変更される。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>red</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int 0-255</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>green</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int 0-255</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>blue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int 0-255</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdPauseQueue"><span class="type-signature"></span>cmdPauseQueue<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>キューを一時停止する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line619">line 619</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdPauseQueue">KMMotorCommandKMOne#cmdPauseQueue</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdPlaybackInterval"><span class="type-signature"></span>cmdPlaybackInterval<span class="signature">(interval)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>記憶再生時の再生間隔</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line937">line 937</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdPlaybackInterval">KMMotorCommandKMOne#cmdPlaybackInterval</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>記憶再生時の再生間隔</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>interval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ms（2-1000  0, 1msはエラーとなる）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdPositionP"><span class="type-signature"></span>cmdPositionP<span class="signature">(positionP)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの位置PIDコントローラのP（比例）ゲインを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1009">line 1009</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdPositionP">KMMotorCommandKMOne#cmdPositionP</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>positionP</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float 位置Pゲイン（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdPresetPosition"><span class="type-signature"></span>cmdPresetPosition<span class="signature">(position)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>位置のプリセットを行う（原点設定）（単位系：ラジアン）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line465">line 465</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdPresetPosition">KMMotorCommandKMOne#cmdPresetPosition</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>float 絶対角度：radians</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdQCurrentD"><span class="type-signature"></span>cmdQCurrentD<span class="signature">(qCurrentD)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターのq軸電流PIDコントローラのD（微分）ゲインを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line969">line 969</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdQCurrentD">KMMotorCommandKMOne#cmdQCurrentD</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>qCurrentD</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float q電流Dゲイン（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdQCurrentI"><span class="type-signature"></span>cmdQCurrentI<span class="signature">(qCurrentI)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターのq軸電流PIDコントローラのP（比例）ゲインを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line959">line 959</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdQCurrentI">KMMotorCommandKMOne#cmdQCurrentI</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>qCurrentI</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float q電流Iゲイン（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdQCurrentP"><span class="type-signature"></span>cmdQCurrentP<span class="signature">(qCurrentP)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターのq軸電流PIDコントローラのP（比例）ゲインを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line949">line 949</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdQCurrentP">KMMotorCommandKMOne#cmdQCurrentP</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>qCurrentP</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float q電流Pゲイン（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdReadAllRegister"><span class="type-signature"></span>cmdReadAllRegister<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;array>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1154">line 1154</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdReadAllRegister">KMMotorCommandKMOne#cmdReadAllRegister</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>モーターの全てのレジスタ値の取得</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;array></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdReadDeviceInfo"><span class="type-signature"></span>cmdReadDeviceInfo<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;any>}</span></h4>
+
+    
+    <p class="summary"><p>デバイス情報の取得</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1201">line 1201</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdReadDeviceInfo">KMMotorCommandKMOne#cmdReadDeviceInfo</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>デバイスインフォメーションを読み取る</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;any></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdReadDeviceName"><span class="type-signature"></span>cmdReadDeviceName<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;(int|Array)>}</span></h4>
+
+    
+    <p class="summary"><p>デバイスネームの取得</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1192">line 1192</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdReadDeviceName">KMMotorCommandKMOne#cmdReadDeviceName</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>デバイスネームを読み取る</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(int|Array)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdReadPositionOffset"><span class="type-signature"></span>cmdReadPositionOffset<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;(int|Array)>}</span></h4>
+
+    
+    <p class="summary"><p>位置のプリセットに関するOFFSET量</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line475">line 475</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdReadPositionOffset">KMMotorCommandKMOne#cmdReadPositionOffset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>位置のオフセット量（presetPositionで設定した値に対応）を読み取る</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(int|Array)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdReadRegister"><span class="type-signature"></span>cmdReadRegister<span class="signature">(registers)</span><span class="type-signature"> &rarr; {Promise.&lt;(int|array)>}</span></h4>
+
+    
+    <p class="summary"><p>指定した設定値を取得 (BLE専用コマンド)</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1112">line 1112</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdReadRegister">KMMotorCommandKMOne#cmdReadRegister</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>registers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><int | []> 取得するプロパティのコマンド(レジスタ番号)値</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>取得した値 <br>registersがint=レジスタ値のプリミティブ値 <br>registersがArray=レジスタ値のオブジェクト</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(int|array)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdReadStatus"><span class="type-signature"></span>cmdReadStatus<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;(int|Array)>}</span></h4>
+
+    
+    <p class="summary"><p>モーターの状態を読み取る （read専用）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line652">line 652</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdReadStatus">KMMotorCommandKMOne#cmdReadStatus</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(int|Array)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdReboot"><span class="type-signature"></span>cmdReboot<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>システムを再起動する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line821">line 821</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdReboot">KMMotorCommandKMOne#cmdReboot</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>BLEに接続していた場合、切断してから再起動</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdResetAllRegisters"><span class="type-signature"></span>cmdResetAllRegisters<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>全てのレジスタをファームウェアの初期値にリセットする</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1184">line 1184</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdResetAllRegisters">KMMotorCommandKMOne#cmdResetAllRegisters</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>bleSaveAllRegistersを実行しない限り、リセット値はモーターに永久的に保存されない(再起動で消える)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdResetPID"><span class="type-signature"></span>cmdResetPID<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>全てのPIDパラメータをリセットしてファームウェアの初期設定に戻す</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1020">line 1020</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdResetPID">KMMotorCommandKMOne#cmdResetPID</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>qCurrentP, qCurrentI,  qCurrentD, speedP, speedI, speedD, positionP をリセットします</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdResetQueue"><span class="type-signature"></span>cmdResetQueue<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>キューをリセットする</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line644">line 644</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdResetQueue">KMMotorCommandKMOne#cmdResetQueue</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdResetRegister"><span class="type-signature"></span>cmdResetRegister<span class="signature">(register)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>指定したレジスタをファームウェアの初期値にリセットする</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1175">line 1175</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdResetRegister">KMMotorCommandKMOne#cmdResetRegister</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>register</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">KMMotorCommandKMOne.cmdReadRegister_COMMAND</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>初期値にリセットするコマンド(レジスタ)値</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdResumeQueue"><span class="type-signature"></span>cmdResumeQueue<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>キューを再開する（蓄積されたタスクを再開）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line626">line 626</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdResumeQueue">KMMotorCommandKMOne#cmdResumeQueue</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdRunForward"><span class="type-signature"></span>cmdRunForward<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>正回転する（反時計回り）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line483">line 483</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdRunForward">KMMotorCommandKMOne#cmdRunForward</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>cmdSpeed で保存された速度で、正回転</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdRunReverse"><span class="type-signature"></span>cmdRunReverse<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>逆回転する（時計回り）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line491">line 491</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdRunReverse">KMMotorCommandKMOne#cmdRunReverse</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>cmdSpeed で保存された速度で、逆回転</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdSaveAllRegisters"><span class="type-signature"></span>cmdSaveAllRegisters<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>全ての設定値をフラッシュメモリに保存する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1166">line 1166</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdSaveAllRegisters">KMMotorCommandKMOne#cmdSaveAllRegisters</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>本コマンドを実行しない限り、設定値はモーターに永久的に保存されない(再起動で消える)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdSetI2CSlaveAddress"><span class="type-signature"></span>cmdSetI2CSlaveAddress<span class="signature">(address)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>I2Cスレーブアドレス</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1210">line 1210</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdSetI2CSlaveAddress">KMMotorCommandKMOne#cmdSetI2CSlaveAddress</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>I2Cから制御する場合のスレーブアドレス（0x00-0xFF）を設定する</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>address</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>アドレス</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdSetTasksetName"><span class="type-signature"></span>cmdSetTasksetName<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>タスクセットの記録名設定</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line699">line 699</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdSetTasksetName">KMMotorCommandKMOne#cmdSetTasksetName</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>タスクセットの記録名を設定する。（これから記録するものに対して）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdSpeed"><span class="type-signature"></span>cmdSpeed<span class="signature">(speed)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>速度の大きさをセットする（単位系：ラジアン）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line455">line 455</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdSpeed">KMMotorCommandKMOne#cmdSpeed</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>speed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>float 速度の大きさ 単位：角度（ラジアン）/秒 [0-X rps]　(正の数)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdSpeed_rpm"><span class="type-signature"></span>cmdSpeed_rpm<span class="signature">(speed_rpm)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>速度の大きさをセットする（単位系：RPM）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line446">line 446</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdSpeed_rpm">KMMotorCommandKMOne#cmdSpeed_rpm</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>speed_rpm</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>float  [0-X rpm]　(正の数)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdSpeedD"><span class="type-signature"></span>cmdSpeedD<span class="signature">(speedD)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの速度PIDコントローラのD（微分）ゲインを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line999">line 999</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdSpeedD">KMMotorCommandKMOne#cmdSpeedD</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>speedD</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float 速度Dゲイン（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdSpeedI"><span class="type-signature"></span>cmdSpeedI<span class="signature">(speedI)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターの速度PIDコントローラのI（積分）ゲインを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line989">line 989</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdSpeedI">KMMotorCommandKMOne#cmdSpeedI</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>speedI</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float 速度Iゲイン（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdSpeedP"><span class="type-signature"></span>cmdSpeedP<span class="signature">(speedP)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターのq軸電流PIDコントローラのD（微分）ゲインを設定する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line979">line 979</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdSpeedP">KMMotorCommandKMOne#cmdSpeedP</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>speedP</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>float 速度Pゲイン（正の値）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdStartDoingTaskset"><span class="type-signature"></span>cmdStartDoingTaskset<span class="signature">(index, repeating)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>記憶したタスク（命令）のセットを実行する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line573">line 573</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdStartDoingTaskset">KMMotorCommandKMOne#cmdStartDoingTaskset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>KM-1 は index: 0~49 まで。（50個のメモリバンク 各8128 Byte まで制限あり）<br>
+タスクセットの記録は、コマンド（タスクセット）を参照下さい。 https://document.keigan-motor.com/motor-control-command/taskset.html</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int タスクセット番号（0～65535）</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>repeating</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>1</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int 繰り返し回数 0は無制限</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdStartPlaybackMotion"><span class="type-signature"></span>cmdStartPlaybackMotion<span class="signature">(index, repeating, start_position)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーションを再生（準備なし）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line597">line 597</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdStartPlaybackMotion">KMMotorCommandKMOne#cmdStartPlaybackMotion</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>モーションのプレイバックを（準備なしで）プレイバック開始する</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int モーション番号（0～65535）</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>repeating</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int 繰り返し回数 0は無制限</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>start_position</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMMotorCommandKMOne.html#.cmdPreparePlaybackMotion_START_POSITION">KMMotorCommandKMOne.cmdPreparePlaybackMotion_START_POSITION</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int スタート位置の設定<br>
+START_POSITION_ABS:記憶された開始位置（絶対座標）からスタート<br>
+START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdStartRecordingTaskSet"><span class="type-signature"></span>cmdStartRecordingTaskSet<span class="signature">(index)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>タスク（命令）のセットの記録を開始する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line665">line 665</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdStartRecordingTaskSet">KMMotorCommandKMOne#cmdStartRecordingTaskSet</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>記憶するインデックスのメモリはコマンド：eraseTaskset により予め消去されている必要があり</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int インデックス KM-1 の場合、インデックスの値は 0～49 （計50個記録）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdStartTeachingMotion"><span class="type-signature"></span>cmdStartTeachingMotion<span class="signature">(index, time)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>ダイレクトティーチング開始（準備なし）</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line717">line 717</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdStartTeachingMotion">KMMotorCommandKMOne#cmdStartTeachingMotion</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>KM-1 の場合、インデックスの値は 0～19 （計20個記録）となる。記録時間は 65408 [msec] を超えることはできない
+      記憶するインデックスのメモリはbleEraseMotion により予め消去されている必要がある</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>int インデックス [0-19]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>time</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>int 記録時間 [msec 0-65408]</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdStop"><span class="type-signature"></span>cmdStop<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>モーターを速度ゼロまで減速し停止する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line547">line 547</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdStop">KMMotorCommandKMOne#cmdStop</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>rpm = 0 となる。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdStopDoingTaskset"><span class="type-signature"></span>cmdStopDoingTaskset<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>タスクセットを停止</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line584">line 584</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdStopDoingTaskset">KMMotorCommandKMOne#cmdStopDoingTaskset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>タスクセットの再生を停止する</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdStopRecordingTaskset"><span class="type-signature"></span>cmdStopRecordingTaskset<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>タスクセットの記録を停止する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line674">line 674</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdStopRecordingTaskset">KMMotorCommandKMOne#cmdStopRecordingTaskset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdStopTeachingMotion"><span class="type-signature"></span>cmdStopTeachingMotion<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>実行中のティーチングを停止する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line727">line 727</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdStopTeachingMotion">KMMotorCommandKMOne#cmdStopTeachingMotion</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdTeachingInterval"><span class="type-signature"></span>cmdTeachingInterval<span class="signature">(interval)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>ダイレクトティーチングのサンプリング間隔</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line924">line 924</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdTeachingInterval">KMMotorCommandKMOne#cmdTeachingInterval</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>ティーチング・プレイバックの実行間隔</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>interval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ms（2-1000  0, 1msはエラーとなる）</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cmdWaitQueue"><span class="type-signature"></span>cmdWaitQueue<span class="signature">(time)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>キューを指定時間停止し再開する</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line635">line 635</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="KMMotorCommandKMOne.html#cmdWaitQueue">KMMotorCommandKMOne#cmdWaitQueue</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>cmdPause（キュー停止）を実行し、指定時間（ミリ秒）経過後、自動的に cmdResume（キュー再開） を行います。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>time</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>停止時間[msec]</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="connect"><span class="type-signature"></span>connect<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line262">line 262</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>モーターと接続する</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="disConnect"><span class="type-signature"></span>disConnect<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMMotorOneUSBSerial.js.html">KMMotorOneUSBSerial.js</a>, <a href="KMMotorOneUSBSerial.js.html#line269">line 269</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>モーターと切断</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Nov 06 2018 19:39:50 GMT+0900 (JST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/jquery-3.1.1.min.js"></script>
+
+<script src="scripts/search.js"></script>
+
+
+<script src="scripts/collapse.js"></script>
+
+
+
+</body>
+</html>

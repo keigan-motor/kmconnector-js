@@ -1,0 +1,41 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <title>Demo</title>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());gtag('config','UA-110466329-1');</script>
+
+    <script src="../library/KMConnectorBrowser.js"></script>
+    <script src="../library/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="../library/style.css">
+</head>
+<body>
+
+<table id="info">
+    <tr><th>WebBle接続<br></th><td><input type="button" onclick="KMB.connect();" value="モーター接続"> <input type="button" onclick="KMB.disConnect();" value="モーター切断"></td><td rowspan="3"><input id="allRegisterInfoUpdateBtn" type="button" disabled onclick="allRegisterInfoUpdate();" value="RegisterValUpdate"><div id="allRegisterInfo"></div></td></tr>
+    <tr><th>Name:</th><td id="kmName"></td></tr>
+    <tr><th>position(radian)<br>velocity(radian/sec)<br>torque(N*m)</th><td id="status"></td></tr>
+
+</table>
+
+<br>
+<table id="control" class="disable">
+    <tr>
+        <th>原点リセット・タスクセットへの書き込み</th>
+        <td>回転<input type="number" id="rot_num" style="width:40px;" value="10" >(回転) 　速度<input type="number" id="rpm_num" style="width:40px;" value="40">(rpm) 　<input type="button" id="onClicksetPresetDataBtn" onclick="onClicksetPresetData()" value="タスクの書き込み"></td>
+    </tr>
+    <tr>
+        <th>タスクの再生</th>
+        <td><input type="button" id="onplayPresetDataBtn" onclick="playPresetData()" value="タスクの再生" disabled></td>
+    </tr>
+    <tr>
+        <th>モーター動作ON/OFF</th>
+        <td><input type="button" onclick="KMB.cmdEnable();" value="動作ON"><input type="button" onclick="KMB.cmdDisable();" value="動作OFF"></td>
+    </tr>
+
+</table>
+
+<script src="roundtrip-taskset.js"></script>
+</body>
+</html>

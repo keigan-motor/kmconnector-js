@@ -18,13 +18,17 @@ https://www.keigan-motor.com/
 
 ## Requirement
 
-- noble 1.8+
+- noble 1.9.1+
+- serialport 7.0.2+
+
 
 ## Usage
+- KeiganMotor firmware needs 1.78 or more
 
 - BLE (Node.js only. Raspberrypi needs to run with administrator privilege to launch Bluetooh.(sudo))  <p>BLE Node.js用。RaspberryPiは管理者権限で実行する必要があります。</p>
 
-- USB Serial (Node.js only)comming soon. <p>現在開発中。</p>
+- USB Serial (Node.js only) serialport 7.0.2+
+
 
 - Web Bluetooth (Browser only. andoroid or chrome on macos)  <p>Web Bluetoothは現在andoroid及びMacOSのchromeのみで動作します。</p>
 
@@ -39,31 +43,71 @@ https://www.keigan-motor.com/
 ### Browser(Web Bluetooth)
 <p>ブラウザはhtmlのヘッダーにindexBrowser.jsを読み込んで下さい</p> 
  
-    <script src="kmconnector/indexBrowser.js"></script>
+    <script src="kmconnector-js/KMConnectorBrowser.js"></script>
 
-## Examples
+## Examples (Exsample file is /examples/nodejs/)
+<p>サンプルファイルは /examples/nodejs/ にあります</p>
 
-### BLE 
-<p>BLEでの接続例。サンプルファイルはexamples/nodejs/  </p>
- 
-    let KMConnector = require('kmconnector');
+### USB (Example of connection to specified port)
+<p>指定したUSBポートに接続する例</p>
+
+    const KMConnector = require('kmconnector/KMConnectorUSB');
+    const KMMotorOneUSBSerial=KMConnector.KMMotorOneUSBSerial;
+    
+    let kMMotorOne=new KMMotorOneUSBSerial('/dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_DM00KBZZ-if00-port0');
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.connect,function(kMDeviceInfo){
+       if(kMMotorOne.isConnect){
+           kMMotorOne.cmdLed(1,200,0,0);//led
+       }
+    });
+   
+    //Try Auto Reconnect
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.disconnect,(kMDeviceInfo)=>{
+        setTimeout(()=>{kMMotorOne.connect();},5000);
+    });
+    
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.connectFailure,(kMDeviceInfo,err)=>{
+        setTimeout(()=>{kMMotorOne.connect();},5000);
+    });
+    
+    kMMotorOne.connect();
+
+### USB (Example of all scanning USB port for connection)
+<p>全てのUSBポートをスキャンして接続する例</p>
+
+    const KMConnector = require('kmconnector/KMConnectorUSB');
+    KMConnector.KMMotorOneUSBSerial.on(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
+       kMMotorOne.on(kMMotorOne.EVENT_TYPE.connect,function(kMDeviceInfo){
+           if(kMMotorOne.isConnect){
+               kMMotorOne.cmdLed(1,200,0,0);//led
+           }
+       });
+       kMMotorOne.connect();
+    });
+   
+    KMConnector.KMMotorOneBLE.startScanToCreateInstance();
+    
+
+### BLE
+
+    const KMConnector = require('kmconnector/KMConnectorBLE');
     KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
-        KMConnector.KMMotorOneBLE.stopScan();
-        kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
-                if(kMMotorOneBLE.isConnect){
-                    kMMotorOneBLE.cmdLed(1,200,0,0);
-                }
-        });
-        kMMotorOneBLE.connect();
+       KMConnector.KMMotorOneBLE.stopScan();
+       kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
+               if(kMMotorOneBLE.isConnect){
+                   kMMotorOneBLE.cmdLed(1,200,0,0);
+               }
+       });
+       kMMotorOneBLE.connect();
     });  
     KMConnector.KMMotorOneBLE.startScanToCreateInstance();
     
-Exsample file is /examples/nodejs/
 
 ### BLE (When directly using noble API)
 <p>BLE通信(noble)を既に使用している物に組み込む場合の例</p>
 
-    let noble = require('noble');
+    const KMConnector = require('kmconnector/KMConnectorBLE');
+    const noble = require('noble');
     noble.on('discover',(nobleperipheral)=>{
         noble.stopScanning();
         
@@ -89,7 +133,7 @@ Exsample file is /examples/nodejs/
     }
 
 ### Web Bluetooth (Browser only. Chrome on Android or Mac)
-<p>Web Bluetoothでの例。 サンプルファイルは/examples/browser_webbluetooh/</p>
+<p>Exsample file is /examples/browser_webbluetooh/</p>
 
 #### html
 
@@ -102,7 +146,7 @@ Exsample file is /examples/nodejs/
     
 #### javascript 
 
-    let KMB=new KMMotorOneWebBLE();
+    const KMB=new KMMotorOneWebBLE();
     KMB.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
         KMB.cmdEnable();
         KMB.cmdSpeed_rpm(10);
@@ -111,8 +155,6 @@ Exsample file is /examples/nodejs/
 
     //KMB.connect();//For security reasons permission request error occurs unless it is ignited by user's click operation
     
-
-Exsample file is /examples/browser_webbluetooh/
 
 **Https(https://) connection is required for Web Bluetooth operation.**  
 
