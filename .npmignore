@@ -4,3 +4,4 @@
 node_modules/
 jsdoc/
 webpack.config.js/
+npm-debug.log

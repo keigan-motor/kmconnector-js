@@ -1,6 +1,6 @@
 {
   "name": "kmconnector",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "./index.js",
   "directories": {
     "lib": "lib"
@@ -22,7 +22,7 @@
   "author": "Keigan Inc.",
   "license": "MIT",
   "dependencies": {
-    "noble": "^1.9.1",
+    "@abandonware/noble": "^1.9.2-1",
     "serialport": "^7.0.2"
   },
   "devDependencies": {
