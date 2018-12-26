@@ -17,8 +17,8 @@ https://www.keigan-motor.com/
 - other exsample file is /examples/  <p>サンプルファイルは/examples/にあります。</p>
 
 ## Requirement
-
-- noble 1.9.1+
+- node 8.11.2 - 10.14.2
+- @abandonware/noble 1.9.2
 - serialport 7.0.2+
 
 
