@@ -22,6 +22,8 @@ https://www.keigan-motor.com/
 - serialport 7.0.2+
 
 
+
+
 ## Usage
 - KeiganMotor firmware needs 1.78 or more
 
@@ -38,6 +40,11 @@ https://www.keigan-motor.com/
 <p>npmからインストール</p>  
 
     $ npm install kmconnector
+
+<p>※ MAC & node.js 10.xで依存ライブラリxpc-connectionが正常にインストールされない(”Cannot find module 'xpc-connection' ”)
+場合は以下のコマンドでxpc-connectionをインストールして下さい。</p>
+
+    $ npm install git://github.com/taoyuan/node-xpc-connection.git
 
 
 ### Browser(Web Bluetooth)
