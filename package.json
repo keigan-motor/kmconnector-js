@@ -1,11 +1,10 @@
 {
   "name": "kmconnector",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "./index.js",
   "directories": {
     "lib": "lib"
   },
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
