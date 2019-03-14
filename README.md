@@ -300,9 +300,7 @@ The command of the motor is defined by "cmd [CommandName] (prame, ...)"
 #### For details of the command, see the following site 
 <p>詳細なドキュメント</p>
 
-- Motor command Api(English)  
-https://en.document.keigan-motor.com/motor-control-command/command-motor-action.html
-- KeiganMotor javascript Libraryリファレンス(日本語)   
+- KeiganMotor javascript Libraryリファレンス   
 https://document.keigan-motor.com/apiDocument/kmconnector-js/
 - モーターコマンド一覧  
 https://document.keigan-motor.com/motor-control-command
