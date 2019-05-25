@@ -7,7 +7,7 @@ Node.js and Browser javascript Library for Keigan Motor.
 ## Description
 You can control USB Serial and BLE in Node.js. Browser can control Web Bluetooth.
 https://www.keigan-motor.com/  
-<p>Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続出来ます。</p>
+<p>Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続できます。</p>
 
 ***DEMO:***
 
@@ -41,10 +41,26 @@ https://www.keigan-motor.com/
 
     $ npm install kmconnector
 
-<p>※ MAC & node.js 10.xで依存ライブラリxpc-connectionが正常にインストールされない(”Cannot find module 'xpc-connection' ”)
-場合は以下のコマンドでxpc-connectionをインストールして下さい。</p>
+~~※ MAC & node.js 10.xで依存ライブラリxpc-connectionが正常にインストールされない(”Cannot find module 'xpc-connection' ”)~~
+~~場合は以下のコマンドでxpc-connectionをインストールして下さい。~~
+~~$ npm install git://github.com/taoyuan/node-xpc-connection.git~~
+    
 
-    $ npm install git://github.com/taoyuan/node-xpc-connection.git
+#### Macでインストールする場合
+<p>Macでnodebrewを使用している場合、xpc-connectionのインストールに失敗する場合があります。</p>
+
+##### 対処方法
+-node-gypを最新にUPDATEする。
+
+-インストール時に、一時的にpathを以下に書き換える。
+
+    $ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:~/.nodebrew/node/[nodebrewのヴァージョン]/bin
+
+ex)
+
+    $ npm explore npm -g -- npm install node-gyp@latest
+    $ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:~/.nodebrew/node/v10.14.2/bin
+    $ npm i kmconnector
 
 
 ### Browser(Web Bluetooth)
