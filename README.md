@@ -50,11 +50,11 @@ https://www.keigan-motor.com/
 <p>Macでnodebrewを使用している場合、xpc-connectionのインストールに失敗する場合があります。</p>
 
 ##### 対処方法
--node-gypを最新にUPDATEする。
+- node-gypを最新にUPDATEする。
 
--インストール時に、一時的にpathを以下に書き換える。
+- インストール時に、一時的にpathを以下に書き換える。
 
-    $ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:~/.nodebrew/node/[nodebrewのヴァージョン]/bin
+    export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:~/.nodebrew/node/[nodebrewのヴァージョン]/bin
 
 ex)
 
