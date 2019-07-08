@@ -12,7 +12,7 @@ https://www.keigan-motor.com/
 ***DEMO:***
 
 - WebBluetooh (Browser only. Chrome on Android or Mac)  <p>WebBluetoothでのデモ(Android又はMac上のChromeで動作)</p>
-**<a href="https://document.keigan-motor.com/apiSample/kmconnector-js/examples/browser_webbluetooh/Demo.html" target="_brank">https://document.keigan-motor.com/apiSample/motorApiSample/</a>**
+**<a href="https://docs.keigan-motor.com/apiSample/kmconnector-js/examples/browser_webbluetooh/Demo.html" target="_brank">https://docs.keigan-motor.com/apiSample/motorApiSample/</a>**
 
 - other exsample file is /examples/  <p>サンプルファイルは/examples/にあります。</p>
 
@@ -317,9 +317,9 @@ The command of the motor is defined by "cmd [CommandName] (prame, ...)"
 <p>詳細なドキュメント</p>
 
 - KeiganMotor javascript Libraryリファレンス   
-https://document.keigan-motor.com/apiDocument/kmconnector-js/
+https://docs.keigan-motor.com/apiDocument/kmconnector-js/
 - モーターコマンド一覧  
-https://document.keigan-motor.com/motor-control-command
+https://docs.keigan-motor.com/motor-control-command
 
 ## Author
 [Keigan Inc.](https://keigan-motor.com/)
