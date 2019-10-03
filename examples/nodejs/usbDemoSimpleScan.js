@@ -1,4 +1,4 @@
-const KMConnector = require('../../KMConnectorUSB');
+const KMConnector = require('kmconnector/KMConnectorUSB');
 const KMMotorOneUSBSerial=KMConnector.KMMotorOneUSBSerial;
 
 //Motor discovery (only once when a new motor is found)

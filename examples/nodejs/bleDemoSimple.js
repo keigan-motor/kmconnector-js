@@ -1,4 +1,4 @@
-const KMConnector = require('../../KMConnectorBLE');
+const KMConnector = require('kmconnector/KMConnectorBLE');
 const KMMotorOneBLE=KMConnector.KMMotorOneBLE;
 
 //モーター発見時(新規モーターの発見時 1回のみ)

@@ -1,4 +1,4 @@
-const KMConnector = require('../../KMConnectorUSB');
+const KMConnector = require('kmconnector/KMConnectorUSB');
 const KMMotorOneUSBSerial=KMConnector.KMMotorOneUSBSerial;
 
 let kMMotorOne=new KMMotorOneUSBSerial('/dev/ttyUSB0');//
