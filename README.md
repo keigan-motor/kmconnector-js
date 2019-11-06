@@ -9,6 +9,10 @@ You can control USB Serial and BLE in Node.js. Browser can control Web Bluetooth
 https://www.keigan-motor.com/  
 <p>Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続できます。</p>
 
+***Note:***
+        Raspbian(Raspberry Pi),Linux, Mac OS X are currently the only supported OSes.<br>現時点でサポートされているOSはRaspbian(Raspberry Pi),Linux、Mac OS Xのみです。 
+
+
 ***DEMO:***
 
 - WebBluetooh (Browser only. Chrome on Android or Mac)  <p>WebBluetoothでのデモ(Android又はMac上のChromeで動作)</p>
@@ -22,10 +26,9 @@ https://www.keigan-motor.com/
 - serialport 7.0.2+
 
 
-
-
 ## Usage
-- KeiganMotor firmware needs 1.78 or more
+- KeiganMotor firmware version 2.23 or above
+
 
 - BLE (Node.js only. Raspberrypi needs to run with administrator privilege to launch Bluetooh.(sudo))  <p>BLE Node.js用。RaspberryPiは管理者権限で実行する必要があります。</p>
 
