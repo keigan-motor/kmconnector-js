@@ -10,7 +10,7 @@ https://www.keigan-motor.com/
 <p>Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続できます。</p>
 
 ***Note:***
-        Linux, Mac OS X are currently the only supported OSes. Other platforms may be developed later on.<br>現時点でサポートされているOSはLinux、Mac OS Xのみです。 他のプラットフォームは後日開発される可能性があります。
+        Raspbian(Raspberry Pi),Linux, Mac OS X are currently the only supported OSes. Other platforms may be developed later on.<br>現時点でサポートされているOSはRaspbian(Raspberry Pi),Linux、Mac OS Xのみです。 他のプラットフォームは後日開発される可能性があります。
 
 
 ***DEMO:***
