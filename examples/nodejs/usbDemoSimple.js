@@ -2,7 +2,6 @@ const KMConnector = require('kmconnector/KMConnectorUSB');
 const KMMotorOneUSBSerial=KMConnector.KMMotorOneUSBSerial;
 
 let kMMotorOne=new KMMotorOneUSBSerial('/dev/ttyUSB0');//
-
 //let kMMotorOne=new KMMotorOneUSBSerial('/dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_DM00KBZZ-if00-port0');//For a static device port
 
 //let kMMotorOne=new KMMotorOneUSBSerial('COM1');//for Windows COM port
