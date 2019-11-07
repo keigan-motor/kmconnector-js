@@ -30,12 +30,7 @@ https://www.keigan-motor.com/
 
 
 ## Usage
-<<<<<<< HEAD
 - KeiganMotor firmware version 2.23 or above
-=======
-- KeiganMotor firmware version 2.0 or above
->>>>>>> 4773b2cac690bed75da11c651ae26dd7998ed19a
-
 
 - BLE (Node.js only. Raspberrypi needs to run with administrator privilege to launch Bluetooh.(sudo))  <p>BLE Node.js用。RaspberryPiは管理者権限で実行する必要があります。</p>
 
