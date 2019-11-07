@@ -1,21 +1,21 @@
 const KMConnector = require('kmconnector/KMConnectorUSB');
 const KMMotorOneUSBSerial=KMConnector.KMMotorOneUSBSerial;
 
-let kMMotorOne=new KMMotorOneUSBSerial('/dev/ttyUSB0');//
+//let kMMotorOne=new KMMotorOneUSBSerial('/dev/ttyUSB0');//
 //let kMMotorOne=new KMMotorOneUSBSerial('/dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_DM00KBZZ-if00-port0');//For a static device port
-
 //let kMMotorOne=new KMMotorOneUSBSerial('COM1');//for Windows COM port
+let kMMotorOne=new KMMotorOneUSBSerial('/dev/tty.usbserial-DM00LN44');//info::for Mac
 
 kMMotorOne.on(kMMotorOne.EVENT_TYPE.connect,function(kMDeviceInfo){
     console.log(kMMotorOne.deviceInfo.name,':onConnect');
     //Motor register information
-    kMMotorOne.cmdReadAllRegister().then((val)=>{
-        Object.keys(val).forEach((k)=>{
-            console.log(k+":"+val[k]);
-        });
-    }).catch((msg)=>{
-        console.log(msg);
-    });
+    // kMMotorOne.cmdReadAllRegister().then((val)=>{
+    //     Object.keys(val).forEach((k)=>{
+    //         console.log(k+":"+val[k]);
+    //     });
+    // }).catch((msg)=>{
+    //     console.log(msg);
+    // });
     //info::Command execution
     if(kMMotorOne.isConnect){
         kMMotorOne.cmdLed(kMMotorOne.cmdLed_LED_STATE.LED_STATE_ON_SOLID,200,0,0);//led

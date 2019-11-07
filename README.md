@@ -10,7 +10,10 @@ https://www.keigan-motor.com/
 <p>Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続できます。</p>
 
 ***Note:***
-        Raspbian(Raspberry Pi),Linux, Mac OS X are currently the only supported OSes.<br>現時点でサポートされているOSはRaspbian(Raspberry Pi),Linux、Mac OS Xのみです。 
+
+- Raspbian(Raspberry Pi),Linux, Mac OS X are currently the only supported OSes.<br>現時点でサポートされているOSはRaspbian(Raspberry Pi),Linux、Mac OS Xのみです。 
+
+- RaspberryPi等の一部のBluetoohアダプタでは、複数プロセスによるBLEの動作は、正常に動作しません。<br>複数のプロセスで、Node.jsからBLE接続を行うと、"Type mismatch of motor peripheral"により失敗します。
 
 
 ***DEMO:***
