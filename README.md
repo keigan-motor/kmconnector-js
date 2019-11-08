@@ -15,7 +15,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
 - serialport 7.0.2+
 
 ## Usage
-- KeiganMotor ファームウェア version 2.23 以上。
+- <a href="https://docs.keigan-motor.com/firmware/download" target="_brank">KeiganMotor ファームウェア</a> version 2.23 以上。
 
 - 現時点でサポートされているOSはRaspbian(Raspberry Pi),Linux、Mac OS Xのみです。 
 
