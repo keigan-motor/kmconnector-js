@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>KMMotorOneUSBSerial.js - Documentation</title>
+    
+    
+    <meta property="og:title" content="kmconnector-js"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://document.keigan-motor.com/wp-content/image/logo_m.png"/>
+    <meta property="og:site_name" content="keigan-motor"/>
+    <meta property="og:url" content="https://github.com/keigan-motor/kmconnector-js"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://document.keigan-motor.com" target="_blank" class="menu-item" id="website_link" >Project Website</a></h2><h3>Classes</h3><ul><li><a href="KMDeviceInfo.html">KMDeviceInfo</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#Clone">Clone</a></li><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#EQ">EQ</a></li><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#GetValArray">GetValArray</a></li><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#GetValObj">GetValObj</a></li><li data-type='method' style='display: none;'><a href="KMDeviceInfo.html#SetValObj">SetValObj</a></li></ul></li><li><a href="KMImuState.html">KMImuState</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMImuState.html#Clone">Clone</a></li><li data-type='method' style='display: none;'><a href="KMImuState.html#EQ">EQ</a></li><li data-type='method' style='display: none;'><a href="KMImuState.html#GetValArray">GetValArray</a></li><li data-type='method' style='display: none;'><a href="KMImuState.html#GetValObj">GetValObj</a></li><li data-type='method' style='display: none;'><a href="KMImuState.html#SetValObj">SetValObj</a></li></ul></li><li><a href="KMLedState.html">KMLedState</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMLedState.html#Clone">Clone</a></li><li data-type='method' style='display: none;'><a href="KMLedState.html#EQ">EQ</a></li><li data-type='method' style='display: none;'><a href="KMLedState.html#GetValArray">GetValArray</a></li><li data-type='method' style='display: none;'><a href="KMLedState.html#GetValObj">GetValObj</a></li><li data-type='method' style='display: none;'><a href="KMLedState.html#SetValObj">SetValObj</a></li></ul></li><li><a href="KMMotorLog.html">KMMotorLog</a></li><li><a href="KMMotorOneBLE.html">KMMotorOneBLE</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.allDisConnect">allDisConnect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.clearMotors">clearMotors</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.on">on</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.once">once</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.removeAllListeners">removeAllListeners</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.removeListener">removeListener</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.startScanToCreateInstance">startScanToCreateInstance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#.stopScan">stopScan</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdAcc">cmdAcc</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdCurveType">cmdCurveType</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdDec">cmdDec</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdDisable">cmdDisable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdDisableIMUMeasurement">cmdDisableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEnable">cmdEnable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEnableCheckSum">cmdEnableCheckSum</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEnableIMUMeasurement">cmdEnableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEnterDeviceFirmwareUpdate">cmdEnterDeviceFirmwareUpdate</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEraseAllMotion">cmdEraseAllMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEraseAllTaskset">cmdEraseAllTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEraseMotion">cmdEraseMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdEraseTaskset">cmdEraseTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdFree">cmdFree</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdHoldTorque">cmdHoldTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdIMUMeasurementByDefault">cmdIMUMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdIMUMeasurementInterval">cmdIMUMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdInterface">cmdInterface</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdLed">cmdLed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMaxSpeed">cmdMaxSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMaxTorque">cmdMaxTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMinSpeed">cmdMinSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMotorMeasurementByDefault">cmdMotorMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMotorMeasurementInterval">cmdMotorMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMoveByDistance">cmdMoveByDistance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMoveByDistanceSync">cmdMoveByDistanceSync</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMoveToPosition">cmdMoveToPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdMoveToPositionSync">cmdMoveToPositionSync</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdNotifyPosArrival">cmdNotifyPosArrival</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdOwnColor">cmdOwnColor</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPauseQueue">cmdPauseQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPlaybackInterval">cmdPlaybackInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPosControlThreshold">cmdPosControlThreshold</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPositionD">cmdPositionD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPositionI">cmdPositionI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPositionP">cmdPositionP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdPresetPosition">cmdPresetPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdQCurrentD">cmdQCurrentD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdQCurrentI">cmdQCurrentI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdQCurrentP">cmdQCurrentP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadAllRegister">cmdReadAllRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadDeviceInfo">cmdReadDeviceInfo</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadDeviceName">cmdReadDeviceName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadPositionOffset">cmdReadPositionOffset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadRegister">cmdReadRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReadStatus">cmdReadStatus</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdReboot">cmdReboot</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResetAllRegisters">cmdResetAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResetPID">cmdResetPID</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResetQueue">cmdResetQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResetRegister">cmdResetRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResponse">cmdResponse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdResumeQueue">cmdResumeQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdRun">cmdRun</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdRun_rpm">cmdRun_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdRunForward">cmdRunForward</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdRunReverse">cmdRunReverse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSaveAllRegisters">cmdSaveAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSetI2CSlaveAddress">cmdSetI2CSlaveAddress</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSetTasksetName">cmdSetTasksetName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeed">cmdSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeed_rpm">cmdSpeed_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeedD">cmdSpeedD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeedI">cmdSpeedI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdSpeedP">cmdSpeedP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStartDoingTaskset">cmdStartDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStartPlaybackMotion">cmdStartPlaybackMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStartRecordingTaskSet">cmdStartRecordingTaskSet</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStartTeachingMotion">cmdStartTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStop">cmdStop</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStopDoingTaskset">cmdStopDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStopRecordingTaskset">cmdStopRecordingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdStopTeachingMotion">cmdStopTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdTeachingInterval">cmdTeachingInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#cmdWaitQueue">cmdWaitQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#connect">connect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneBLE.html#disConnect">disConnect</a></li></ul></li><li><a href="KMMotorOneUSBSerial.html">KMMotorOneUSBSerial</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.allDisConnect">allDisConnect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.clearMotors">clearMotors</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.on">on</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.once">once</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.removeAllListeners">removeAllListeners</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.removeListener">removeListener</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#.startScanToCreateInstance">startScanToCreateInstance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdAcc">cmdAcc</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdCurveType">cmdCurveType</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdDec">cmdDec</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdDisable">cmdDisable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdDisableIMUMeasurement">cmdDisableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEnable">cmdEnable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEnableCheckSum">cmdEnableCheckSum</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEnableIMUMeasurement">cmdEnableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEnterDeviceFirmwareUpdate">cmdEnterDeviceFirmwareUpdate</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEraseAllMotion">cmdEraseAllMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEraseAllTaskset">cmdEraseAllTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEraseMotion">cmdEraseMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdEraseTaskset">cmdEraseTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdFree">cmdFree</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdHoldTorque">cmdHoldTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdIMUMeasurementByDefault">cmdIMUMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdIMUMeasurementInterval">cmdIMUMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdInterface">cmdInterface</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdLed">cmdLed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMaxSpeed">cmdMaxSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMaxTorque">cmdMaxTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMinSpeed">cmdMinSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMotorMeasurementByDefault">cmdMotorMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMotorMeasurementInterval">cmdMotorMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMoveByDistance">cmdMoveByDistance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMoveByDistanceSync">cmdMoveByDistanceSync</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMoveToPosition">cmdMoveToPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdMoveToPositionSync">cmdMoveToPositionSync</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdNotifyPosArrival">cmdNotifyPosArrival</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdOwnColor">cmdOwnColor</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPauseQueue">cmdPauseQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPlaybackInterval">cmdPlaybackInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPosControlThreshold">cmdPosControlThreshold</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPositionD">cmdPositionD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPositionI">cmdPositionI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPositionP">cmdPositionP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdPresetPosition">cmdPresetPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdQCurrentD">cmdQCurrentD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdQCurrentI">cmdQCurrentI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdQCurrentP">cmdQCurrentP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadAllRegister">cmdReadAllRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadDeviceInfo">cmdReadDeviceInfo</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadDeviceName">cmdReadDeviceName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadPositionOffset">cmdReadPositionOffset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadRegister">cmdReadRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReadStatus">cmdReadStatus</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdReboot">cmdReboot</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResetAllRegisters">cmdResetAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResetPID">cmdResetPID</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResetQueue">cmdResetQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResetRegister">cmdResetRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResponse">cmdResponse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdResumeQueue">cmdResumeQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdRun">cmdRun</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdRun_rpm">cmdRun_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdRunForward">cmdRunForward</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdRunReverse">cmdRunReverse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSaveAllRegisters">cmdSaveAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSetI2CSlaveAddress">cmdSetI2CSlaveAddress</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSetTasksetName">cmdSetTasksetName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeed">cmdSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeed_rpm">cmdSpeed_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeedD">cmdSpeedD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeedI">cmdSpeedI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdSpeedP">cmdSpeedP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStartDoingTaskset">cmdStartDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStartPlaybackMotion">cmdStartPlaybackMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStartRecordingTaskSet">cmdStartRecordingTaskSet</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStartTeachingMotion">cmdStartTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStop">cmdStop</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStopDoingTaskset">cmdStopDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStopRecordingTaskset">cmdStopRecordingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdStopTeachingMotion">cmdStopTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdTeachingInterval">cmdTeachingInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#cmdWaitQueue">cmdWaitQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#connect">connect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneUSBSerial.html#disConnect">disConnect</a></li></ul></li><li><a href="KMMotorOneWebBLE.html">KMMotorOneWebBLE</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdAcc">cmdAcc</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdCurveType">cmdCurveType</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdDec">cmdDec</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdDisable">cmdDisable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdDisableIMUMeasurement">cmdDisableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEnable">cmdEnable</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEnableCheckSum">cmdEnableCheckSum</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEnableIMUMeasurement">cmdEnableIMUMeasurement</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEnterDeviceFirmwareUpdate">cmdEnterDeviceFirmwareUpdate</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEraseAllMotion">cmdEraseAllMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEraseAllTaskset">cmdEraseAllTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEraseMotion">cmdEraseMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdEraseTaskset">cmdEraseTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdFree">cmdFree</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdHoldTorque">cmdHoldTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdIMUMeasurementByDefault">cmdIMUMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdIMUMeasurementInterval">cmdIMUMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdInterface">cmdInterface</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdLed">cmdLed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMaxSpeed">cmdMaxSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMaxTorque">cmdMaxTorque</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMinSpeed">cmdMinSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMotorMeasurementByDefault">cmdMotorMeasurementByDefault</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMotorMeasurementInterval">cmdMotorMeasurementInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMoveByDistance">cmdMoveByDistance</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMoveByDistanceSync">cmdMoveByDistanceSync</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMoveToPosition">cmdMoveToPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdMoveToPositionSync">cmdMoveToPositionSync</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdNotifyPosArrival">cmdNotifyPosArrival</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdOwnColor">cmdOwnColor</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPauseQueue">cmdPauseQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPlaybackInterval">cmdPlaybackInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPosControlThreshold">cmdPosControlThreshold</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPositionD">cmdPositionD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPositionI">cmdPositionI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPositionP">cmdPositionP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdPresetPosition">cmdPresetPosition</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdQCurrentD">cmdQCurrentD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdQCurrentI">cmdQCurrentI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdQCurrentP">cmdQCurrentP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadAllRegister">cmdReadAllRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadDeviceInfo">cmdReadDeviceInfo</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadDeviceName">cmdReadDeviceName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadPositionOffset">cmdReadPositionOffset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadRegister">cmdReadRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReadStatus">cmdReadStatus</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdReboot">cmdReboot</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResetAllRegisters">cmdResetAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResetPID">cmdResetPID</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResetQueue">cmdResetQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResetRegister">cmdResetRegister</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResponse">cmdResponse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdResumeQueue">cmdResumeQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdRun">cmdRun</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdRun_rpm">cmdRun_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdRunForward">cmdRunForward</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdRunReverse">cmdRunReverse</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSaveAllRegisters">cmdSaveAllRegisters</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSetI2CSlaveAddress">cmdSetI2CSlaveAddress</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSetTasksetName">cmdSetTasksetName</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeed">cmdSpeed</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeed_rpm">cmdSpeed_rpm</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeedD">cmdSpeedD</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeedI">cmdSpeedI</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdSpeedP">cmdSpeedP</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStartDoingTaskset">cmdStartDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStartPlaybackMotion">cmdStartPlaybackMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStartRecordingTaskSet">cmdStartRecordingTaskSet</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStartTeachingMotion">cmdStartTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStop">cmdStop</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStopDoingTaskset">cmdStopDoingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStopRecordingTaskset">cmdStopRecordingTaskset</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdStopTeachingMotion">cmdStopTeachingMotion</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdTeachingInterval">cmdTeachingInterval</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#cmdWaitQueue">cmdWaitQueue</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#connect">connect</a></li><li data-type='method' style='display: none;'><a href="KMMotorOneWebBLE.html#disConnect">disConnect</a></li></ul></li><li><a href="KMRotState.html">KMRotState</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMRotState.html#Clone">Clone</a></li><li data-type='method' style='display: none;'><a href="KMRotState.html#EQ">EQ</a></li><li data-type='method' style='display: none;'><a href="KMRotState.html#GetValArray">GetValArray</a></li><li data-type='method' style='display: none;'><a href="KMRotState.html#GetValObj">GetValObj</a></li><li data-type='method' style='display: none;'><a href="KMRotState.html#SetValObj">SetValObj</a></li></ul></li><li><a href="KMUtl.html">KMUtl</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KMUtl.html#.degreeToRadian">degreeToRadian</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.radianToDegree">radianToDegree</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.rpmToRadianSec">rpmToRadianSec</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.toIntNumber">toIntNumber</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.toNumber">toNumber</a></li><li data-type='method' style='display: none;'><a href="KMUtl.html#.twoPointDistanceAngle">twoPointDistanceAngle</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">KMMotorOneUSBSerial.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/***
+ *KMMotorOneUSBSerial.js
+ * var 0.1.0 alpha
+ * Created by Harada Hiroshi on 2018/02/27.
+ *
+ * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+
+'use strict';
+
+const EventEmitter = require("events").EventEmitter;
+const KMUtl= require('./KMUtl');
+const KMComUSBSerial = require('./KMComUSBSerial');
+const KMMotorCommandKMOne=require('./KMMotorCommandKMOne.js');
+const serialport = require('serialport');
+const {performance} = require('perf_hooks');
+/**
+ * @typedef {Object&lt; motorUUID,KMMotorOneUSBSerial >} _motorsByUUID
+ * @ignore
+ */
+let _motorsByUUID={};
+/**
+ * @typedef {Object&lt; motorName,KMMotorOneUSBSerial >} _motorsByName
+ * @ignore
+ */
+let _motorsByName={};
+let _KMMotorOneUSBSerialStaticEventEmitter=new EventEmitter(null);
+
+process.on('exit', function() {
+    //todo::プロセス終了時のUSBデバイス切断 必要なら
+});
+
+/**
+ * @classdesc KM-1のUSBシリアル接続用 仮想デバイス
+ */
+class KMMotorOneUSBSerial extends KMMotorCommandKMOne{
+    /********************************************
+     * static　events
+     ********************************************/
+    /**
+     * イベントリスナを追加する. Synonym for EventEmitter
+     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     * @param {function(object)} listener 追加するイベントリスナ.
+     */
+    static on(type, listener){
+        _KMMotorOneUSBSerialStaticEventEmitter.on(type,listener);
+    }
+    /**
+     * 1回限りのイベントリスナを追加する. Synonym for EventEmitter
+     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     * @param {function(object)} listener 追加するイベントリスナ.
+     */
+    static once(type, listener){
+        _KMMotorOneUSBSerialStaticEventEmitter.once(type,listener);
+    }
+    /**
+     * イベントリスナを削除する Synonym for EventEmitter
+     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ
+     * @param {function(object)} listener 削除するイベントリスナ
+     */
+    static removeListener(type, listener){
+        _KMMotorOneUSBSerialStaticEventEmitter.removeListener(type,listener);
+    }
+    /**
+     * 全てのイベントリスナを削除する Synonym for EventEmitter
+     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     */
+    static removeAllListeners(type){
+        _KMMotorOneUSBSerialStaticEventEmitter.removeAllListeners(type);
+    }
+
+    /**
+     * イベントタイプ定数
+     * @readonly
+     * @enum {string}
+     * @property {string} discoverMotor - モーター発見時(毎回)
+     * &lt;br>return:function({@link KMMotorOneUSBSerial})
+     * @property {string} discoverNewMotor - 新規モーターの発見時(1回のみ)
+     * &lt;br>return:function({@link KMMotorOneUSBSerial})
+     * @property {string} scanTimeout - スキャンのタイムアウトで終了時
+     * &lt;br>return:function()
+     */
+    static get EVENT_TYPE(){
+        return {
+            discoverMotor:"discoverMotor",
+            discoverNewMotor:"discoverNewMotor",
+            scanTimeout:"scanTimeout"
+        };
+    }
+    /********************************************
+     * static Method
+     ********************************************/
+    /**
+     * USBデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する
+     */
+    static startScanToCreateInstance(){
+       return new Promise((resolve,reject)=> {
+           serialport.list().then((ports)=>{
+               let pmar=[];
+               ports.forEach((port)=> {
+                   let portName=port.comName;
+                   if(port.manufacturer!=="FTDI"||(parseInt(port.productId,16)).toString(16)!=="6015"){//KM1 USBchip
+                       return;
+                   }
+                   let serialNumber=port.serialNumber;//info::デバイス固有ID識別用。 UUID的な
+
+                   if(!_motorsByUUID[serialNumber]){
+                       let pm=new Promise(function(s_resolve, s_reject) {
+                           KMMotorOneUSBSerial._getMotorNameSerial(portName).then((name)=>{
+                               let motor= new KMMotorOneUSBSerial(portName,serialNumber,name);//info::検出したモーターは全てインスタンス化
+                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,_motorsByUUID[serialNumber]);
+                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
+                               s_resolve(true);
+                           }).catch((e)=>{
+                               console.log("getMotorName Err",e);
+                               let motor= new KMMotorOneUSBSerial(portName,serialNumber);//info::検出したモーターは全てインスタンス化
+                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,_motorsByUUID[serialNumber]);
+                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
+                               s_resolve(true);
+                           });
+                       });
+                       pmar.push(pm);
+                   }
+                   if(_motorsByUUID[serialNumber]){
+                       _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
+                   }
+               });
+
+               Promise.all(pmar).then(()=>{
+                   resolve(_motorsByUUID);
+               });
+           }).catch((err)=>{
+               console.log(err);
+               reject(err);
+           });
+        });
+    }
+
+
+    /**
+     * Motor名取得用にコマンド発行->受信
+     * @param comName
+     * @returns {Promise&lt;any>}
+     * @private
+     * @ignore
+     */
+    static _getMotorNameSerial(comName){
+        return new Promise((resolve,reject)=> {
+            let execTimeoutms=5000;
+
+            //motorNameの取得の為、一度接続する
+            let kcom= new KMComUSBSerial(comName);
+
+            let timeOutIntevalID=setTimeout(()=>{
+                kcom.disConnect();
+                reject("getMotorName timeout");
+            },execTimeoutms);
+
+            kcom.onConnect=(connector)=>{
+                setTimeout(()=>{
+                    kcom._sendMotorCommand('MOTOR_SETTING',kcom._MOTOR_RX_READREGISTER_COMMAND.deviceName);//DeviceName
+                },500);
+            };
+            kcom.onConnectFailure=(connector, err)=>{
+                reject("getMotorName connectFailure");
+            };
+
+            kcom.onMotorSetting=(registerCmd,res)=>{
+                //名前の取得
+                if(registerCmd===kcom._MOTOR_RX_READREGISTER_COMMAND.deviceName){
+                    let rName=typeof res.deviceName==="string"?res.deviceName.split('#')[0]:null;
+                    kcom.disConnect();
+                    clearTimeout(timeOutIntevalID);
+                    resolve(rName);
+                }
+            };
+
+            kcom.connect();
+
+        });
+    }
+    /**
+     * 全てのモーターのUSB接続を解除
+     */
+    static allDisConnect(){
+        Object.keys(_motorsByUUID).forEach((key)=> {
+            _motorsByUUID[key]._KMCom.disConnect();
+        });
+    }
+
+    /**
+     *  全ての仮想モーターを消去
+     */
+    static clearMotors(){
+        KMMotorOneUSBSerial.allDisConnect();
+        _motorsByUUID={};
+        KMMotorOneUSBSerial._restructMotorsByName();
+    }
+    /**
+     * APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
+     * &lt;br>ex) {&lt;motorName1>:{@link KMMotorOneUSBSerial},&lt;motorName2>:{@link KMMotorOneUSBSerial},,,}
+     * &lt;br>一度作成された仮想モーターは物理的に取り外してもclearMotors()を行うまで消えない
+     * @readonly
+     * @type {_motorsByName}
+     */
+    static get motors(){
+        return _motorsByName;
+    }
+
+    /**
+     * APIが認識しているモーターのインスタンスリスト(プロパティはUUID)
+     * &lt;br>ex) {&lt;motorUUID1>:{@link KMMotorOneUSBSerial},&lt;motorUUID2>:{@link KMMotorOneUSBSerial},,,}
+     * &lt;br>一度作成された仮想モーターは物理的に取り外してもclearMotors()を行うまで消えない
+     * @readonly
+     * @type {_motorsByUUID}
+     */
+    static get motorsByUUID(){
+        return _motorsByUUID;
+    }
+    /**
+     * モーターのリストを再インデックス
+     * @private
+     * @ignore
+     */
+    static _restructMotorsByName(){
+        let list={};
+        Object.keys(_motorsByUUID).forEach((key)=>{
+            let name=  _motorsByUUID[key].deviceInfo.name? _motorsByUUID[key].deviceInfo.name.split('#')[0]:null;
+            if(name){
+                list[name]=_motorsByUUID[key];
+            }else{
+                console.log('Err motor name not found');
+            }
+        });
+        _motorsByName=list;
+    }
+    /********************************************
+     * instance Method
+     ********************************************/
+    /**
+     * KMMotorOneUSBSerial
+     * @constructor
+     * @extends KMMotorCommandKMOne
+     * @param portName
+     * @param id UniqueID デバイスのユニーク名 内部生成用。通常は指定しない (手動接続時は常にnull)
+     * @param defaultMotorName string 内部生成用。通常は指定しない (手動接続時は常にnull)
+     */
+    constructor(portName,id=null,defaultMotorName=null){
+        let cid=!id?"id_"+String(performance.now()).split(".").join("")+"_"+portName:id;
+        super(KMMotorCommandKMOne.KM_CONNECT_TYPE.SERIAL,new KMComUSBSerial(portName,cid,defaultMotorName));
+        if(!_motorsByUUID[cid]){
+            _motorsByUUID[cid]=this;
+        }
+
+        this.on(this.EVENT_TYPE.init,(kMDeviceInfo)=>{
+            KMMotorOneUSBSerial._restructMotorsByName();
+        });
+    }
+
+    /**
+     * モーターと接続する
+     */
+    connect(){
+       this._KMCom.connect();
+    }
+
+    /**
+     * モーターと切断
+     */
+    disConnect(){
+        this._KMCom.disConnect();
+    }
+
+
+}
+
+module.exports =KMMotorOneUSBSerial;
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Nov 08 2019 13:51:18 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
