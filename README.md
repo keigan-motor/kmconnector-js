@@ -66,7 +66,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
 ## Examples(BLE)
 
 
-####BLE通信で接続する例(Node.js)
+#### BLE通信で接続する例(Node.js)
 
         const KMConnector = require('kmconnector/KMConnectorBLE');
         KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
@@ -81,7 +81,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
         KMConnector.KMMotorOneBLE.startScanToCreateInstance();
     
 
-####BLE通信(noble)を既に使用している物に組み込む場合の例(Node.js)
+#### BLE通信(noble)を既に使用している物に組み込む場合の例(Node.js)
     
         const KMConnector = require('kmconnector/KMConnectorBLE');
         const noble = require('noble');
@@ -110,36 +110,36 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
         }
 
 
-###主なメソッド
-####BLEスキャンと停止
+### 主なメソッド
+#### BLEスキャンと停止
 
         KMConnector.KMMotorOneBLE.startScanToCreateInstance(15000);
         KMConnector.KMMotorOneBLE.stopScan();
    
-####接続したモーターの全切断
+#### 接続したモーターの全切断
 
         KMConnector.KMMotorOneBLE.allDisConnect();
 
-####個々のモーターの切断
+#### 個々のモーターの切断
 
         kMMotorOneBLE.connect();
         kMMotorOneBLE.disConnect();
 
-###イベント
-####スキャン中のモーター発見時
+### イベント
+#### スキャン中のモーター発見時
 
         KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverMotor,function(kMMotorOneBLE){
             console.log('onDiscoverMotor:'+kMMotorOneBLE.deviceInfo.name);
         });
     
-####未接続の新規モーター発見時
+#### 未接続の新規モーター発見時
 
         KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
             KMConnector.KMMotorOneBLE.stopScan();//Depending on the adapter, it is necessary to initialize the motor after completing the scan.　https://github.com/sandeepmistry/noble#notes
             //todo::Motor initialization processing
         });
     
-####スキャンがタイムアウトで終了した時
+#### スキャンがタイムアウトで終了した時
 
         KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.scanTimeout,function(){        
              //Connected to all motors
@@ -151,7 +151,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
              });
         });
     
-####モーターの初期化完了時
+#### モーターの初期化完了時
 
          kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
                 //Motor operation
@@ -160,7 +160,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
                 kMMotorOneBLE.cmdRunForward();
             });
         
-####モーター接続・切断時
+#### モーター接続・切断時
 
         kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.connect,function(kMDeviceInfo){
             console.log("onConnect:"+kMDeviceInfo.isConnect);
@@ -174,13 +174,13 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
             console.log("onConnectFailure:"+err);
         });
 
-####モーター回転情報受信時
+#### モーター回転情報受信時
 
         kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.motorMeasurement,function(kMRotState){
             console.log(kMRotState.GetValObj());//{position,velocity,torque}
         });
 
-####ジャイロ情報受信時
+#### ジャイロ情報受信時
 受信するには別途cmdEnableIMU()を有効にする必要があります。
 
         kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.imuMeasurement,function(kMImuState){
@@ -189,7 +189,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
     
 ## Examples(USB)
 
-####指定したUSBポートに接続する例 (Node.js)
+#### 指定したUSBポートに接続する例 (Node.js)
 
         const KMConnector = require('kmconnector/KMConnectorUSB');
         const KMMotorOneUSBSerial=KMConnector.KMMotorOneUSBSerial;
@@ -212,7 +212,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
         
         kMMotorOne.connect();
 
-####全てのUSBポートをスキャンして接続する例(Node.js)
+#### 全てのUSBポートをスキャンして接続する例(Node.js)
 
         const KMConnector = require('kmconnector/KMConnectorUSB');
         KMConnector.KMMotorOneUSBSerial.on(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
@@ -228,11 +228,11 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
         
 ## Examples(Browser Web Bluetooth Api)
 
-####WebブラウザからBLE接続する例 
+#### WebブラウザからBLE接続する例 
 + WebBluetoothを使用する為、Android又はMac上のChromeでのみ動作します。
 + Web Bluetoothはセキュリティの為、https://での接続が必須です。
 
-#####html
+##### html
     
         <head>
         <script src="kmconnector/indexBrowser.js"></script>
@@ -242,7 +242,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
             <a href="javascript:KMB.connect();">connect</a>
         </body>
     
-#####javascript 
+##### javascript 
 
         const KMB=new KMMotorOneWebBLE();
         KMB.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
@@ -253,13 +253,13 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
         
         //KMB.connect();//セキュリティ上の理由から、エラーになる
 
-####接続・切断
+#### 接続・切断
         kMMotorOneWebBLE.connect()
         kMMotorOneWebBLE.disConnect()
 
-###イベント
+### イベント
 
-####モーターの接続・初期化完了時 (Browser)
+#### モーターの接続・初期化完了時 (Browser)
 
         kMMotorOneWebBLE.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
             console.log(kMDeviceInfo.GetValObj());//{type,id,name,isConnect,manufacturerName,firmwareRevision}
@@ -267,7 +267,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
             kMMotorOneWebBLE.cmdSpeed_rpm(10);
         });
     
-####接続・切断(Browser) 
+#### 接続・切断(Browser) 
 
         kMMotorOneWebBLE.on(KMB.EVENT_TYPE.connect,function(kMDeviceInfo){
                 console.log("onConnect:"+kMDeviceInfo.isConnect);
@@ -279,13 +279,13 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
             console.log("onConnectFailure:"+err);
         });
     
-####モーター回転情報受信時(Browser)
+#### モーター回転情報受信時(Browser)
 
         kMMotorOneWebBLE.on(KMB.EVENT_TYPE.motorMeasurement,function(kMRotState){
             console.log(kMRotState.GetValObj());//{position,velocity,torque}
         });
 
-####ジャイロ情報受信時(Browser)
+#### ジャイロ情報受信時(Browser)
 
 受信するには別途cmdEnableIMU()を有効にする必要があります。 
 
@@ -301,7 +301,7 @@ Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを�
         kMMotorOneBLE.cmdEnable();//Enable motor action
         kMMotorOneBLE.cmdRunForward();//Run forward (ccw)
     
-##詳細なドキュメント
+## 詳細なドキュメント
 
 KeiganMotor javascript Libraryリファレンス   
 https://docs.keigan-motor.com/apiDocument/kmconnector-js/
