@@ -29,7 +29,7 @@
     "openGraph": {                  // Open Graph options (mostly for Facebook and other sites to easily extract meta information)
       "title": "kmconnector-js",                // Title of the website
       "type": "website",          // Type of the website
-      "image": "https://document.keigan-motor.com/wp-content/image/logo_m.png",                // Main image/logo
+      "image": "https://docs.keigan-motor.com/wp-content/image/logo_m.png",                // Main image/logo
       "site_name": "keigan-motor",            // Site name
       "url": "https://github.com/keigan-motor/kmconnector-js"                   // Main canonical URL for the main page of the site
     },
@@ -38,7 +38,7 @@
     "typedefs":false,       // Include typedefs in menu
     "menu":{                        // Adding additional menu items after Home
       "Project Website":{         // Menu item name
-        "href":"https://document.keigan-motor.com", //the rest of HTML properties to add to manu item
+        "href":"https://docs.keigan-motor.com", //the rest of HTML properties to add to manu item
         "target":"_blank",
         "class":"menu-item",
         "id":"website_link"
