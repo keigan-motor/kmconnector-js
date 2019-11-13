@@ -22,7 +22,7 @@
     "verbose": true
   },
   "docdash": {
-    "static": false,         // Display the static members inside the navbar
+    "static": true,         // Display the static members inside the navbar
     "sort": true,
     "sectionOrder": ["Classes"],
     "disqus": "",                   // Shortname for your disqus (subdomain during site creation)
@@ -35,7 +35,13 @@
     },
     "search":true,         // Display seach box above navigation which allows to search/filter navigation items
     "collapse": true,       // Collapse navigation by default except current object's navigation of the current page
-    "typedefs":false,       // Include typedefs in menu
+    "wrap": false,           // Wrap long navigation names instead of trimming them
+    "typedefs": false,       // Include typedefs in menu
+    "navLevel": 0,          // depth level to show in navbar, starting at 0 (false or -1 to disable)
+    "private": false,        // set to false to not show @private in navbar
+   "removeQuotes":"none",// Remove single and double quotes, trim removes only surrounding ones
+    "scripts": [],                  // Array of external (or relative local copied using templates.default.staticFiles.include) js or css files to inject into HTML,
+
     "menu":{                        // Adding additional menu items after Home
       "Project Website":{         // Menu item name
         "href":"https://docs.keigan-motor.com", //the rest of HTML properties to add to manu item

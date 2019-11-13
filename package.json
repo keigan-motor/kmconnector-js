@@ -7,6 +7,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build-browser":"node_modules/.bin/webpack",
     "generate-docs": "node_modules/.bin/jsdoc --configure ./jsdoc.json --verbose"
   },
   "keywords": [
