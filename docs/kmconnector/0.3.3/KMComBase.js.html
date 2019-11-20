@@ -10,11 +10,12 @@
 
   gtag('config', 'UA-142676146-4');
   gtag('config', 'UA-110466329-1');
+   gtag('config', 'UA-142676146-1');
 </script>
 
     
     <meta charset="utf-8">
-    <title>KMMotorOneBLE.js - Documentation</title>
+    <title>KMComBase.js - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -51,7 +52,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMMotorOneBLE.js</h1>
+    <h1 class="page-title">KMComBase.js</h1>
     
 
     
@@ -62,269 +63,270 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/***
- *KMMotorOneBLE.js
+ * KMComBase.js
  * Created by Harada Hiroshi on 2017/12/07.
  *
  * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
-
-
-
 'use strict';
-
-let EventEmitter = require("events").EventEmitter;
-let KMComBLE = require('./KMComBLE');
-let KMMotorCommandKMOne=require('./KMMotorCommandKMOne.js');
-
-let noble = require('@abandonware/noble');
+let KMUtl = require('./KMUtl');
+let KMStructures=require('./KMStructures');
 /**
- * @typedef {Object&lt; motorUUID,KMMotorOneBLE >} _motorsByUUID
+ * @classdesc 通信クラスの基底
  * @ignore
  */
-let _motorsByUUID={};
-/**
- * @typedef {Object&lt; motorName,KMMotorOneBLE >} _motorsByName
- * @ignore
- */
-let _motorsByName={};
-let _startScanTimeoutID=0;
-let _KMMotorOneBLEStaticEventEmitter=new EventEmitter(null);
-
-process.on('exit', function() {
-    KMMotorOneBLE.allDisConnect();
-});
-
-
-noble.once('stateChange', function(){
-    _KMMotorOneBLEStaticEventEmitter.emit("adapterStateChange",noble.state);
-});
-
-/**
- * @classdesc KM-1のBLE接続用 仮想デバイス
- */
-class KMMotorOneBLE extends KMMotorCommandKMOne{
-    /********************************************
-     * static　events
-     ********************************************/
+class KMComBase{
+    /**********************
+     * 定数
+    **********************/
     /**
-     * イベントリスナを追加する. Synonym for EventEmitter
-     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
-     * @param {function(object)} listener 追加するイベントリスナ.
+     * constructor　
      */
-    static on(type, listener){
-        _KMMotorOneBLEStaticEventEmitter.on(type,listener);
+    constructor(){
+        this._commandCount=0;
+        this._deviceInfo=new KMStructures.KMDeviceInfo();
+
+        this._motorMeasurement=new KMStructures.KMRotState();
+        this._motorLed=new KMStructures.KMLedState();
+        this._motorImuMeasurement=new KMStructures.KMImuState();
+
+        this._onInitHandler=function(connector){};
+        this._onConnectHandler=function(connector){};
+        this._onDisconnectHandler=function(connector){};
+        this._onConnectFailureHandler=function(connector, msg){};
+
+        this._onMotorMeasurementCB=function(){};
+        this._onImuMeasurementCB=function(){};
+        this._onMotorSettingCB=function(){};
+        this._onMotorLogCB=function(){};
+        this._isInit=false;
+
+        /**
+         * _onBleMotorSettingのコマンド　モーター設定情報の通知受信時にパースする用
+         * @type {{maxSpeed: number, minSpeed: number, curveType: number, acc: number, dec: number, maxTorque: number, qCurrentP: number, qCurrentI: number, qCurrentD: number, speedP: number, speedI: number, speedD: number, positionP: number, ownColor: number}}
+         * @ignore
+         */
+        this._MOTOR_RX_READREGISTER_COMMAND={
+                "maxSpeed":0x02,
+                "minSpeed":0x03,
+                "curveType":0x05,
+                "acc":0x07,
+                "dec":0x08,
+                "maxTorque":0x0E,
+                "teachingInterval":0x16,
+                "playbackInterval":0x17,
+                "qCurrentP":0x18,
+                "qCurrentI":0x19,
+                "qCurrentD":0x1A,
+                "speedP":0x1B,
+                "speedI":0x1C,
+                "speedD":0x1D,
+                "positionP":0x1E,
+                "positionI":0x1F,
+                "positionD":0x20,
+                "posControlThreshold":0x21,
+
+                "notifyPosArrival":0x2B,
+                "motorMeasurementInterval":0x2C,
+                "motorMeasurementByDefault":0x2D,
+                "interface":0x2E,
+                "response":0x30,
+                "ownColor":0x3A,
+                "iMUMeasurementInterval":0x3C,
+                "iMUMeasurementByDefault":0x3D,
+                "deviceName":0x46,
+                "deviceInfo":0x47,
+                "speed":0x58,
+                "positionOffset":0x5B,
+                "moveTo":0x66,
+                "hold":0x72,
+                "status":0x9A,
+                "tasksetName":0xA5,
+                "tasksetInfo":0xA6,
+                "tasksetUsage":0xA7,
+                "motionName":0xAF,
+                "motionInfo":0xB0,
+                "motionUsage":0xB1,
+                "i2CSlaveAddress":0xC0,
+                "uartBaudRate":0xC3,
+                "led":0xE0,
+                "enableCheckSum":0xF3,
+                "deviceSerial":0xFA
+        };
+        /**
+         * モーターログ用エラーコード表
+         * @type {{}}
+         * @ignore
+         */
+        this._MOTOR_LOG_ERRORCODE={
+            0:{id:0,type:"KM_SUCCESS",msg:"Successful command"},//成功時に返却する
+            1:{id:1,type:"KM_ERROR_INTERNAL",msg:"Internal Error"},//内部エラー
+            2:{id:2,type:"KM_ERROR_NO_MEM",msg:"No Memory for operation"},//メモリ不足
+            3:{id:3,type:"KM_ERROR_NOT_FOUND",msg:"Not found"},//見つからない
+            4:{id:4,type:"KM_ERROR_NOT_SUPPORTED",msg:"Not supported"},//サポート外
+            5:{id:5,type:"KM_ERROR_INVALID_COMMAND",msg:"Invalid Command"},//不正なコマンド
+            6:{id:6,type:"KM_ERROR_INVALID_PARAM",msg:"Invalid Parameter"},//不正な引数
+            7:{id:7,type:"KM_ERROR_STORAGE_FULL",msg:"Storage is full"},//記録領域が一杯
+            8:{id:8,type:"KM_ERROR_INVALID_FLASH_STATE",msg:"Invalid flash state, operation disallowed in this state"},//フラッシュの状態が不正
+            9:{id:9,type:"KM_ERROR_INVALID_LENGTH",msg:"Invalid Length"},//不正な引数の長さ（サイズ）
+            10:{id:10,type:"KM_ERROR_INVALID_CHECKSUM",msg:"Invalid Check Sum (Validation is failed)"},//不正なチェックサム
+            13:{id:13,type:"KM_ERROR_TIMEOUT",msg:"Operation timed out"},//タイムアウト
+            15:{id:15,type:"KM_ERROR_FORBIDDEN",msg:"Forbidden Operation"},//不許可な操作
+            16:{id:16,type:"KM_ERROR_INVALID_ADDR",msg:"Bad Memory Address"},//不正なアドレス参照
+            17:{id:17,type:"KM_ERROR_BUSY",msg:"Busy"},//ビジー
+            18:{id:18,type:"KM_ERROR_RESOURCE",msg:"Not enough resources for operation"},//リソース不足
+            20:{id:20,type:"KM_ERROR_MOTOR_DISABLED",msg:"Motor state is disabled"},//モーターが動作許可されていない
+            60:{id:60,type:"KM_ERROR_DEVICE_DRIVER",msg:"KM_ERROR_DEVICE_DRIVER"},//内容未定義
+            61:{id:61,type:"KM_ERROR_DEVICE_FLASH",msg:"KM_ERROR_DEVICE_FLASH"},//内容未定義
+            62:{id:62,type:"KM_ERROR_DEVICE_LED",msg:"KM_ERROR_DEVICE_LED"},//内容未定義
+            63:{id:63,type:"KM_ERROR_DEVICE_IMU",msg:"KM_ERROR_DEVICE_IMU"},//内容未定義
+            70:{id:70,type:"KM_ERROR_NRF_DEVICE",msg:"Error related to BLE module (nRF52832)"},//BLEモジュールのエラー
+            80:{id:80,type:"KM_ERROR_WDT_EVENT",msg:"Watch Dog Timer Event"},//ウォッチドッグタイマーイベントの発動（再起動直前）
+            81:{id:81,type:"KM_ERROR_OVER_HEAT",msg:"Over Heat (over temperature)"},//温度異常（マイコン温度が2分以上60度を超過）
+            100:{id:100,type:"KM_SUCCESS_ARRIVAL",msg:"Position Arrival Notification"}//位置制御時に指定位置に到達した場合の通知
+        }
     }
-    /**
-     * 1回限りのイベントリスナを追加する. Synonym for EventEmitter
-     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
-     * @param {function(object)} listener 追加するイベントリスナ.
-     */
-    static once(type, listener){
-        _KMMotorOneBLEStaticEventEmitter.once(type,listener);
-    }
-    /**
-     * イベントリスナを削除する Synonym for EventEmitter
-     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ
-     * @param {function(object)} listener 削除するイベントリスナ
-     */
-    static removeListener(type, listener){
-        _KMMotorOneBLEStaticEventEmitter.removeListener(type,listener);
-    }
-    /**
-     * 全てのイベントリスナを削除する Synonym for EventEmitter
-     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
-     */
-    static removeAllListeners(type){
-        _KMMotorOneBLEStaticEventEmitter.removeAllListeners(type);
-    }
 
-
+    /**********************
+     * プロパティ
+     **********************/
     /**
-     * イベントタイプ定数
-     * @readonly
-     * @enum {string}
-     * @property {string} adapterStateChange - BLEアダプターの有効無効の変化
-     * &lt;br>return:"poweredOn"||"unknown"
-     * @property {string} discoverMotor - モーター発見時(毎回)
-     * &lt;br>return:function({@link KMMotorOneBLE})
-     * @property {string} discoverNewMotor - 新規モーターの発見時(1回のみ)
-     * &lt;br>return:function({@link KMMotorOneBLE})
-     * @property {string} scanTimeout - スキャンのタイムアウトで終了時
-     * &lt;br>return:function()
+     * デバイス情報
+     * @type {KMDeviceInfo}
+     *
      */
-    static get EVENT_TYPE(){
-          return {
-             adapterStateChange:"adapterStateChange",
-             discoverMotor:"discoverMotor",
-             discoverNewMotor:"discoverNewMotor",
-             scanTimeout:"scanTimeout"
-          };
-    }
-
-    /********************************************
-     * static Scanning
-     ********************************************/
-    /**
-     * BLEアダプターの状態
-     * @readonly
-     * @returns {*}
-     */
-    static get bleState(){
-        return noble.state;
-    }
-    /**
-     * APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
-     * &lt;br>ex) {&lt;motorName1>:{@link KMMotorOneBLE},&lt;motorName2>:{@link KMMotorOneBLE},,,}
-     * @readonly
-     * @type {_motorsByName}
-     */
-    static get motors(){
-        return _motorsByName;
+    get deviceInfo(){
+        return this._deviceInfo.Clone();
     }
 
     /**
-     * APIが認識しているモーターのインスタンスリスト(プロパティはUUID)
-     * &lt;br>ex) {&lt;motorUUID1>:{@link KMMotorOneBLE},&lt;motorUUID2>:{@link KMMotorOneBLE},,,}
-     * @readonly
-     * @type {_motorsByUUID}
+     * 有効無効
+     * @type {boolean}
      */
-    static get motorsByUUID(){
-        return _motorsByUUID;
+    get isConnect(){
+        return this._deviceInfo.isConnect;
     }
 
     /**
-     * BLEデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する
-     * @param {number} time スキャンの継続時間(ms)
-     * @param {boolean} allowDuplicates 重複検出を許可
+     * モーターコマンド順監視用連番の発行
+     * @type {number}
      */
-    static startScanToCreateInstance(time = 2000,allowDuplicates=false){
-        clearTimeout(_startScanTimeoutID);
-        if(noble.state === 'poweredOn'){
-            noble.removeListener('discover',KMMotorOneBLE._discoverLis);
-            noble.on('discover',KMMotorOneBLE._discoverLis);
-            console.log('startScanToCreateInstance');
-            noble.startScanning([KMComBLE.MOTOR_BLE_SERVICE_UUID],allowDuplicates);//info::UUIDを指定しないとスキャン時にadvertisement.serviceUuidsが取得出来ない
-            _startScanTimeoutID=setTimeout(()=>{
-                KMMotorOneBLE.stopScan();
-                _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.scanTimeout);
-            },time);
-        }else if(noble.state === 'unknown') {
-            noble.once('stateChange', function(){
-                KMMotorOneBLE.startScanToCreateInstance(time,allowDuplicates);
-            });
-        }else{
-            //BLE無効時
-            console.log('Could not start scanning, state is:'+noble.state);
+    get createCommandID(){
+       return this._commandCount=(++this._commandCount)&amp;0b1111111111111111;//65535でループ
+    }
+
+    /**
+     * isConnectの設定変更(子クラスから使用)
+     * @param {boolean} bool
+     * @ignore
+     */
+    _statusChange_isConnect(bool){
+        this._deviceInfo.isConnect=bool;
+        if(this._isInit){
+            if(bool){
+                this._onConnectHandler(this);
+            }else{
+                this._onDisconnectHandler(this);
+            }
         }
     }
 
     /**
-     * BLEデバイスのスキャンの停止
+     * 初期化状態の設定(子クラスから使用)
+     * @param {boolean} bool
+     * @ignore
      */
-    static stopScan(){
-        clearTimeout(_startScanTimeoutID);
-        noble.removeListener('discover',KMMotorOneBLE._discoverLis);
-        if(noble.state === 'poweredOn') {
-            noble.stopScanning();
-            console.log('stopScan');
+    _statusChange_init(bool){
+        this._isInit=bool;
+        if(this._isInit){
+            this._onInitHandler(this);
+        }
+    }
+    /**********************
+     * callback
+     **********************/
+    /**
+     * 初期化完了して利用できるようになった
+     * @type {function(KMComBase)}
+     */
+    set onInit(handlerFunction){
+        if(typeof handlerFunction ==="function"){
+            this._onInitHandler=handlerFunction;
+        }
+    }
+    /**
+     * 応答・再接続に成功した
+     * @type {function(KMComBase)}
+     */
+    set onConnect(handlerFunction){
+        if(typeof handlerFunction ==="function"){
+            this._onConnectHandler=handlerFunction;
+        }
+    }
+    /**
+     * 応答が無くなった・切断された
+     * @type {function(KMComBase)}
+     */
+    set onDisconnect(handlerFunction){
+        if(typeof handlerFunction ==="function"){
+            this._onDisconnectHandler=handlerFunction;
+        }
+    }
+    /**
+     * 接続に失敗
+     * @type {function(KMComBase,string)}
+     */
+    set onConnectFailure(handlerFunction){
+        if(typeof handlerFunction ==="function"){
+            this._onConnectFailureHandler=handlerFunction;
         }
     }
 
     /**
-     * 全てのモーターのBLE接続を解除
+     * モーターの回転情報callback
+     * @type {function(position:number,velocity:number,torque:number)}
      */
-    static allDisConnect(){
-        Object.keys(_motorsByUUID).forEach((key)=> {
-            _motorsByUUID[key]._KMCom.disConnect();
-        });
-    }
-
-    /**
-     *  全ての仮想モーターを消去
-     */
-    static clearMotors(){
-        KMMotorOneBLE.allDisConnect();
-        _motorsByUUID={};
-        KMMotorOneBLE._restructMotorsByName();
-    }
-
-    /**
-     * 検出時リスナー
-     * 既に同じpheralのデバイスが存在する場合は、それを返す
-     * @param nobleperipheral
-     * @private
-     */
-    static _discoverLis(nobleperipheral){
-        //info::デバイスを選別する。startScanToCreateInstance中に別のクラスからnoble.startScanningした場合、Motor以外のデバイスも拾う可能性がある為。
-        if(!(nobleperipheral.advertisement&amp;&amp;nobleperipheral.advertisement.serviceUuids&amp;&amp;nobleperipheral.advertisement.serviceUuids[0]===KMComBLE.MOTOR_BLE_SERVICE_UUID)){
-            return;
+    set onMotorMeasurement(func){
+        if(typeof func==="function"){
+            this._onMotorMeasurementCB=func;
         }
-
-        console.log('Discover device:'+nobleperipheral.uuid);
-
-        if(!_motorsByUUID[nobleperipheral.uuid]){
-           let motor= new KMMotorOneBLE(nobleperipheral);//info::検出したモーターは全てインスタンス化
-            _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,_motorsByUUID[nobleperipheral.uuid]);
-        }
-        if(_motorsByUUID[nobleperipheral.uuid]){
-            _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.discoverMotor,_motorsByUUID[nobleperipheral.uuid]);
-        }
-
     }
-
     /**
-     * モーターのリストを再インデックス
-     * @private
+     * モーターのジャイロ情報callback
+     * @type {function({accelX:number,accelY:number,accelZ:number,temp:number,gyroX:number,gyroY:number,gyroZ:number})}
      */
-    static _restructMotorsByName(){
-        let list={};
-        Object.keys(_motorsByUUID).forEach((key)=>{
-            let name=  _motorsByUUID[key].deviceInfo.name? _motorsByUUID[key].deviceInfo.name.split('#')[0]:null;
-              if(name){
-                  list[name]=_motorsByUUID[key];
-              }else{
-                  console.log('Err motor name not found');
-              }
-        });
-        _motorsByName=list;
-    }
-    /********************************************
-     * instance Method
-     ********************************************/
-    /**
-     * KMMotorOneBLE
-     * @constructor
-     * @extends KMMotorCommandKMOne
-     * @param {object} noblePeripheral noble Peripheralオブジェクト
-     * @description 通常はstartScanToCreateInstance()メソッドから自動生成される為、単体では使用しない。&lt;br>
-     * モーター以外のデバイスの接続等でnoble APIをプログラム全体で使用している場合にnoblePeripheralと仮想モーターを関連付ける場合に使用。
-     */
-    constructor(noblePeripheral){
-        super(KMMotorCommandKMOne.KM_CONNECT_TYPE.BLE,new KMComBLE(noblePeripheral));
-        if(!_motorsByUUID[noblePeripheral.uuid]){
-            _motorsByUUID[noblePeripheral.uuid]=this;
-            KMMotorOneBLE._restructMotorsByName();
+    set onImuMeasurement(func){
+        if(typeof func==="function"){
+            this._onImuMeasurementCB=func;
         }
     }
 
     /**
-     * モーターと接続する
+     * モーター設定情報取得callback
+     * @type {function(registerCmd:number,res:number)}
      */
-    connect(){
-       this._KMCom.connect();
+    set onMotorSetting(func){
+        if(typeof func==="function"){
+            this._onMotorSettingCB=func;
+        }
+    }
+    /**
+     * モーターログ情報取得callback
+     * @type {function(cmdID:number,res:errorlogObject)}
+     */
+    set onMotorLog(func){
+        if(typeof func==="function"){
+            this._onMotorLogCB=func;
+        }
     }
 
-    /**
-     * モーターと切断
-     */
-    disConnect(){
-        this._KMCom.disConnect();
-    }
+//////class//
 }
 
-module.exports =KMMotorOneBLE;
+module.exports =KMComBase;
+
 
 </code></pre>
         </article>
@@ -340,7 +342,7 @@ module.exports =KMMotorOneBLE;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Nov 13 2019 22:53:51 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Nov 20 2019 18:22:21 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

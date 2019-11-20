@@ -10,11 +10,12 @@
 
   gtag('config', 'UA-142676146-4');
   gtag('config', 'UA-110466329-1');
+   gtag('config', 'UA-142676146-1');
 </script>
 
     
     <meta charset="utf-8">
-    <title>KMImuState - Documentation</title>
+    <title>Home - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -51,985 +52,327 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMImuState</h1>
-    
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        KMImuState
-        </h2>
+
+
+    <section class="package">
+        <h3>kmconnector 0.3.3</h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme">
+        <article><h1>KMConnector</h1>
+<p>Keigan Motor用のNode.jsとBrowser JavaScriptライブラリ
+<a href="https://www.keigan-motor.com/" target="_brank">https://www.keigan-motor.com/</a><br>
+Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続できます。</p>
+<p><em><strong>Quick Demo:</strong></em></p>
+<ul>
+<li>ブラウザ接続でのデモ(WebBluetooth Android又はMac上のChromeで動作)<br>
+<strong><a href="https://docs.keigan-motor.com/apiSample/kmconnector-js/examples/browser_webbluetooh/Demo.html" target="_brank">https://docs.keigan-motor.com/apiSample/motorApiSample/</a></strong></li>
+</ul>
+<h2>Requirement</h2>
+<ul>
+<li>node 8.11.2 - 10.14.2</li>
+<li>@abandonware/noble 1.9.2</li>
+<li>serialport 7.0.2+</li>
+</ul>
+<h2>Usage</h2>
+<ul>
+<li>
+<p><a href="https://docs.keigan-motor.com/firmware/download" target="_brank">KeiganMotor ファームウェア</a> version 2.23 以上。</p>
+</li>
+<li>
+<p>現時点でサポートされているOSはRaspbian(Raspberry Pi),Linux、Mac OS Xのみです。</p>
+</li>
+<li>
+<p>BLE Node.js用。RaspberryPiは管理者権限で実行する必要があります。</p>
+</li>
+<li>
+<p>RaspberryPi等の一部のBluetoohアダプタでは、複数プロセスによるBLEの動作は、正常に動作しません。<br>複数のプロセスで、Node.jsからBLE接続を行うと、&quot;Type mismatch of motor peripheral&quot;により失敗します。</p>
+</li>
+<li>
+<p>USB Serial (Node.js only) serialport 7.0.2+</p>
+</li>
+<li>
+<p>Web Bluetoothは現在andoroid及びMacOSのchromeのみで動作します。</p>
+</li>
+</ul>
+<h2>インストール</h2>
+<h3>Node.js（npmからインストール）</h3>
+<pre><code>$ npm install kmconnector
+</code></pre>
+<h4>Macにインストールする場合</h4>
+<ul>
+<li>
+<p>MAC &amp; node.js 10.xで依存ライブラリxpc-connectionが正常にインストールされない(”Cannot find module 'xpc-connection' ”)
+場合は以下のコマンドでxpc-connectionをインストールして下さい。</p>
+<pre><code>  $ npm install git://github.com/taoyuan/node-xpc-connection.git
+</code></pre>
+</li>
+<li>
+<p>Macでnodebrewを使用している場合、依存ライブラリxpc-connectionのインストールで失敗する場合があります。<br>
+その場合以下の方法でインストールを行って下さい。</p>
+<ul>
+<li>
+<p>node-gypを最新にUPDATEする。</p>
+</li>
+<li>
+<p>インストール時に一時的にpathを以下に書き換える。</p>
+<p>$ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:~/.nodebrew/node/[nodebrewのヴァージョン]/bin</p>
+<p>例)</p>
+<pre><code>  $ npm explore npm -g -- npm install node-gyp@latest
+  $ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:~/.nodebrew/node/v10.14.2/bin
+  $ npm i kmconnector
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Webブラウザへの組み込み</h3>
+<p>ブラウザはhtmlのヘッダーに/KMConnectorBrowser.jsを読み込んで下さい</p>
+<pre><code>&lt;script src=&quot;kmconnector-js/KMConnectorBrowser.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<ul>
+<li>WebBluetoothを使用する為、Android又はMac上のChromeでのみ動作します。</li>
+<li>Web Bluetoothはセキュリティの為、https://での接続が必須です。</li>
+</ul>
+<h2>Examples(BLE)</h2>
+<h4>BLE通信で接続する例(Node.js)</h4>
+<pre><code>    const KMConnector = require('kmconnector/KMConnectorBLE');
+    KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
+       KMConnector.KMMotorOneBLE.stopScan();
+       kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
+               if(kMMotorOneBLE.isConnect){
+                   kMMotorOneBLE.cmdLed(1,200,0,0);
+               }
+       });
+       kMMotorOneBLE.connect();
+    });  
+    KMConnector.KMMotorOneBLE.startScanToCreateInstance();
+</code></pre>
+<h4>BLE通信(noble)を既に使用している物に組み込む場合の例(Node.js)</h4>
+<pre><code>    const KMConnector = require('kmconnector/KMConnectorBLE');
+    const noble = require('noble');
+    noble.on('discover',(nobleperipheral)=&gt;{
+        noble.stopScanning();
         
-            <div class="class-description"><p>ジャイロセンサー値</p></div>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="KMImuState"><span class="type-signature"></span>new KMImuState<span class="signature">(accelX, accelY, accelZ, temp, gyroX, gyroY, gyroZ)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line163">line 163</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>constructor</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>accelX</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>加速度(x) [± 1]</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>accelY</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>加速度(y) [± 1]</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>accelZ</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>加速度(z) [± 1]</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>temp</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>温度 C</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>gyroX</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>角速度(x) [± 1]</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>gyroY</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>角速度(y) [± 1]</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>gyroZ</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>角速度(z) [± 1]</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        </div>
-    
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="KMStructureBase.html">KMStructureBase</a></li>
-    </ul>
-
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="Clone"><span class="type-signature"></span>Clone<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line41">line 41</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#Clone">KMStructureBase#Clone</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>複製</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>複製された構造体</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="EQ"><span class="type-signature"></span>EQ<span class="signature">(tar)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#EQ">KMStructureBase#EQ</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>同じ値を持つかの比較</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>tar</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>比較する構造体</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>結果</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="GetValArray"><span class="type-signature"></span>GetValArray<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
-
-    
-
-
-
+        //connected to motor only
+        let localName=nobleperipheral.advertisement?nobleperipheral.advertisement.localName:&quot;&quot;;
+        if(localName.startsWith('KM-1')){
+            let kMMotorOneBLE= new KMConnector.KMMotorOneBLE(nobleperipheral);
+            kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
+                            if(kMMotorOneBLE.isConnect){
+                                kMMotorOneBLE.cmdLed(1,200,0,0);
+                            }
+                    });
+            kMMotorOneBLE.connect();
+        }
+    });
+    
+    if(noble.state === 'poweredOn'){
+        noble.startScanning();
+    }else{
+        noble.once('stateChange',()=&gt;{
+            noble.startScanning();
+        });
+    }
+</code></pre>
+<h3>主なメソッド</h3>
+<h4>BLEスキャンと停止</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.startScanToCreateInstance(15000);
+    KMConnector.KMMotorOneBLE.stopScan();
+</code></pre>
+<h4>接続したモーターの全切断</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.allDisConnect();
+</code></pre>
+<h4>個々のモーターの切断</h4>
+<pre><code>    kMMotorOneBLE.connect();
+    kMMotorOneBLE.disConnect();
+</code></pre>
+<h3>イベント</h3>
+<h4>スキャン中のモーター発見時</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverMotor,function(kMMotorOneBLE){
+        console.log('onDiscoverMotor:'+kMMotorOneBLE.deviceInfo.name);
+    });
+</code></pre>
+<h4>未接続の新規モーター発見時</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
+        KMConnector.KMMotorOneBLE.stopScan();//Depending on the adapter, it is necessary to initialize the motor after completing the scan.　https://github.com/sandeepmistry/noble#notes
+        //todo::Motor initialization processing
+    });
+</code></pre>
+<h4>スキャンがタイムアウトで終了した時</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.scanTimeout,function(){        
+         //Connected to all motors
+         Object.keys(KMConnector.KMMotorOneBLE.motors).forEach((key)=&gt;{
+                let motor=KMConnector.KMMotorOneBLE.motors[key];
+                if(!motor.isConnect){
+                    motor.connect();
+                }
+         });
+    });
+</code></pre>
+<h4>モーターの初期化完了時</h4>
+<pre><code>     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
+            //Motor operation
+            kMMotorOneBLE.cmdEnable();
+            kMMotorOneBLE.cmdSpeed_rpm(10);
+            kMMotorOneBLE.cmdRunForward();
+        });
+</code></pre>
+<h4>モーター接続・切断時</h4>
+<pre><code>    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.connect,function(kMDeviceInfo){
+        console.log(&quot;onConnect:&quot;+kMDeviceInfo.isConnect);
+    });
+
+    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.disconnect,function(kMDeviceInfo){
+         console.log(&quot;onDisconnect:&quot;+kMDeviceInfo.isConnect);
+    });
+    
+    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.connectFailure,function(kMDeviceInfo,err){
+        console.log(&quot;onConnectFailure:&quot;+err);
+    });
+</code></pre>
+<h4>モーター回転情報受信時</h4>
+<pre><code>    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.motorMeasurement,function(kMRotState){
+        console.log(kMRotState.GetValObj());//{position,velocity,torque}
+    });
+</code></pre>
+<h4>ジャイロ情報受信時</h4>
+<p>受信するには別途cmdEnableIMU()を有効にする必要があります。</p>
+<pre><code>    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.imuMeasurement,function(kMImuState){
+        console.log(kMImuState.GetValObj());//{accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ}
+    });
+</code></pre>
+<h2>Examples(USB)</h2>
+<h4>指定したUSBポートに接続する例 (Node.js)</h4>
+<pre><code>    const KMConnector = require('kmconnector/KMConnectorUSB');
+    const KMMotorOneUSBSerial=KMConnector.KMMotorOneUSBSerial;
+    
+    let kMMotorOne=new KMMotorOneUSBSerial('/dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_DM00KBZZ-if00-port0');
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.connect,function(kMDeviceInfo){
+       if(kMMotorOne.isConnect){
+           kMMotorOne.cmdLed(1,200,0,0);//led
+       }
+    });
+   
+    //Try Auto Reconnect
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.disconnect,(kMDeviceInfo)=&gt;{
+        setTimeout(()=&gt;{kMMotorOne.connect();},5000);
+    });
+    
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.connectFailure,(kMDeviceInfo,err)=&gt;{
+        setTimeout(()=&gt;{kMMotorOne.connect();},5000);
+    });
+    
+    kMMotorOne.connect();
+</code></pre>
+<h4>全てのUSBポートをスキャンして接続する例(Node.js)</h4>
+<pre><code>    const KMConnector = require('kmconnector/KMConnectorUSB');
+    KMConnector.KMMotorOneUSBSerial.on(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
+       kMMotorOne.on(kMMotorOne.EVENT_TYPE.connect,function(kMDeviceInfo){
+           if(kMMotorOne.isConnect){
+               kMMotorOne.cmdLed(1,200,0,0);//led
+           }
+       });
+       kMMotorOne.connect();
+    });
+   
+    KMConnector.KMMotorOneBLE.startScanToCreateInstance();
+</code></pre>
+<h2>Examples(Browser Web Bluetooth Api)</h2>
+<h4>WebブラウザからBLE接続する例</h4>
+<ul>
+<li>WebBluetoothを使用する為、Android又はMac上のChromeでのみ動作します。</li>
+<li>Web Bluetoothはセキュリティの為、https://での接続が必須です。</li>
+</ul>
+<h5>html</h5>
+<pre><code>    &lt;head&gt;
+    &lt;script src=&quot;kmconnector/indexBrowser.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!--セキュリティ上の理由から、KMB.connect()は直接ユーザーのクリック操作が必要です。--&gt;
+        &lt;a href=&quot;javascript:KMB.connect();&quot;&gt;connect&lt;/a&gt;
+    &lt;/body&gt;
+</code></pre>
+<h5>javascript</h5>
+<pre><code>    const KMB=new KMMotorOneWebBLE();
+    KMB.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
+        KMB.cmdEnable();
+        KMB.cmdSpeed_rpm(10);
+        KMB.cmdRunForward();
+    });
+    
+    //KMB.connect();//セキュリティ上の理由から、エラーになる
+</code></pre>
+<h4>接続・切断</h4>
+<pre><code>    kMMotorOneWebBLE.connect()
+    kMMotorOneWebBLE.disConnect()
+</code></pre>
+<h3>イベント</h3>
+<h4>モーターの接続・初期化完了時 (Browser)</h4>
+<pre><code>    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
+        console.log(kMDeviceInfo.GetValObj());//{type,id,name,isConnect,manufacturerName,firmwareRevision}
+        kMMotorOneWebBLE.cmdEnable();//For safety, the motor operation at startup is disabled
+        kMMotorOneWebBLE.cmdSpeed_rpm(10);
+    });
+</code></pre>
+<h4>接続・切断(Browser)</h4>
+<pre><code>    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.connect,function(kMDeviceInfo){
+            console.log(&quot;onConnect:&quot;+kMDeviceInfo.isConnect);
+    });
+    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.disconnect,function(kMDeviceInfo){
+        console.log(&quot;onDisconnect:&quot;+kMDeviceInfo.isConnect);
+    });
+    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.connectFailure,function(kMDeviceInfo,err){
+        console.log(&quot;onConnectFailure:&quot;+err);
+    });
+</code></pre>
+<h4>モーター回転情報受信時(Browser)</h4>
+<pre><code>    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.motorMeasurement,function(kMRotState){
+        console.log(kMRotState.GetValObj());//{position,velocity,torque}
+    });
+</code></pre>
+<h4>ジャイロ情報受信時(Browser)</h4>
+<p>受信するには別途cmdEnableIMU()を有効にする必要があります。</p>
+<pre><code>    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.imuMeasurement,function(kMImuState){
+        console.log(kMImuState.GetValObj());//{accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ}
+    });
+</code></pre>
+<h2>モーター操作コマンド(全接続方式で共通)</h2>
+<p>操作コマンドは「cmdコマンド名()」の書式になります。</p>
+<pre><code>    kMMotorOneBLE.cmdSpeed_rpm(10);//Set the speed 10rpm
+    kMMotorOneBLE.cmdEnable();//Enable motor action
+    kMMotorOneBLE.cmdRunForward();//Run forward (ccw)
+</code></pre>
+<h2>詳細なドキュメント</h2>
+<p>KeiganMotor javascript Libraryリファレンス<br>
+https://docs.keigan-motor.com/apiDocument/kmconnector-js/</p>
+<p>KeiganMotor ドキュメント<br>
+https://docs.keigan-motor.com/</p>
+<h2>Author</h2>
+<p><a href="https://keigan-motor.com/">Keigan Inc.</a></p>
+<h2>License</h2>
+<p><a href="http://b4b4r07.mit-license.org">MIT</a></p></article>
+    </section>
 
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line56">line 56</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#GetValArray">KMStructureBase#GetValArray</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>値の取得（配列）</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="GetValObj"><span class="type-signature"></span>GetValObj<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line48">line 48</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#GetValObj">KMStructureBase#GetValObj</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>値の取得（Obj）</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="SetValObj"><span class="type-signature"></span>SetValObj<span class="signature">(propsObj)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line69">line 69</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#SetValObj">KMStructureBase#SetValObj</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>値の一括設定（Obj）</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>propsObj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>設定するプロパティ</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-
-    
-
-    
-</article>
 
-</section>
 
 
 
@@ -1041,7 +384,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Nov 13 2019 22:53:51 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Nov 20 2019 18:22:21 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

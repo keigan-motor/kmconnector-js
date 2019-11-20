@@ -10,11 +10,12 @@
 
   gtag('config', 'UA-142676146-4');
   gtag('config', 'UA-110466329-1');
+   gtag('config', 'UA-142676146-1');
 </script>
 
     
     <meta charset="utf-8">
-    <title>KMUtl.js - Documentation</title>
+    <title>KMUtl - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -51,247 +52,1224 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMUtl.js</h1>
+    <h1 class="page-title">KMUtl</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/***
- * KMUtl.js
- * CCreated by Harada Hiroshi on 2017/12/07.
- *
- * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
- * This software is released under the MIT License.
- * http://opensource.org/licenses/mit-license.php
- */
-'use strict';
+        <h2>
+        KMUtl
+        </h2>
+        
+            <div class="class-description"><p>ユーティリティ</p></div>
+        
+    
+</header>
 
-/**
- * @classdesc ユーティリティ
- */
-class KMUtl{
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-    /**
-     * 数値にキャストする関数
-     * 数値以外は0を返す&lt;br>
-     * Infinityも0とする
-     * @param {number} val
-     * @param {number} defaultval valが数値に変換出来ない場合のデフォルト
-     * @returns {number}
-     */
-    static toNumber(val, defaultval = 0) {
-        let v = parseFloat(val, 10);
-        return (!isFinite(v) ? defaultval : v);
-    };
-    /**
-     * 数値にキャストする関数 int固定
-     * 数値以外は0を返す&lt;br>
-     * Infinityも0とする
-     * @param {number} val
-     * @param {number} defaultval valが数値に変換出来ない場合のデフォルト
-     * @returns {number}
-     */
-    static toIntNumber(val, defaultval = 0) {
-        let v = parseInt(val, 10);
-        return (!isFinite(v) ? defaultval : v);
-    };
-    /**
-     * 角度の単位変換　degree >> radian
-     * @param {number} degree 度
-     * @returns {number} radian
-     */
-    static degreeToRadian(degree) {
-        return degree * 0.017453292519943295;
-    };
+    
+    <h2>Constructor</h2>
+    
 
-    /**
-     * 角度の単位変換　radian >> degree
-     * @param {number} radian radian角
-     * @returns {number} 度
-     */
-    static radianToDegree(radian) {
-        return radian / 0.017453292519943295;
-    };
+    <h4 class="name" id="KMUtl"><span class="type-signature"></span>new KMUtl<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    /**
-     * 速度 rpm ->radian/sec に変換
-     * @param {number} rpm
-     * @returns {number} radian/sec
-     */
-    static rpmToRadianSec(rpm) {
-        //速度 rpm ->radian/sec(Math.PI*2/60)
-        return rpm * 0.10471975511965977;
-    };
-    /**
-     * 2点間の距離と角度を求める
-     * @param {number} from_x
-     * @param {number} from_y
-     * @param {number} to_x
-     * @param {number} to_y
-     * @returns {number}
-     */
-    static twoPointDistanceAngle(from_x, from_y, to_x, to_y) {
-        let distance = Math.sqrt(Math.pow(from_x - to_x, 2) + Math.pow(from_y - to_y, 2));
-        let radian = Math.atan2(from_y - to_y, from_x - to_x);
-        return {dist: distance, radi: radian, deg: KMUtl.radianToDegree(radian)};
-    };
-
-    /**
-     * コマンドのチェックサムを計算
-     * @ignore
-     * @desc 右送り CRC-16-CCITT (x16 + x12 + x5 + 1) Start:0x0000 XOROut:0x0000 ByteOrder:Little-Endian
-     * @param uint8arrayBuffer
-     * @returns {number}
-     * @constructor
-     */
-    static CreateCommandCheckSumCRC16(uint8arrayBuffer){
-        const crc16table= __crc16table;
-        let crc = 0;// Start:0x0000
-        let len=uint8arrayBuffer.length;
-        for (let i = 0; i &lt; uint8arrayBuffer.length; i++) {
-            let c = uint8arrayBuffer[i];
-            crc = (crc >> 8) ^ crc16table[(crc ^ c) &amp; 0x00ff];
-        }
-        crc=((crc>>8)&amp;0xFF)|((crc&lt;&lt;8)&amp;0xFF00);// ByteOrder:Little-Endian
-        //crc=0xFFFF^crc;//XOROut:0x0000
-        return crc;
-    }
-
-    /**
-     * @# info:: KMComBLE.jsのDEVICE INFORMATION SERVICEのパースに使用
-     * utf.js - UTF-8 &lt;=> UTF-16 convertion
-     *
-     * @ignore
-     * @param array
-     * @returns {string}
-     * @constructor
-     *
-     * @desc
-     * Copyright (C) 1999 Masanao Izumo &lt;iz@onicos.co.jp>
-     * Version: 1.0
-     * LastModified: Dec 25 1999
-     * This library is free.  You can redistribute it and/or modify it.
-     */
-    static Utf8ArrayToStr(array) {
-        let out, i, len, c;
-        let char2, char3;
-
-        out = "";
-        len = array.length;
-        i = 0;
-        while(i &lt; len) {
-            c = array[i++];
-            switch(c >> 4)
-            {
-                case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
-                // 0xxxxxxx
-                out += String.fromCharCode(c);
-                break;
-                case 12: case 13:
-                // 110x xxxx   10xx xxxx
-                char2 = array[i++];
-                out += String.fromCharCode(((c &amp; 0x1F) &lt;&lt; 6) | (char2 &amp; 0x3F));
-                break;
-                case 14:
-                    // 1110 xxxx  10xx xxxx  10xx xxxx
-                    char2 = array[i++];
-                    char3 = array[i++];
-                    out += String.fromCharCode(((c &amp; 0x0F) &lt;&lt; 12) |
-                        ((char2 &amp; 0x3F) &lt;&lt; 6) |
-                        ((char3 &amp; 0x3F) &lt;&lt; 0));
-                    break;
-            }
-        }
-        return out;
-    };
-
-    /**
-     * @# info:: デバッグ用
-     * uint8Array => UTF-16 Strings convertion
-     * @ignore
-     * @param uint8Array
-     * @returns {string}
-     * @constructor
-     */
-    static Uint8ArrayToHexStr(uint8Array){
-        if(!uint8Array instanceof Uint8Array){return;}
-        let ar=[];
-        for(let i=0;i&lt;uint8Array.length;i++){
-            ar.push(uint8Array[i].toString(16));
-        }
-        return ar.join(':');
-    }
-
-    /**
-     * @# info::Uint8のConcat
-     * Creates a new Uint8Array based on two different ArrayBuffers
-     * @param {ArrayBuffers} u8Array1 The first buffer.
-     * @param {ArrayBuffers} u8Array2 The second buffer.
-     * @return {ArrayBuffers} The new ArrayBuffer created out of the two.
-     * @ignore
-     */
-    static Uint8ArrayConcat(u8Array1, u8Array2) {
-        let tmp = new Uint8Array(u8Array1.byteLength + u8Array2.byteLength);
-        tmp.set(new Uint8Array(u8Array1), 0);
-        tmp.set(new Uint8Array(u8Array2), u8Array1.byteLength);
-        return tmp;
-    }
+    
 
 
-}
 
-/**
- * CreateCommandCheckSumCRC16用 CRCテーブル
- * @ignore
- * @type {Uint16Array}
- * @private
- */
-const __crc16table=new Uint16Array([
-    0 , 0x1189 , 0x2312 , 0x329b , 0x4624 , 0x57ad , 0x6536 , 0x74bf ,
-    0x8c48 , 0x9dc1 , 0xaf5a , 0xbed3 , 0xca6c , 0xdbe5 , 0xe97e , 0xf8f7 ,
-    0x1081 , 0x0108 , 0x3393 , 0x221a , 0x56a5 , 0x472c , 0x75b7 , 0x643e ,
-    0x9cc9 , 0x8d40 , 0xbfdb , 0xae52 , 0xdaed , 0xcb64 , 0xf9ff , 0xe876 ,
-    0x2102 , 0x308b , 0x0210 , 0x1399 , 0x6726 , 0x76af , 0x4434 , 0x55bd ,
-    0xad4a , 0xbcc3 , 0x8e58 , 0x9fd1 , 0xeb6e , 0xfae7 , 0xc87c , 0xd9f5 ,
-    0x3183 , 0x200a , 0x1291 , 0x0318 , 0x77a7 , 0x662e , 0x54b5 , 0x453c ,
-    0xbdcb , 0xac42 , 0x9ed9 , 0x8f50 , 0xfbef , 0xea66 , 0xd8fd , 0xc974 ,
 
-    0x4204 , 0x538d , 0x6116 , 0x709f , 0x0420 , 0x15a9 , 0x2732 , 0x36bb ,
-    0xce4c , 0xdfc5 , 0xed5e , 0xfcd7 , 0x8868 , 0x99e1 , 0xab7a , 0xbaf3 ,
-    0x5285 , 0x430c , 0x7197 , 0x601e , 0x14a1 , 0x0528 , 0x37b3 , 0x263a ,
-    0xdecd , 0xcf44 , 0xfddf , 0xec56 , 0x98e9 , 0x8960 , 0xbbfb , 0xaa72 ,
-    0x6306 , 0x728f , 0x4014 , 0x519d , 0x2522 , 0x34ab , 0x0630 , 0x17b9 ,
-    0xef4e , 0xfec7 , 0xcc5c , 0xddd5 , 0xa96a , 0xb8e3 , 0x8a78 , 0x9bf1 ,
-    0x7387 , 0x620e , 0x5095 , 0x411c , 0x35a3 , 0x242a , 0x16b1 , 0x0738 ,
-    0xffcf , 0xee46 , 0xdcdd , 0xcd54 , 0xb9eb , 0xa862 , 0x9af9 , 0x8b70 ,
+<dl class="details">
 
-    0x8408 , 0x9581 , 0xa71a , 0xb693 , 0xc22c , 0xd3a5 , 0xe13e , 0xf0b7 ,
-    0x0840 , 0x19c9 , 0x2b52 , 0x3adb , 0x4e64 , 0x5fed , 0x6d76 , 0x7cff ,
-    0x9489 , 0x8500 , 0xb79b , 0xa612 , 0xd2ad , 0xc324 , 0xf1bf , 0xe036 ,
-    0x18c1 , 0x0948 , 0x3bd3 , 0x2a5a , 0x5ee5 , 0x4f6c , 0x7df7 , 0x6c7e ,
-    0xa50a , 0xb483 , 0x8618 , 0x9791 , 0xe32e , 0xf2a7 , 0xc03c , 0xd1b5 ,
-    0x2942 , 0x38cb , 0x0a50 , 0x1bd9 , 0x6f66 , 0x7eef , 0x4c74 , 0x5dfd ,
-    0xb58b , 0xa402 , 0x9699 , 0x8710 , 0xf3af , 0xe226 , 0xd0bd , 0xc134 ,
-    0x39c3 , 0x284a , 0x1ad1 , 0x0b58 , 0x7fe7 , 0x6e6e , 0x5cf5 , 0x4d7c ,
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMUtl.js.html">KMUtl.js</a>, <a href="KMUtl.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
 
-    0xc60c , 0xd785 , 0xe51e , 0xf497 , 0x8028 , 0x91a1 , 0xa33a , 0xb2b3 ,
-    0x4a44 , 0x5bcd , 0x6956 , 0x78df , 0x0c60 , 0x1de9 , 0x2f72 , 0x3efb ,
-    0xd68d , 0xc704 , 0xf59f , 0xe416 , 0x90a9 , 0x8120 , 0xb3bb , 0xa232 ,
-    0x5ac5 , 0x4b4c , 0x79d7 , 0x685e , 0x1ce1 , 0x0d68 , 0x3ff3 , 0x2e7a ,
-    0xe70e , 0xf687 , 0xc41c , 0xd595 , 0xa12a , 0xb0a3 , 0x8238 , 0x93b1 ,
-    0x6b46 , 0x7acf , 0x4854 , 0x59dd , 0x2d62 , 0x3ceb , 0x0e70 , 0x1ff9 ,
-    0xf78f , 0xe606 , 0xd49d , 0xc514 , 0xb1ab , 0xa022 , 0x92b9 , 0x8330 ,
-    0x7bc7 , 0x6a4e , 0x58d5 , 0x495c , 0x3de3 , 0x2c6a , 0x1ef1 , 0x0f78
-]);
+    
 
-module.exports = KMUtl;</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".degreeToRadian"><span class="type-signature">(static) </span>degreeToRadian<span class="signature">(degree)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMUtl.js.html">KMUtl.js</a>, <a href="KMUtl.js.html#line45">line 45</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>角度の単位変換　degree &gt;&gt; radian</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>degree</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>度</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>radian</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".radianToDegree"><span class="type-signature">(static) </span>radianToDegree<span class="signature">(radian)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMUtl.js.html">KMUtl.js</a>, <a href="KMUtl.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>角度の単位変換　radian &gt;&gt; degree</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>radian</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>radian角</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>度</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rpmToRadianSec"><span class="type-signature">(static) </span>rpmToRadianSec<span class="signature">(rpm)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMUtl.js.html">KMUtl.js</a>, <a href="KMUtl.js.html#line63">line 63</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>速度 rpm -&gt;radian/sec に変換</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rpm</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>radian/sec</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".toIntNumber"><span class="type-signature">(static) </span>toIntNumber<span class="signature">(val, defaultval)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMUtl.js.html">KMUtl.js</a>, <a href="KMUtl.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>数値にキャストする関数 int固定
+数値以外は0を返す<br>
+Infinityも0とする</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>valが数値に変換出来ない場合のデフォルト</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".toNumber"><span class="type-signature">(static) </span>toNumber<span class="signature">(val, defaultval)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMUtl.js.html">KMUtl.js</a>, <a href="KMUtl.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>数値にキャストする関数
+数値以外は0を返す<br>
+Infinityも0とする</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>valが数値に変換出来ない場合のデフォルト</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".twoPointDistanceAngle"><span class="type-signature">(static) </span>twoPointDistanceAngle<span class="signature">(from_x, from_y, to_x, to_y)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMUtl.js.html">KMUtl.js</a>, <a href="KMUtl.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>2点間の距離と角度を求める</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>from_x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>from_y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>to_x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>to_y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -303,7 +1281,7 @@ module.exports = KMUtl;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Nov 13 2019 22:53:51 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Nov 20 2019 18:22:21 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
