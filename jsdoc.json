@@ -25,6 +25,8 @@
     "static": true,         // Display the static members inside the navbar
     "sort": true,
     "sectionOrder": ["Classes"],
+    "sectionOrder": ["Classes","Modules","Events"
+      ],
     "disqus": "",                   // Shortname for your disqus (subdomain during site creation)
     "openGraph": {                  // Open Graph options (mostly for Facebook and other sites to easily extract meta information)
       "title": "kmconnector-js",                // Title of the website
