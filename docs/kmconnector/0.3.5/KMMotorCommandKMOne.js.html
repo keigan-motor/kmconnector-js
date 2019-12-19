@@ -722,7 +722,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary 絶対位置に移動する
-     * @desc 速さは cmdSpeed で保存された速度が採用される
+     * @desc speedの指定がnullの場合、直近の速度が引き継がれる
      * @param {number} position float 角度：radians
      * @param {number} speed float 速度の大きさ 単位：角度（ラジアン）/秒 [0-X rps]　
      */
@@ -745,7 +745,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary 絶対位置に移動し、移動の成否を通知する (MotorFarm Ver >= 2.23)
-     * @desc 速さは cmdSpeed で保存された速度が採用される
+     * @desc speedの指定がnullの場合、直近の速度が引き継がれる
      * &lt;ul>
      *     &lt;li>このコマンド実行中に別の移動系のコマンドを実行すると'Instruction override'としてrejectされる&lt;/li>
      * &lt;/ul>
@@ -793,7 +793,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary 相対位置に移動する
-     * @desc 速さは cmdSpeed で保存された速度が採用される
+     * @desc speedの指定がnullの場合、直近の速度が引き継がれる
      * @param  {number} distance float 角度：radians[左:+radians 右:-radians]
      * @param {number} speed float 速度の大きさ 単位：角度（ラジアン）/秒 [0-X rps]　(正の数)
      */
@@ -815,7 +815,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary 相対位置に移動し、移動の成否を通知する (MotorFarm Ver >= 2.23)
-     * @desc 速さは cmdSpeed で保存された速度が採用される
+     * @desc speedの指定がnullの場合、直近の速度が引き継がれる
      * &lt;ul>
      *     &lt;li>このコマンド実行中に別の移動系のコマンドを実行すると'Instruction override'としてrejectされる&lt;/li>
      * &lt;/ul>
@@ -1256,6 +1256,7 @@ class KMMotorCommandKMOne extends EventEmitter{
         new DataView(buffer).setUint32(0,_interval);
         this._KMCom._sendMotorCommand('MOTOR_TX',this._MOTOR_COMMAND.teachingInterval,buffer);
     }
+
     /**
      * @summary 記憶再生時の再生間隔
      * @desc  記憶再生時の再生間隔
@@ -1271,10 +1272,9 @@ class KMMotorCommandKMOne extends EventEmitter{
         this._KMCom._sendMotorCommand('MOTOR_TX',this._MOTOR_COMMAND.playbackInterval,buffer);
     }
 
-
     /**
-     * @summary モーターのq軸電流PIDコントローラのP（比例）ゲインを設定する
-     * @param {number} qCurrentP float q電流Pゲイン（正の値）
+     * @summary モーターのq軸電流制御Pパラメタを設定する
+     * @param {number} qCurrentP float q軸電流PIDコントローラの係数P [0.01 - 3.0] (default:0.2）
      */
     cmdQCurrentP(qCurrentP){
         let buffer = new ArrayBuffer(4);
@@ -1283,8 +1283,8 @@ class KMMotorCommandKMOne extends EventEmitter{
     }
 
     /**
-     * @summary モーターのq軸電流PIDコントローラのP（比例）ゲインを設定する
-     * @param {number} qCurrentI float q電流Iゲイン（正の値）
+     * @summary モーターのq軸電流制御Iパラメタを設定する
+     * @param {number} qCurrentI float q軸電流PIDコントローラの係数I [0.001 - 50.0] (default:20.0)
      */
     cmdQCurrentI(qCurrentI){
         let buffer = new ArrayBuffer(4);
@@ -1293,8 +1293,8 @@ class KMMotorCommandKMOne extends EventEmitter{
     }
 
     /**
-     * @summary モーターのq軸電流PIDコントローラのD（微分）ゲインを設定する
-     * @param {number} qCurrentD float q電流Dゲイン（正の値）
+     * @summary モーターのq軸電流制御Dパラメタを設定する
+     * @param {number} qCurrentD float q軸電流PIDコントローラの係数D [0.0 - 0.01] (default:0)
      */
     cmdQCurrentD(qCurrentD){
         let buffer = new ArrayBuffer(4);
@@ -1303,8 +1303,8 @@ class KMMotorCommandKMOne extends EventEmitter{
     }
 
     /**
-     * @summary モーターのq軸電流PIDコントローラのD（微分）ゲインを設定する
-     * @param {number} speedP float 速度Pゲイン（正の値）
+     * @summary モーターの速度制御Pパラメタを設定する
+     * @param {number} speedP float 速度PIDコントローラの係数P [5.000 - 20.000] (default:14.000)
      */
     cmdSpeedP(speedP){
         let buffer = new ArrayBuffer(4);
@@ -1313,8 +1313,8 @@ class KMMotorCommandKMOne extends EventEmitter{
     }
 
     /**
-     * @summary モーターの速度PIDコントローラのI（積分）ゲインを設定する
-     * @param {number} speedI float 速度Iゲイン（正の値）
+     * @summary モーターの速度制御Iパラメタを設定する
+     * @param {number} speedI float 速度PIDコントローラの係数I [0.0001 - 0.01] (default:0.001)
      */
     cmdSpeedI(speedI){
         let buffer = new ArrayBuffer(4);
@@ -1323,8 +1323,8 @@ class KMMotorCommandKMOne extends EventEmitter{
     }
 
     /**
-     * @summary モーターの速度PIDコントローラのD（微分）ゲインを設定する
-     * @param {number} speedD float 速度Dゲイン（正の値）
+     * @summary モーターの速度制御Dパラメタを設定する
+     * @param {number} speedD float 速度PIDコントローラの係数D [0.0 - 0.01] (default:0.0)
      */
     cmdSpeedD(speedD){
         let buffer = new ArrayBuffer(4);
@@ -1333,8 +1333,8 @@ class KMMotorCommandKMOne extends EventEmitter{
     }
 
     /**
-     * @summary モーターの位置制御Pパラメタをセット
-     * @param {number} positionP float [1.0000 - 20.0000]（デフォルト 5.0）
+     * @summary モーターの位置制御Pパラメタを設定する
+     * @param {number} positionP float 位置PIDコントローラの係数P [1.0000 - 20.0000] (default 5.0)
      */
     cmdPositionP(positionP){
         let buffer = new ArrayBuffer(4);
@@ -1343,7 +1343,7 @@ class KMMotorCommandKMOne extends EventEmitter{
     }
     /**
      * @summary モーターの位置制御Iパラメタをセット
-     * @param {number} positionI float [1.0000 - 100.0000]（デフォルト 10.0）
+     * @param {number} positionI float 位置PIDコントローラの係数I [1.0000 - 100.0000] (default 10.0)
      */
     cmdPositionI(positionI){
         let buffer = new ArrayBuffer(4);
@@ -1352,7 +1352,7 @@ class KMMotorCommandKMOne extends EventEmitter{
     }
     /**
      * @summary モーターの位置制御Dパラメタをセット
-     * @param {number} positionD float [0.0001 - 0.2]（デフォルト 0.01）
+     * @param {number} positionD float 位置PIDコントローラの係数D [0.0001 - 0.2] (default 0.01)
      */
     cmdPositionD(positionD){
         let buffer = new ArrayBuffer(4);
@@ -1362,7 +1362,7 @@ class KMMotorCommandKMOne extends EventEmitter{
 
     /**
      * @summary モーターの位置制御時、ID制御を有効にする偏差の絶対値を指定する
-     * @param {number} threshold float [0.0 - n]（デフォルト 0.0139626f // 0.8deg）
+     * @param {number} threshold float ID制御を有効にする偏差の絶対値 [0.0 - n] (default 0.0139626f // 0.8deg)
      */
     cmdPosControlThreshold(threshold){
         let buffer = new ArrayBuffer(4);
@@ -1710,7 +1710,7 @@ module.exports =KMMotorCommandKMOne;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Nov 30 2019 23:29:39 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

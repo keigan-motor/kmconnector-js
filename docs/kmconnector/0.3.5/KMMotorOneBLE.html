@@ -5504,7 +5504,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
 
 <div class="description">
-    <p>速さは cmdSpeed で保存された速度が採用される</p>
+    <p>speedの指定がnullの場合、直近の速度が引き継がれる</p>
 </div>
 
 
@@ -5684,7 +5684,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
 
 <div class="description">
-    <p>速さは cmdSpeed で保存された速度が採用される</p>
+    <p>speedの指定がnullの場合、直近の速度が引き継がれる</p>
 <ul>
     <li>このコマンド実行中に別の移動系のコマンドを実行すると'Instruction override'としてrejectされる</li>
 </ul>
@@ -5927,7 +5927,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
 
 <div class="description">
-    <p>速さは cmdSpeed で保存された速度が採用される</p>
+    <p>speedの指定がnullの場合、直近の速度が引き継がれる</p>
 </div>
 
 
@@ -6105,7 +6105,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
 
 <div class="description">
-    <p>速さは cmdSpeed で保存された速度が採用される</p>
+    <p>speedの指定がnullの場合、直近の速度が引き継がれる</p>
 <ul>
     <li>このコマンド実行中に別の移動系のコマンドを実行すると'Instruction override'としてrejectされる</li>
 </ul>
@@ -6796,7 +6796,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1200">line 1200</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1201">line 1201</a>
     </li></ul></dd>
     
 
@@ -7034,7 +7034,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float [0.0 - n]（デフォルト 0.0139626f // 0.8deg）</p></td>
+            <td class="description last"><p>float ID制御を有効にする偏差の絶対値 [0.0 - n] (default 0.0139626f // 0.8deg)</p></td>
         </tr>
 
     
@@ -7173,7 +7173,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float [0.0001 - 0.2]（デフォルト 0.01）</p></td>
+            <td class="description last"><p>float 位置PIDコントローラの係数D [0.0001 - 0.2] (default 0.01)</p></td>
         </tr>
 
     
@@ -7312,7 +7312,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float [1.0000 - 100.0000]（デフォルト 10.0）</p></td>
+            <td class="description last"><p>float 位置PIDコントローラの係数I [1.0000 - 100.0000] (default 10.0)</p></td>
         </tr>
 
     
@@ -7345,7 +7345,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     <h4 class="name" id="cmdPositionP"><span class="type-signature"></span>cmdPositionP<span class="signature">(positionP)</span><span class="type-signature"></span></h4>
 
     
-    <p class="summary"><p>モーターの位置制御Pパラメタをセット</p></p>
+    <p class="summary"><p>モーターの位置制御Pパラメタを設定する</p></p>
     
 
 
@@ -7451,7 +7451,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float [1.0000 - 20.0000]（デフォルト 5.0）</p></td>
+            <td class="description last"><p>float 位置PIDコントローラの係数P [1.0000 - 20.0000] (default 5.0)</p></td>
         </tr>
 
     
@@ -7631,7 +7631,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     <h4 class="name" id="cmdQCurrentD"><span class="type-signature"></span>cmdQCurrentD<span class="signature">(qCurrentD)</span><span class="type-signature"></span></h4>
 
     
-    <p class="summary"><p>モーターのq軸電流PIDコントローラのD（微分）ゲインを設定する</p></p>
+    <p class="summary"><p>モーターのq軸電流制御Dパラメタを設定する</p></p>
     
 
 
@@ -7737,7 +7737,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float q電流Dゲイン（正の値）</p></td>
+            <td class="description last"><p>float q軸電流PIDコントローラの係数D [0.0 - 0.01] (default:0)</p></td>
         </tr>
 
     
@@ -7770,7 +7770,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     <h4 class="name" id="cmdQCurrentI"><span class="type-signature"></span>cmdQCurrentI<span class="signature">(qCurrentI)</span><span class="type-signature"></span></h4>
 
     
-    <p class="summary"><p>モーターのq軸電流PIDコントローラのP（比例）ゲインを設定する</p></p>
+    <p class="summary"><p>モーターのq軸電流制御Iパラメタを設定する</p></p>
     
 
 
@@ -7876,7 +7876,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float q電流Iゲイン（正の値）</p></td>
+            <td class="description last"><p>float q軸電流PIDコントローラの係数I [0.001 - 50.0] (default:20.0)</p></td>
         </tr>
 
     
@@ -7909,7 +7909,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     <h4 class="name" id="cmdQCurrentP"><span class="type-signature"></span>cmdQCurrentP<span class="signature">(qCurrentP)</span><span class="type-signature"></span></h4>
 
     
-    <p class="summary"><p>モーターのq軸電流PIDコントローラのP（比例）ゲインを設定する</p></p>
+    <p class="summary"><p>モーターのq軸電流制御Pパラメタを設定する</p></p>
     
 
 
@@ -8015,7 +8015,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float q電流Pゲイン（正の値）</p></td>
+            <td class="description last"><p>float q軸電流PIDコントローラの係数P [0.01 - 3.0] (default:0.2）</p></td>
         </tr>
 
     
@@ -10613,7 +10613,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     <h4 class="name" id="cmdSpeedD"><span class="type-signature"></span>cmdSpeedD<span class="signature">(speedD)</span><span class="type-signature"></span></h4>
 
     
-    <p class="summary"><p>モーターの速度PIDコントローラのD（微分）ゲインを設定する</p></p>
+    <p class="summary"><p>モーターの速度制御Dパラメタを設定する</p></p>
     
 
 
@@ -10719,7 +10719,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float 速度Dゲイン（正の値）</p></td>
+            <td class="description last"><p>float 速度PIDコントローラの係数D [0.0 - 0.01] (default:0.0)</p></td>
         </tr>
 
     
@@ -10752,7 +10752,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     <h4 class="name" id="cmdSpeedI"><span class="type-signature"></span>cmdSpeedI<span class="signature">(speedI)</span><span class="type-signature"></span></h4>
 
     
-    <p class="summary"><p>モーターの速度PIDコントローラのI（積分）ゲインを設定する</p></p>
+    <p class="summary"><p>モーターの速度制御Iパラメタを設定する</p></p>
     
 
 
@@ -10858,7 +10858,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float 速度Iゲイン（正の値）</p></td>
+            <td class="description last"><p>float 速度PIDコントローラの係数I [0.0001 - 0.01] (default:0.001)</p></td>
         </tr>
 
     
@@ -10891,7 +10891,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     <h4 class="name" id="cmdSpeedP"><span class="type-signature"></span>cmdSpeedP<span class="signature">(speedP)</span><span class="type-signature"></span></h4>
 
     
-    <p class="summary"><p>モーターのq軸電流PIDコントローラのD（微分）ゲインを設定する</p></p>
+    <p class="summary"><p>モーターの速度制御Pパラメタを設定する</p></p>
     
 
 
@@ -10997,7 +10997,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
             
 
-            <td class="description last"><p>float 速度Pゲイン（正の値）</p></td>
+            <td class="description last"><p>float 速度PIDコントローラの係数P [5.000 - 20.000] (default:14.000)</p></td>
         </tr>
 
     
@@ -13745,7 +13745,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Nov 30 2019 23:29:39 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
