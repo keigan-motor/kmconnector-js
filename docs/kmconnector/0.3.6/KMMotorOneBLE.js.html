@@ -15,7 +15,7 @@
 
     
     <meta charset="utf-8">
-    <title>KMMotorOneUSBSerial.js - Documentation</title>
+    <title>KMMotorOneBLE.js - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -52,7 +52,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMMotorOneUSBSerial.js</h1>
+    <h1 class="page-title">KMMotorOneBLE.js</h1>
     
 
     
@@ -63,213 +63,188 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/***
- *KMMotorOneUSBSerial.js
- * Created by Harada Hiroshi on 2018/02/27.
+ *KMMotorOneBLE.js
+ * Created by Harada Hiroshi on 2017/12/07.
  *
  * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
 
+
+
 'use strict';
 
-const EventEmitter = require("events").EventEmitter;
-const KMUtl= require('./KMUtl');
-const KMComUSBSerial = require('./KMComUSBSerial');
-const KMMotorCommandKMOne=require('./KMMotorCommandKMOne.js');
-const serialport = require('serialport');
-const {performance} = require('perf_hooks');
+let EventEmitter = require("events").EventEmitter;
+let KMComBLE = require('./KMComBLE');
+let KMMotorCommandKMOne=require('./KMMotorCommandKMOne.js');
+
+let noble = require('@abandonware/noble');
 /**
- * @typedef {Object&lt; motorUUID,KMMotorOneUSBSerial >} _motorsByUUID
+ * @typedef {Object&lt; motorUUID,KMMotorOneBLE >} _motorsByUUID
  * @ignore
  */
 let _motorsByUUID={};
 /**
- * @typedef {Object&lt; motorName,KMMotorOneUSBSerial >} _motorsByName
+ * @typedef {Object&lt; motorName,KMMotorOneBLE >} _motorsByName
  * @ignore
  */
 let _motorsByName={};
-let _KMMotorOneUSBSerialStaticEventEmitter=new EventEmitter(null);
+let _startScanTimeoutID=0;
+let _KMMotorOneBLEStaticEventEmitter=new EventEmitter(null);
 
 process.on('exit', function() {
-    //todo::プロセス終了時のUSBデバイス切断 必要なら
+    KMMotorOneBLE.allDisConnect();
+});
+
+
+noble.once('stateChange', function(){
+    _KMMotorOneBLEStaticEventEmitter.emit("adapterStateChange",noble.state);
 });
 
 /**
- * @classdesc KM-1のUSBシリアル接続用 仮想デバイス
+ * @classdesc KM-1のBLE接続用 仮想デバイス
  */
-class KMMotorOneUSBSerial extends KMMotorCommandKMOne{
+class KMMotorOneBLE extends KMMotorCommandKMOne{
     /********************************************
      * static　events
      ********************************************/
     /**
      * イベントリスナを追加する. Synonym for EventEmitter
-     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
      * @param {function(object)} listener 追加するイベントリスナ.
      */
     static on(type, listener){
-        _KMMotorOneUSBSerialStaticEventEmitter.on(type,listener);
+        _KMMotorOneBLEStaticEventEmitter.on(type,listener);
     }
     /**
      * 1回限りのイベントリスナを追加する. Synonym for EventEmitter
-     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
      * @param {function(object)} listener 追加するイベントリスナ.
      */
     static once(type, listener){
-        _KMMotorOneUSBSerialStaticEventEmitter.once(type,listener);
+        _KMMotorOneBLEStaticEventEmitter.once(type,listener);
     }
     /**
      * イベントリスナを削除する Synonym for EventEmitter
-     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ
+     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ
      * @param {function(object)} listener 削除するイベントリスナ
      */
     static removeListener(type, listener){
-        _KMMotorOneUSBSerialStaticEventEmitter.removeListener(type,listener);
+        _KMMotorOneBLEStaticEventEmitter.removeListener(type,listener);
     }
     /**
      * 全てのイベントリスナを削除する Synonym for EventEmitter
-     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
      */
     static removeAllListeners(type){
-        _KMMotorOneUSBSerialStaticEventEmitter.removeAllListeners(type);
+        _KMMotorOneBLEStaticEventEmitter.removeAllListeners(type);
     }
+
 
     /**
      * イベントタイプ定数
      * @readonly
      * @enum {string}
+     * @property {string} adapterStateChange - BLEアダプターの有効無効の変化
+     * &lt;br>return:"poweredOn"||"unknown"
      * @property {string} discoverMotor - モーター発見時(毎回)
-     * &lt;br>return:function({@link KMMotorOneUSBSerial})
+     * &lt;br>return:function({@link KMMotorOneBLE})
      * @property {string} discoverNewMotor - 新規モーターの発見時(1回のみ)
-     * &lt;br>return:function({@link KMMotorOneUSBSerial})
+     * &lt;br>return:function({@link KMMotorOneBLE})
      * @property {string} scanTimeout - スキャンのタイムアウトで終了時
      * &lt;br>return:function()
      */
     static get EVENT_TYPE(){
-        return {
-            discoverMotor:"discoverMotor",
-            discoverNewMotor:"discoverNewMotor",
-            scanTimeout:"scanTimeout"
-        };
+          return {
+             adapterStateChange:"adapterStateChange",
+             discoverMotor:"discoverMotor",
+             discoverNewMotor:"discoverNewMotor",
+             scanTimeout:"scanTimeout"
+          };
     }
+
     /********************************************
-     * static Method
+     * static Scanning
      ********************************************/
     /**
-     * USBデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する
+     * BLEアダプターの状態
+     * @readonly
+     * @returns {*}
      */
-    static startScanToCreateInstance(){
-       return new Promise((resolve,reject)=> {
-           serialport.list().then((ports)=>{
-               let pmar=[];
-               ports.forEach((port)=> {
-                   let portName=port.comName;
-                   if(port.manufacturer!=="FTDI"||(parseInt(port.productId,16)).toString(16)!=="6015"){//KM1 USBchip
-                       return;
-                   }
-                   let serialNumber=port.serialNumber;//info::デバイス固有ID識別用。 UUID的な
-
-                   if(!_motorsByUUID[serialNumber]){
-                       let pm=new Promise(function(s_resolve, s_reject) {
-                           KMMotorOneUSBSerial._getMotorNameSerial(portName).then((name)=>{
-                               let motor= new KMMotorOneUSBSerial(portName,serialNumber,name);//info::検出したモーターは全てインスタンス化
-
-                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,_motorsByUUID[serialNumber]);
-                               /**
-                                * 新規モーターの発見時
-                                * @event KMMotorOneUSBSerial#discoverNewMotor
-                                * @type {KMMotorOneUSBSerial}
-                                * @property {object} KMMotorOneUSBSerial {@link KMMotorOneUSBSerial}
-                                * @example
-                                *
-                                * KMMotorOneUSBSerial.on(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
-                                *      console.log('onDiscoverNewMotor:'+kMMotorOne.deviceInfo.name);
-                                * });
-                                */
-
-                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
-                               /**
-                                * モーターの発見時
-                                * @event KMMotorOneUSBSerial#discoverMotor
-                                * @type {KMMotorOneUSBSerial}
-                                * @property {object} KMMotorOneUSBSerial {@link KMMotorOneUSBSerial}
-                                * @example
-                                *
-                                * KMMotorOneUSBSerial.on(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
-                                *      console.log('onDiscoverMotor:'+kMMotorOne.deviceInfo.name);
-                                * });
-                                */
-                               s_resolve(true);
-                           }).catch((e)=>{
-                               console.log("getMotorName Err",e);
-                               let motor= new KMMotorOneUSBSerial(portName,serialNumber);//info::検出したモーターは全てインスタンス化
-                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,_motorsByUUID[serialNumber]);
-                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
-                               s_resolve(true);
-                           });
-                       });
-                       pmar.push(pm);
-                   }
-                   if(_motorsByUUID[serialNumber]){
-                       _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
-                   }
-               });
-
-               Promise.all(pmar).then(()=>{
-                   KMMotorOneUSBSerial._restructMotorsByName();
-                   resolve(_motorsByUUID);
-               });
-           }).catch((err)=>{
-               console.log(err);
-               reject(err);
-           });
-        });
+    static get bleState(){
+        return noble.state;
+    }
+    /**
+     * APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
+     * &lt;br>ex) {&lt;motorName1>:{@link KMMotorOneBLE},&lt;motorName2>:{@link KMMotorOneBLE},,,}
+     * @readonly
+     * @type {_motorsByName}
+     */
+    static get motors(){
+        return _motorsByName;
     }
 
     /**
-     * Motor名取得用にコマンド発行->受信
-     * @param comName
-     * @returns {Promise&lt;any>}
-     * @private
-     * @ignore
+     * APIが認識しているモーターのインスタンスリスト(プロパティはUUID)
+     * &lt;br>ex) {&lt;motorUUID1>:{@link KMMotorOneBLE},&lt;motorUUID2>:{@link KMMotorOneBLE},,,}
+     * @readonly
+     * @type {_motorsByUUID}
      */
-    static _getMotorNameSerial(comName){
-        return new Promise((resolve,reject)=> {
-            let execTimeoutms=5000;
-
-            //motorNameの取得の為、一度接続する
-            let kcom= new KMComUSBSerial(comName);
-
-            let timeOutIntevalID=setTimeout(()=>{
-                kcom.disConnect();
-                reject("getMotorName timeout");
-            },execTimeoutms);
-
-            kcom.onConnect=(connector)=>{
-                setTimeout(()=>{
-                    kcom._sendMotorCommand('MOTOR_SETTING',kcom._MOTOR_RX_READREGISTER_COMMAND.deviceName);//DeviceName
-                },500);
-            };
-            kcom.onConnectFailure=(connector, err)=>{
-                reject("getMotorName connectFailure");
-            };
-
-            kcom.onMotorSetting=(registerCmd,res)=>{
-                //名前の取得
-                if(registerCmd===kcom._MOTOR_RX_READREGISTER_COMMAND.deviceName){
-                    let rName=typeof res.deviceName==="string"?res.deviceName.split('#')[0]:null;
-                    kcom.disConnect();
-                    clearTimeout(timeOutIntevalID);
-                    resolve(rName);
-                }
-            };
-
-            kcom.connect();
-
-        });
+    static get motorsByUUID(){
+        return _motorsByUUID;
     }
+
     /**
-     * 全てのモーターのUSB接続を解除
+     * BLEデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する
+     * @param {number} time スキャンの継続時間(ms)
+     * @param {boolean} allowDuplicates 重複検出を許可
+     */
+    static startScanToCreateInstance(time = 2000,allowDuplicates=false){
+        clearTimeout(_startScanTimeoutID);
+        if(noble.state === 'poweredOn'){
+            noble.removeListener('discover',KMMotorOneBLE._discoverLis);
+            noble.on('discover',KMMotorOneBLE._discoverLis);
+            console.log('startScanToCreateInstance');
+            noble.startScanning([KMComBLE.MOTOR_BLE_SERVICE_UUID],allowDuplicates);//info::UUIDを指定しないとスキャン時にadvertisement.serviceUuidsが取得出来ない
+            _startScanTimeoutID=setTimeout(()=>{
+                KMMotorOneBLE.stopScan();
+                _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.scanTimeout);
+                /**
+                 * BLEスキャナーのタイムアウト時
+                 * @event KMMotorOneBLE#scanTimeout
+                 * @type {KMMotorOneBLE}
+                 * @example
+                 *
+                 * KMMotorOneBLE.on(KMMotorOneBLE.EVENT_TYPE.scanTimeout,function(){
+                 *      console.log('scanTimeout');
+                 * });
+                 */
+            },time);
+        }else if(noble.state === 'unknown') {
+            noble.once('stateChange', function(){
+                KMMotorOneBLE.startScanToCreateInstance(time,allowDuplicates);
+            });
+        }else{
+            //BLE無効時
+            console.log('Could not start scanning, state is:'+noble.state);
+        }
+    }
+
+    /**
+     * BLEデバイスのスキャンの停止
+     */
+    static stopScan(){
+        clearTimeout(_startScanTimeoutID);
+        noble.removeListener('discover',KMMotorOneBLE._discoverLis);
+        if(noble.state === 'poweredOn') {
+            noble.stopScanning();
+            console.log('stopScan');
+        }
+    }
+
+    /**
+     * 全てのモーターのBLE接続を解除
      */
     static allDisConnect(){
         Object.keys(_motorsByUUID).forEach((key)=> {
@@ -281,45 +256,71 @@ class KMMotorOneUSBSerial extends KMMotorCommandKMOne{
      *  全ての仮想モーターを消去
      */
     static clearMotors(){
-        KMMotorOneUSBSerial.allDisConnect();
+        KMMotorOneBLE.allDisConnect();
         _motorsByUUID={};
-        KMMotorOneUSBSerial._restructMotorsByName();
-    }
-    /**
-     * APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
-     * &lt;br>ex) {&lt;motorName1>:{@link KMMotorOneUSBSerial},&lt;motorName2>:{@link KMMotorOneUSBSerial},,,}
-     * &lt;br>一度作成された仮想モーターは物理的に取り外してもclearMotors()を行うまで消えない
-     * @readonly
-     * @type {_motorsByName}
-     */
-    static get motors(){
-        return _motorsByName;
+        KMMotorOneBLE._restructMotorsByName();
     }
 
     /**
-     * APIが認識しているモーターのインスタンスリスト(プロパティはUUID)
-     * &lt;br>ex) {&lt;motorUUID1>:{@link KMMotorOneUSBSerial},&lt;motorUUID2>:{@link KMMotorOneUSBSerial},,,}
-     * &lt;br>一度作成された仮想モーターは物理的に取り外してもclearMotors()を行うまで消えない
-     * @readonly
-     * @type {_motorsByUUID}
+     * 検出時リスナー
+     * 既に同じpheralのデバイスが存在する場合は、それを返す
+     * @param nobleperipheral
+     * @private
      */
-    static get motorsByUUID(){
-        return _motorsByUUID;
+    static _discoverLis(nobleperipheral){
+        //info::デバイスを選別する。startScanToCreateInstance中に別のクラスからnoble.startScanningした場合、Motor以外のデバイスも拾う可能性がある為。
+        if(!(nobleperipheral.advertisement&amp;&amp;nobleperipheral.advertisement.serviceUuids&amp;&amp;nobleperipheral.advertisement.serviceUuids[0]===KMComBLE.MOTOR_BLE_SERVICE_UUID)){
+            return;
+        }
+
+        console.log('Discover device:'+nobleperipheral.uuid);
+
+        if(!_motorsByUUID[nobleperipheral.uuid]){
+           let motor= new KMMotorOneBLE(nobleperipheral);//info::検出したモーターは全てインスタンス化
+            _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,_motorsByUUID[nobleperipheral.uuid]);
+            /**
+             * 新規モーターの発見時
+             * @event KMMotorOneBLE#discoverNewMotor
+             * @type {KMMotorOneBLE}
+             * @property {object} KMMotorOneBLE {@link KMMotorOneBLE}
+             * @example
+             *
+             * KMMotorOneBLE.on(KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
+             *      console.log('onDiscoverNewMotor:'+kMMotorOne.deviceInfo.name);
+             * });
+             */
+
+        }
+        if(_motorsByUUID[nobleperipheral.uuid]){
+            _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.discoverMotor,_motorsByUUID[nobleperipheral.uuid]);
+            /**
+             * モーターの発見時
+             * @event KMMotorOneBLE#discoverMotor
+             * @type {KMMotorOneBLE}
+             * @property {object} KMMotorOneBLE {@link KMMotorOneBLE}
+             * @example
+             *
+             * KMMotorOneBLE.on(KMMotorOneBLE.EVENT_TYPE.discoverMotor,function(kMMotorOne){
+             *      console.log('discoverMotor:'+kMMotorOne.deviceInfo.name);
+             * });
+             */
+        }
+
     }
+
     /**
      * モーターのリストを再インデックス
      * @private
-     * @ignore
      */
     static _restructMotorsByName(){
         let list={};
         Object.keys(_motorsByUUID).forEach((key)=>{
             let name=  _motorsByUUID[key].deviceInfo.name? _motorsByUUID[key].deviceInfo.name.split('#')[0]:null;
-            if(name){
-                list[name]=_motorsByUUID[key];
-            }else{
-                console.log('Err motor name not found');
-            }
+              if(name){
+                  list[name]=_motorsByUUID[key];
+              }else{
+                  console.log('Err motor name not found');
+              }
         });
         _motorsByName=list;
     }
@@ -327,23 +328,19 @@ class KMMotorOneUSBSerial extends KMMotorCommandKMOne{
      * instance Method
      ********************************************/
     /**
-     * KMMotorOneUSBSerial
+     * KMMotorOneBLE
      * @constructor
      * @extends {KMMotorCommandKMOne}
-     * @param portName
-     * @param id UniqueID デバイスのユニーク名 内部生成用。通常は指定しない (手動接続時は常にnull)
-     * @param defaultMotorName string 内部生成用。通常は指定しない (手動接続時は常にnull)
+     * @param {object} noblePeripheral noble Peripheralオブジェクト
+     * @description 通常はstartScanToCreateInstance()メソッドから自動生成される為、単体では使用しない。&lt;br>
+     * モーター以外のデバイスの接続等でnoble APIをプログラム全体で使用している場合にnoblePeripheralと仮想モーターを関連付ける場合に使用。
      */
-    constructor(portName,id=null,defaultMotorName=null){
-        let cid=!id?"id_"+String(performance.now()).split(".").join("")+"_"+portName:id;
-        super(KMMotorCommandKMOne.KM_CONNECT_TYPE.SERIAL,new KMComUSBSerial(portName,cid,defaultMotorName));
-        if(!_motorsByUUID[cid]){
-            _motorsByUUID[cid]=this;
+    constructor(noblePeripheral){
+        super(KMMotorCommandKMOne.KM_CONNECT_TYPE.BLE,new KMComBLE(noblePeripheral));
+        if(!_motorsByUUID[noblePeripheral.uuid]){
+            _motorsByUUID[noblePeripheral.uuid]=this;
+            KMMotorOneBLE._restructMotorsByName();
         }
-
-        this.on(this.EVENT_TYPE.init,(kMDeviceInfo)=>{
-            KMMotorOneUSBSerial._restructMotorsByName();
-        });
     }
 
     /**
@@ -359,11 +356,9 @@ class KMMotorOneUSBSerial extends KMMotorCommandKMOne{
     disConnect(){
         this._KMCom.disConnect();
     }
-
-
 }
 
-module.exports =KMMotorOneUSBSerial;
+module.exports =KMMotorOneBLE;
 
 </code></pre>
         </article>
@@ -379,7 +374,7 @@ module.exports =KMMotorOneUSBSerial;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 30 2020 14:57:58 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

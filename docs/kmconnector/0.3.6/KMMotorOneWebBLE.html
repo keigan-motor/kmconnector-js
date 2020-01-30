@@ -15,7 +15,7 @@
 
     
     <meta charset="utf-8">
-    <title>KMMotorOneBLE - Documentation</title>
+    <title>KMMotorOneWebBLE - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -52,7 +52,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMMotorOneBLE</h1>
+    <h1 class="page-title">KMMotorOneWebBLE</h1>
     
 
     
@@ -65,10 +65,10 @@
 <header>
     
         <h2>
-        KMMotorOneBLE
+        KMMotorOneWebBLE
         </h2>
         
-            <div class="class-description"><p>KM-1のBLE接続用 仮想デバイス</p></div>
+            <div class="class-description"><p>KM-1のWebBluetooh接続用 仮想デバイス</p></div>
         
     
 </header>
@@ -83,7 +83,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="KMMotorOneBLE"><span class="type-signature"></span>new KMMotorOneBLE<span class="signature">(noblePeripheral)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="KMMotorOneWebBLE"><span class="type-signature"></span>new KMMotorOneWebBLE<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -95,7 +95,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line274">line 274</a>
+        <a href="KMMotorOneWebBLE.js.html">KMMotorOneWebBLE.js</a>, <a href="KMMotorOneWebBLE.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -135,8 +135,7 @@
 
 
 <div class="description">
-    <p>通常はstartScanToCreateInstance()メソッドから自動生成される為、単体では使用しない。<br>
-モーター以外のデバイスの接続等でnoble APIをプログラム全体で使用している場合にnoblePeripheralと仮想モーターを関連付ける場合に使用。</p>
+    <p>KMMotorOneWebBLE</p>
 </div>
 
 
@@ -147,55 +146,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>noblePeripheral</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>noble Peripheralオブジェクト</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -244,415 +194,6 @@
 
     
         <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id=".bleState"><span class="type-signature">(static, readonly) </span>bleState<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line111">line 111</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>BLEアダプターの状態</p>
-</div>
-
-
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".EVENT_TYPE"><span class="type-signature">(static, readonly) </span>EVENT_TYPE<span class="type-signature"> :string</span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line94">line 94</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>adapterStateChange</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>BLEアダプターの有効無効の変化
-<br>return:&quot;poweredOn&quot;||&quot;unknown&quot;</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>discoverMotor</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>モーター発見時(毎回)
-<br>return:function(<a href="KMMotorOneBLE.html">KMMotorOneBLE</a>)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>discoverNewMotor</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>新規モーターの発見時(1回のみ)
-<br>return:function(<a href="KMMotorOneBLE.html">KMMotorOneBLE</a>)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>scanTimeout</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>スキャンのタイムアウトで終了時
-<br>return:function()</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<div class="description">
-    <p>イベントタイプ定数</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".motors"><span class="type-signature">(static, readonly) </span>motors<span class="type-signature"> :_motorsByName</span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line120">line 120</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
-<br>ex) {<motorName1>:<a href="KMMotorOneBLE.html">KMMotorOneBLE</a>,<motorName2>:<a href="KMMotorOneBLE.html">KMMotorOneBLE</a>,,,}</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">_motorsByName</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".motorsByUUID"><span class="type-signature">(static, readonly) </span>motorsByUUID<span class="type-signature"> :_motorsByUUID</span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line130">line 130</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>APIが認識しているモーターのインスタンスリスト(プロパティはUUID)
-<br>ex) {<motorUUID1>:<a href="KMMotorOneBLE.html">KMMotorOneBLE</a>,<motorUUID2>:<a href="KMMotorOneBLE.html">KMMotorOneBLE</a>,,,}</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">_motorsByUUID</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
 
         
             
@@ -1245,1053 +786,6 @@
 
     
 
-    <h4 class="name" id=".allDisConnect"><span class="type-signature">(static) </span>allDisConnect<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line185">line 185</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>全てのモーターのBLE接続を解除</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".clearMotors"><span class="type-signature">(static) </span>clearMotors<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line194">line 194</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>全ての仮想モーターを消去</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".on"><span class="type-signature">(static) </span>on<span class="signature">(type, listener)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line53">line 53</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>イベントリスナを追加する. Synonym for EventEmitter</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="KMMotorOneBLE.html#.EVENT_TYPE">KMMotorOneBLE.EVENT_TYPE</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>イベントのタイプ.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>listener</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>追加するイベントリスナ.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".once"><span class="type-signature">(static) </span>once<span class="signature">(type, listener)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line61">line 61</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>1回限りのイベントリスナを追加する. Synonym for EventEmitter</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="KMMotorOneBLE.html#.EVENT_TYPE">KMMotorOneBLE.EVENT_TYPE</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>イベントのタイプ.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>listener</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>追加するイベントリスナ.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".removeAllListeners"><span class="type-signature">(static) </span>removeAllListeners<span class="signature">(type)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line76">line 76</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>全てのイベントリスナを削除する Synonym for EventEmitter</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="KMMotorOneBLE.html#.EVENT_TYPE">KMMotorOneBLE.EVENT_TYPE</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>イベントのタイプ.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".removeListener"><span class="type-signature">(static) </span>removeListener<span class="signature">(type, listener)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line69">line 69</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>イベントリスナを削除する Synonym for EventEmitter</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="KMMotorOneBLE.html#.EVENT_TYPE">KMMotorOneBLE.EVENT_TYPE</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>イベントのタイプ</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>listener</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>削除するイベントリスナ</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".startScanToCreateInstance"><span class="type-signature">(static) </span>startScanToCreateInstance<span class="signature">(time, allowDuplicates)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line139">line 139</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>BLEデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>time</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    <code>2000</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>スキャンの継続時間(ms)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>allowDuplicates</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>重複検出を許可</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".stopScan"><span class="type-signature">(static) </span>stopScan<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line173">line 173</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>BLEデバイスのスキャンの停止</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
     <h4 class="name" id="cmdAcc"><span class="type-signature"></span>cmdAcc<span class="signature">(acc)</span><span class="type-signature"></span></h4>
 
     
@@ -2306,7 +800,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1148">line 1148</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1151">line 1151</a>
     </li></ul></dd>
     
 
@@ -2457,7 +951,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1137">line 1137</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1140">line 1140</a>
     </li></ul></dd>
     
 
@@ -2606,7 +1100,7 @@ CURVE_TYPE_TRAPEZOID:1 モーションコントロール ON （台形加減速�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1159">line 1159</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1162">line 1162</a>
     </li></ul></dd>
     
 
@@ -2852,7 +1346,7 @@ CURVE_TYPE_TRAPEZOID:1 モーションコントロール ON （台形加減速�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1053">line 1053</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1056">line 1056</a>
     </li></ul></dd>
     
 
@@ -3038,7 +1532,7 @@ CURVE_TYPE_TRAPEZOID:1 モーションコントロール ON （台形加減速�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1091">line 1091</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1094">line 1094</a>
     </li></ul></dd>
     
 
@@ -3181,7 +1675,7 @@ CURVE_TYPE_TRAPEZOID:1 モーションコントロール ON （台形加減速�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1046">line 1046</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1049">line 1049</a>
     </li></ul></dd>
     
 
@@ -3276,7 +1770,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1101">line 1101</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1104">line 1104</a>
     </li></ul></dd>
     
 
@@ -3370,7 +1864,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1010">line 1010</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1013">line 1013</a>
     </li></ul></dd>
     
 
@@ -3460,7 +1954,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line954">line 954</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line957">line 957</a>
     </li></ul></dd>
     
 
@@ -3550,7 +2044,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1001">line 1001</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1004">line 1004</a>
     </li></ul></dd>
     
 
@@ -3701,7 +2195,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line945">line 945</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line948">line 948</a>
     </li></ul></dd>
     
 
@@ -3848,7 +2342,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line802">line 802</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line805">line 805</a>
     </li></ul></dd>
     
 
@@ -3942,7 +2436,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line821">line 821</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line824">line 824</a>
     </li></ul></dd>
     
 
@@ -4085,7 +2579,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1423">line 1423</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1426">line 1426</a>
     </li></ul></dd>
     
 
@@ -4228,7 +2722,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1412">line 1412</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1415">line 1415</a>
     </li></ul></dd>
     
 
@@ -4273,7 +2767,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
 
 
 <div class="description">
-    <p>有線（USB, I2C）のみ有効。BLEでは固定 100ms 間隔で通知される。</p>
+    <p>有線（USB, I2C）のみ有効。BLEでは固定 100ms 間隔で通知される。<br>設定を反映するには、設定後にcmdEnableIMUMeasurement()を再実行する必要がある。</p>
 </div>
 
 
@@ -4379,7 +2873,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1374">line 1374</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1377">line 1377</a>
     </li></ul></dd>
     
 
@@ -4526,7 +3020,7 @@ MOTOR_IMU_MEASUREMENTのnotifyはイベントタイプ KMMotorCommandKMOne.EVENT
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1028">line 1028</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1031">line 1031</a>
     </li></ul></dd>
     
 
@@ -4738,7 +3232,7 @@ LED_STATE_ON_DIM:LEDがゆっくり明滅する</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1112">line 1112</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1115">line 1115</a>
     </li></ul></dd>
     
 
@@ -4877,7 +3371,7 @@ LED_STATE_ON_DIM:LEDがゆっくり明滅する</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1174">line 1174</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1177">line 1177</a>
     </li></ul></dd>
     
 
@@ -5022,7 +3516,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1124">line 1124</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1127">line 1127</a>
     </li></ul></dd>
     
 
@@ -5165,7 +3659,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1357">line 1357</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1360">line 1360</a>
     </li></ul></dd>
     
 
@@ -5308,7 +3802,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1346">line 1346</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1349">line 1349</a>
     </li></ul></dd>
     
 
@@ -5353,7 +3847,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
 
 <div class="description">
-    <p>有線（USB, I2C）のみ有効。BLEでは固定 100ms 間隔で通知される。</p>
+    <p>有線（USB, I2C）のみ有効。BLEでは固定 100ms 間隔で通知される。<br>設定を反映するには、設定後にcmdEnableMotorMeasurement()を再実行する必要がある。</p>
 </div>
 
 
@@ -5459,7 +3953,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line736">line 736</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line739">line 739</a>
     </li></ul></dd>
     
 
@@ -5505,6 +3999,9 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
 
 <div class="description">
     <p>speedの指定がnullの場合、直近の速度が引き継がれる</p>
+<ul>
+    <li>cmdMoveByDistance実行中にcmdMoveByDistance複数回実行すると、積算したdistanceの座標に移動する</li>
+</ul>
 </div>
 
 
@@ -5639,7 +4136,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line773">line 773</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line776">line 776</a>
     </li></ul></dd>
     
 
@@ -6301,7 +4798,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1323">line 1323</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1326">line 1326</a>
     </li></ul></dd>
     
 
@@ -6516,7 +5013,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1399">line 1399</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1402">line 1402</a>
     </li></ul></dd>
     
 
@@ -6706,7 +5203,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line882">line 882</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line885">line 885</a>
     </li></ul></dd>
     
 
@@ -6796,7 +5293,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1201">line 1201</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1204">line 1204</a>
     </li></ul></dd>
     
 
@@ -6939,7 +5436,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1303">line 1303</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1306">line 1306</a>
     </li></ul></dd>
     
 
@@ -7078,7 +5575,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1293">line 1293</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1296">line 1296</a>
     </li></ul></dd>
     
 
@@ -7217,7 +5714,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1284">line 1284</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1287">line 1287</a>
     </li></ul></dd>
     
 
@@ -7356,7 +5853,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1275">line 1275</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1278">line 1278</a>
     </li></ul></dd>
     
 
@@ -7642,7 +6139,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1235">line 1235</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1238">line 1238</a>
     </li></ul></dd>
     
 
@@ -7781,7 +6278,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1225">line 1225</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1228">line 1228</a>
     </li></ul></dd>
     
 
@@ -7920,7 +6417,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1215">line 1215</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1218">line 1218</a>
     </li></ul></dd>
     
 
@@ -8057,7 +6554,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1481">line 1481</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1484">line 1484</a>
     </li></ul></dd>
     
 
@@ -8169,7 +6666,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1530">line 1530</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1533">line 1533</a>
     </li></ul></dd>
     
 
@@ -8281,7 +6778,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1521">line 1521</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1524">line 1524</a>
     </li></ul></dd>
     
 
@@ -8505,7 +7002,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1439">line 1439</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1442">line 1442</a>
     </li></ul></dd>
     
 
@@ -8669,7 +7166,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line915">line 915</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line918">line 918</a>
     </li></ul></dd>
     
 
@@ -8777,7 +7274,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1083">line 1083</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1086">line 1086</a>
     </li></ul></dd>
     
 
@@ -8871,7 +7368,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1513">line 1513</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1516">line 1516</a>
     </li></ul></dd>
     
 
@@ -8965,7 +7462,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1337">line 1337</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1340">line 1340</a>
     </li></ul></dd>
     
 
@@ -9059,7 +7556,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line907">line 907</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line910">line 910</a>
     </li></ul></dd>
     
 
@@ -9149,7 +7646,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1504">line 1504</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1507">line 1507</a>
     </li></ul></dd>
     
 
@@ -9288,7 +7785,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1384">line 1384</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1387">line 1387</a>
     </li></ul></dd>
     
 
@@ -9427,7 +7924,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line889">line 889</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line892">line 892</a>
     </li></ul></dd>
     
 
@@ -9999,7 +8496,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1495">line 1495</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1498">line 1498</a>
     </li></ul></dd>
     
 
@@ -10093,7 +8590,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1539">line 1539</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1542">line 1542</a>
     </li></ul></dd>
     
 
@@ -10236,7 +8733,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line962">line 962</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line965">line 965</a>
     </li></ul></dd>
     
 
@@ -10624,7 +9121,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1265">line 1265</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1268">line 1268</a>
     </li></ul></dd>
     
 
@@ -10763,7 +9260,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1255">line 1255</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1258">line 1258</a>
     </li></ul></dd>
     
 
@@ -10902,7 +9399,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1245">line 1245</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1248">line 1248</a>
     </li></ul></dd>
     
 
@@ -11041,7 +9538,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line836">line 836</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line839">line 839</a>
     </li></ul></dd>
     
 
@@ -11222,7 +9719,7 @@ maxTorque = 0.1 [N<em>m] の後に runForward （正回転）を行った場合�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line860">line 860</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line863">line 863</a>
     </li></ul></dd>
     
 
@@ -11433,7 +9930,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line928">line 928</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line931">line 931</a>
     </li></ul></dd>
     
 
@@ -11584,7 +10081,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line980">line 980</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line983">line 983</a>
     </li></ul></dd>
     
 
@@ -11763,7 +10260,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line810">line 810</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line813">line 813</a>
     </li></ul></dd>
     
 
@@ -11857,7 +10354,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line847">line 847</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line850">line 850</a>
     </li></ul></dd>
     
 
@@ -11951,7 +10448,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line937">line 937</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line940">line 940</a>
     </li></ul></dd>
     
 
@@ -12041,7 +10538,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line990">line 990</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line993">line 993</a>
     </li></ul></dd>
     
 
@@ -12131,7 +10628,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1186">line 1186</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line1189">line 1189</a>
     </li></ul></dd>
     
 
@@ -12274,7 +10771,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line898">line 898</a>
+        <a href="KMMotorCommandKMOne.js.html">KMMotorCommandKMOne.js</a>, <a href="KMMotorCommandKMOne.js.html#line901">line 901</a>
     </li></ul></dd>
     
 
@@ -12423,7 +10920,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line285">line 285</a>
+        <a href="KMMotorOneWebBLE.js.html">KMMotorOneWebBLE.js</a>, <a href="KMMotorOneWebBLE.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -12510,7 +11007,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMMotorOneBLE.js.html">KMMotorOneBLE.js</a>, <a href="KMMotorOneBLE.js.html#line292">line 292</a>
+        <a href="KMMotorOneWebBLE.js.html">KMMotorOneWebBLE.js</a>, <a href="KMMotorOneWebBLE.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -13745,7 +12242,7 @@ START_POSITION_CURRENT:現在の位置を開始位置としてスタート</p></
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 30 2020 14:57:58 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

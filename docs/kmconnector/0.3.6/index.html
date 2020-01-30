@@ -15,7 +15,7 @@
 
     
     <meta charset="utf-8">
-    <title>KMStructures.js - Documentation</title>
+    <title>Home - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -52,361 +52,327 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMStructures.js</h1>
-    
 
     
 
 
 
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/***
- * KMStructures.js
- * Created by Harada Hiroshi on 2017/12/07.
- *
- * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
- * This software is released under the MIT License.
- * http://opensource.org/licenses/mit-license.php
- */
-'use strict';
-let KMUtl = require('./KMUtl');
 
 
-/**
- * @classdesc 構造体の基底クラス
- * @ignore
- */
-class KMStructureBase{
-    constructor(){
-    }
-    /**
-     * 同じ値を持つかの比較
-     * @param {object} tar 比較する構造体
-     * @returns {boolean} 結果
-     */
-    EQ (tar) {
-        if(! tar ){return false;}
-        if(this.constructor===tar.constructor){
-            if(this.GetValArray){
-                return this.GetValArray().toString()===tar.GetValArray().toString();
-            }else if(this.GetValObj){
-                return JSON.stringify(this.GetValObj())===JSON.stringify(tar.GetValObj());// bad::遅い
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 複製
-     * @returns {object} 複製された構造体
-     */
-    Clone () {
-        return Object.assign(new this.constructor(),this);
-    }
-    /**
-     * 値の取得（Obj）
-     * @returns {object}
-     */
-    GetValObj () {
-        return Object.assign({},this);
-    }
-
-    /**
-     * 値の取得（配列）
-     * @returns {Array}
-     */
-    GetValArray () {
-        let k=Object.keys(this);
-        let r=[];
-        for(let i=0;i&lt;k.length;i++){
-            r.push(this[k[i]]);
-        }
-        return r;
-    }
-
-    /**
-     * 値の一括設定（Obj）
-     * @param {object} propsObj 設定するプロパティ
-     */
-    SetValObj (propsObj) {
-        if(typeof propsObj !=="object"){return;}
-        let keys=Object.keys(propsObj);
-        for(let k=0;k&lt;keys.length;k++){
-            let pn=keys[k];
-            if(this.hasOwnProperty(pn)){
-                this[pn]=propsObj[pn];
-            }
-        }
-    }
-
-}
-
-
-/**
- * @classdesc XY座標の構造体オブジェクト
- * @ignore
- */
-class KMVector2 extends KMStructureBase {
-    /**
-     * constructor
-     * @extends KMStructureBase
-     * @param {number} x
-     * @param {number} y
-     *
-     * @instance
-     */
-    constructor (x=0, y=0) {
-        super();
-        this.x = x;
-        this.y = y;
-    }
-
-    /**
-     * 相対位置へ移動
-     * @param {number} dx
-     * @param {number} dy
-     */
-    Move (dx =0, dy = 0) {
-        this.x += dx;
-        this.y += dy;
-    }
-    /**
-     * 2点間の距離
-     * @param {KMVector2} vector2
-     * @returns {number}
-     */
-    Distance (vector2) {
-        if (!(vector2 instanceof KMVector2)) {return;}
-        return Math.sqrt(Math.pow((this.x-vector2.x),2) + Math.pow((this.y-vector2.y),2));
-    }
-    /**
-     * 2点間の角度
-     * @param {KMVector2} vector2
-     * @returns {number}
-     */
-    Radian (vector2) {
-        if (!(vector2 instanceof KMVector2)) {return;}
-        return Math.atan2(this.y-vector2.y,this.x-vector2.x);
-    }
-    /**
-     * 0,0からの距離
-     * @returns {number}
-     */
-    DistanceFromZero() {
-        return Math.sqrt(Math.pow(this.x,2) + Math.pow(this.y,2));
-    }
-    /**
-     * 0,0からの角度
-     * @returns {number} radian
-     */
-    RadianFromZero() {
-        return Math.atan2(this.y,this.x);
-    }
-}
-
-
-
-/**
- * @classdesc ジャイロセンサー値
- */
-class KMImuState extends KMStructureBase {
-    /**
-     * constructor
-     * @extends KMStructureBase
-     * @param {number} accelX 加速度(x) [± 1]
-     * @param {number} accelY 加速度(y) [± 1]
-     * @param {number} accelZ 加速度(z) [± 1]
-     * @param {number} temp 温度 C
-     * @param {number} gyroX 角速度(x) [± 1]
-     * @param {number} gyroY 角速度(y) [± 1]
-     * @param {number} gyroZ 角速度(z) [± 1]
-     * @instance
-     */
-    constructor (accelX, accelY, accelZ, temp, gyroX, gyroY, gyroZ ) {
-        super();
-
-        this.accelX= KMUtl.toNumber(accelX);
-        this.accelY= KMUtl.toNumber(accelY);
-        this.accelZ= KMUtl.toNumber(accelZ);
-        this.temp= KMUtl.toNumber(temp);
-        this.gyroX= KMUtl.toNumber(gyroX);
-        this.gyroY= KMUtl.toNumber(gyroY);
-        this.gyroZ= KMUtl.toNumber(gyroZ);
-    }
-}
-/**
- * KEIGANモーターLED　点灯・色状態
- * State MOTOR_LED_STATE
- * colorR 0-255
- * colorG 0-255
- * colorB 0-255
- * */
-/**
- * @classdesc モーターLED　点灯・色状態
- */
-class KMLedState extends KMStructureBase {
-    /**
-     * モーターのLED状態
-     * @readonly
-     * @enum {number}
-     * @property {number} MOTOR_LED_STATE_OFF - 0:LED消灯
-     * @property {number} MOTOR_LED_STATE_ON_SOLID - 1:LED点灯
-     * @property {number} MOTOR_LED_STATE_ON_FLASH - 2:LED点滅（一定間隔で点滅）
-     * @property {number} MOTOR_LED_STATE_ON_DIM - 3:LEDがゆっくり輝度変化する
-     */
-    static get MOTOR_LED_STATE(){
-        return{
-            "MOTOR_LED_STATE_OFF":0,
-            "MOTOR_LED_STATE_ON_SOLID":1,
-            "MOTOR_LED_STATE_ON_FLASH":2,
-            "MOTOR_LED_STATE_ON_DIM":3
-        }
-    }
-
-    /**
-     * constructor
-     * @extends KMStructureBase
-     * @param {KMLedState.MOTOR_LED_STATE} state
-     * @param {number} colorR int [0-255]
-     * @param {number} colorG int [0-255]
-     * @param {number} colorB int [0-255]
-     * @instance
-     */
-    constructor(state,colorR,colorG,colorB) {
-        super();
-        this.state=KMUtl.toNumber(state);
-        this.colorR=KMUtl.toNumber(colorR);
-        this.colorG=KMUtl.toNumber(colorG);
-        this.colorB=KMUtl.toNumber(colorB);
-    }
-}
-
-/**
- * @classdesc モーター回転情報
- */
-class KMRotState extends KMStructureBase {
-    /**
-     * 最大トルク定数
-     * @readonly
-     * @type {number}
-     */
-    static get MAX_TORQUE(){
-        return 0.3;//0.3 N・m
-    }
-
-    /**
-     * 最大速度定数(rpm)
-     * @readonly
-     * @type {number}
-     */
-    static get MAX_SPEED_RPM(){
-        return 300;//300rpm
-    }
-    /**
-     * 最大速度定数(radian/sec)
-     * @readonly
-     * @type {number}
-     */
-    static get MAX_SPEED_RADIAN(){
-        return KMUtl.rpmToRadianSec(300);
-    }
-    /**
-     * 最大座標定数
-     * @readonly
-     * @type {number}
-     */
-    static get MAX_POSITION(){
-        return 3*Math.pow(10,38);//info::「return　3e+38」はminifyでエラー
-        //return　3e+38;//radian 4byte float　1.175494 10-38  &lt; 3.402823 10+38
-    }
-
-    /**
-     * constructor
-     * @extends KMStructureBase
-     * @param {number} position 座標
-     * @param {number} velocity 速度
-     * @param {number} torque トルク
-     * @instance
-     */
-    constructor(position, velocity, torque) {
-        //有効桁数 小数第4位
-        super();
-        this.position = Math.floor(KMUtl.toNumber(position)*10000)/10000;
-        this.velocity = Math.floor(KMUtl.toNumber(velocity)*10000)/10000;
-        this.torque = Math.floor(KMUtl.toNumber(torque)*10000)/10000;
-    }
-}
-
-
-/**
- * @classdesc デバイス情報
- */
-class KMDeviceInfo extends KMStructureBase {
-    /**
-     * constructor
-     * @extends KMStructureBase
-     * @param {KMMotorCommandKMOne.KM_CONNECT_TYPE} type 接続方式
-     * @param {string} id デバイスUUID
-     * @param {string} name モーター名(形式 ID LEDColor)
-     * @param {boolean} isConnect 接続状態
-     * @param {string} manufacturerName 製造会社名
-     * @param {string} hardwareRevision
-     * @param {string} firmwareRevision
-     * @instance
-     */
-    constructor(type=0,id="",name="",isConnect=false,manufacturerName=null,hardwareRevision=null,firmwareRevision=null) {
-        super();
-        this.type=type;
-        this.id=id;
-        this.name=name;
-        this.isConnect=isConnect;
-        this.manufacturerName=manufacturerName;
-        this.hardwareRevision=hardwareRevision;
-        this.firmwareRevision=firmwareRevision;
-
-    }
-}
-/**
- * @classdesc モーターログ情報
- */
-class KMMotorLog extends KMStructureBase {
-    /**
-     * @param id {number} シーケンスID(ユニーク値)
-     * @param cmdName {string} 実行コマンド名
-     * @param cmdID {number} 実行コマンドID
-     * @param errID {number} エラータイプ
-     * @param errType {string} エラー種別
-     * @param errMsg {string}　メッセージ内容
-     * @param info {number}
-     */
-    constructor (id=0,cmdName="",cmdID=0,errID=0,errType="",errMsg="",info=0) {
-        super();
-        this.id= id;
-        this.cmdName=cmdName;
-        this.cmdID= cmdID;
-        this.errID=errID;
-        this.errType= errType;
-        this.errMsg= errMsg;
-        this.info= info;
-    }
-}
-
-
-module.exports = {
-    KMStructureBase:KMStructureBase,
-    KMVector2:KMVector2,
-    //KMVector3:KMVector3,
-    KMImuState:KMImuState,
-    KMLedState:KMLedState,
-    KMRotState:KMRotState,
-    KMDeviceInfo:KMDeviceInfo,
-    KMMotorLog:KMMotorLog
-};
-</code></pre>
-        </article>
+    <section class="package">
+        <h3>kmconnector 0.3.6</h3>		
     </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme">
+        <article><h1>KMConnector</h1>
+<p>Keigan Motor用のNode.jsとBrowser JavaScriptライブラリ
+<a href="https://www.keigan-motor.com/" target="_brank">https://www.keigan-motor.com/</a><br>
+Node.jsではUSBシリアル・BLE、ブラウザ(chrome)ではWebBluetoothを用いて接続できます。</p>
+<p><em><strong>Quick Demo:</strong></em></p>
+<ul>
+<li>ブラウザ接続でのデモ(WebBluetooth Android又はMac上のChromeで動作)<br>
+<strong><a href="https://docs.keigan-motor.com/apiSample/kmconnector-js/examples/browser_webbluetooh/Demo.html" target="_brank">https://docs.keigan-motor.com/apiSample/motorApiSample/</a></strong></li>
+</ul>
+<h2>Requirement</h2>
+<ul>
+<li>node 8.11.2 - 10.14.2</li>
+<li>@abandonware/noble 1.9.2</li>
+<li>serialport 7.0.2+</li>
+</ul>
+<h2>Usage</h2>
+<ul>
+<li>
+<p><a href="https://docs.keigan-motor.com/firmware/download" target="_brank">KeiganMotor ファームウェア</a> version 2.23 以上。</p>
+</li>
+<li>
+<p>現時点でサポートされているOSはRaspbian(Raspberry Pi),Linux、Mac OS Xのみです。</p>
+</li>
+<li>
+<p>BLE Node.js用。RaspberryPiは管理者権限で実行する必要があります。</p>
+</li>
+<li>
+<p>RaspberryPi等の一部のBluetoohアダプタでは、複数プロセスによるBLEの動作は、正常に動作しません。<br>複数のプロセスで、Node.jsからBLE接続を行うと、&quot;Type mismatch of motor peripheral&quot;により失敗します。</p>
+</li>
+<li>
+<p>USB Serial (Node.js only) serialport 7.0.2+</p>
+</li>
+<li>
+<p>Web Bluetoothは現在andoroid及びMacOSのchromeのみで動作します。</p>
+</li>
+</ul>
+<h2>インストール</h2>
+<h3>Node.js（npmからインストール）</h3>
+<pre><code>$ npm install kmconnector
+</code></pre>
+<h4>Macにインストールする場合</h4>
+<ul>
+<li>
+<p>MAC &amp; node.js 10.xで依存ライブラリxpc-connectionが正常にインストールされない(”Cannot find module 'xpc-connection' ”)
+場合は以下のコマンドでxpc-connectionをインストールして下さい。</p>
+<pre><code>  $ npm install git://github.com/taoyuan/node-xpc-connection.git
+</code></pre>
+</li>
+<li>
+<p>Macでnodebrewを使用している場合、依存ライブラリxpc-connectionのインストールで失敗する場合があります。<br>
+その場合以下の方法でインストールを行って下さい。</p>
+<ul>
+<li>
+<p>node-gypを最新にUPDATEする。</p>
+</li>
+<li>
+<p>インストール時に一時的にpathを以下に書き換える。</p>
+<p>$ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:~/.nodebrew/node/[nodebrewのヴァージョン]/bin</p>
+<p>例)</p>
+<pre><code>  $ npm explore npm -g -- npm install node-gyp@latest
+  $ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:~/.nodebrew/node/v10.14.2/bin
+  $ npm i kmconnector
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Webブラウザへの組み込み</h3>
+<p>ブラウザはhtmlのヘッダーに/KMConnectorBrowser.jsを読み込んで下さい</p>
+<pre><code>&lt;script src=&quot;kmconnector-js/KMConnectorBrowser.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<ul>
+<li>WebBluetoothを使用する為、Android又はMac上のChromeでのみ動作します。</li>
+<li>Web Bluetoothはセキュリティの為、https://での接続が必須です。</li>
+</ul>
+<h2>Examples(BLE)</h2>
+<h4>BLE通信で接続する例(Node.js)</h4>
+<pre><code>    const KMConnector = require('kmconnector/KMConnectorBLE');
+    KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
+       KMConnector.KMMotorOneBLE.stopScan();
+       kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
+               if(kMMotorOneBLE.isConnect){
+                   kMMotorOneBLE.cmdLed(1,200,0,0);
+               }
+       });
+       kMMotorOneBLE.connect();
+    });  
+    KMConnector.KMMotorOneBLE.startScanToCreateInstance();
+</code></pre>
+<h4>BLE通信(noble)を既に使用している物に組み込む場合の例(Node.js)</h4>
+<pre><code>    const KMConnector = require('kmconnector/KMConnectorBLE');
+    const noble = require('noble');
+    noble.on('discover',(nobleperipheral)=&gt;{
+        noble.stopScanning();
+        
+        //connected to motor only
+        let localName=nobleperipheral.advertisement?nobleperipheral.advertisement.localName:&quot;&quot;;
+        if(localName.startsWith('KM-1')){
+            let kMMotorOneBLE= new KMConnector.KMMotorOneBLE(nobleperipheral);
+            kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
+                            if(kMMotorOneBLE.isConnect){
+                                kMMotorOneBLE.cmdLed(1,200,0,0);
+                            }
+                    });
+            kMMotorOneBLE.connect();
+        }
+    });
+    
+    if(noble.state === 'poweredOn'){
+        noble.startScanning();
+    }else{
+        noble.once('stateChange',()=&gt;{
+            noble.startScanning();
+        });
+    }
+</code></pre>
+<h3>主なメソッド</h3>
+<h4>BLEスキャンと停止</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.startScanToCreateInstance(15000);
+    KMConnector.KMMotorOneBLE.stopScan();
+</code></pre>
+<h4>接続したモーターの全切断</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.allDisConnect();
+</code></pre>
+<h4>個々のモーターの切断</h4>
+<pre><code>    kMMotorOneBLE.connect();
+    kMMotorOneBLE.disConnect();
+</code></pre>
+<h3>イベント</h3>
+<h4>スキャン中のモーター発見時</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverMotor,function(kMMotorOneBLE){
+        console.log('onDiscoverMotor:'+kMMotorOneBLE.deviceInfo.name);
+    });
+</code></pre>
+<h4>未接続の新規モーター発見時</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOneBLE){
+        KMConnector.KMMotorOneBLE.stopScan();//Depending on the adapter, it is necessary to initialize the motor after completing the scan.　https://github.com/sandeepmistry/noble#notes
+        //todo::Motor initialization processing
+    });
+</code></pre>
+<h4>スキャンがタイムアウトで終了した時</h4>
+<pre><code>    KMConnector.KMMotorOneBLE.on(KMConnector.KMMotorOneBLE.EVENT_TYPE.scanTimeout,function(){        
+         //Connected to all motors
+         Object.keys(KMConnector.KMMotorOneBLE.motors).forEach((key)=&gt;{
+                let motor=KMConnector.KMMotorOneBLE.motors[key];
+                if(!motor.isConnect){
+                    motor.connect();
+                }
+         });
+    });
+</code></pre>
+<h4>モーターの初期化完了時</h4>
+<pre><code>     kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.init,function(kMDeviceInfo){
+            //Motor operation
+            kMMotorOneBLE.cmdEnable();
+            kMMotorOneBLE.cmdSpeed_rpm(10);
+            kMMotorOneBLE.cmdRunForward();
+        });
+</code></pre>
+<h4>モーター接続・切断時</h4>
+<pre><code>    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.connect,function(kMDeviceInfo){
+        console.log(&quot;onConnect:&quot;+kMDeviceInfo.isConnect);
+    });
+
+    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.disconnect,function(kMDeviceInfo){
+         console.log(&quot;onDisconnect:&quot;+kMDeviceInfo.isConnect);
+    });
+    
+    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.connectFailure,function(kMDeviceInfo,err){
+        console.log(&quot;onConnectFailure:&quot;+err);
+    });
+</code></pre>
+<h4>モーター回転情報受信時</h4>
+<pre><code>    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.motorMeasurement,function(kMRotState){
+        console.log(kMRotState.GetValObj());//{position,velocity,torque}
+    });
+</code></pre>
+<h4>ジャイロ情報受信時</h4>
+<p>受信するには別途cmdEnableIMU()を有効にする必要があります。</p>
+<pre><code>    kMMotorOneBLE.on(kMMotorOneBLE.EVENT_TYPE.imuMeasurement,function(kMImuState){
+        console.log(kMImuState.GetValObj());//{accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ}
+    });
+</code></pre>
+<h2>Examples(USB)</h2>
+<h4>指定したUSBポートに接続する例 (Node.js)</h4>
+<pre><code>    const KMConnector = require('kmconnector/KMConnectorUSB');
+    const KMMotorOneUSBSerial=KMConnector.KMMotorOneUSBSerial;
+    
+    let kMMotorOne=new KMMotorOneUSBSerial('/dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_DM00KBZZ-if00-port0');
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.connect,function(kMDeviceInfo){
+       if(kMMotorOne.isConnect){
+           kMMotorOne.cmdLed(1,200,0,0);//led
+       }
+    });
+   
+    //Try Auto Reconnect
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.disconnect,(kMDeviceInfo)=&gt;{
+        setTimeout(()=&gt;{kMMotorOne.connect();},5000);
+    });
+    
+    kMMotorOne.on(kMMotorOne.EVENT_TYPE.connectFailure,(kMDeviceInfo,err)=&gt;{
+        setTimeout(()=&gt;{kMMotorOne.connect();},5000);
+    });
+    
+    kMMotorOne.connect();
+</code></pre>
+<h4>全てのUSBポートをスキャンして接続する例(Node.js)</h4>
+<pre><code>    const KMConnector = require('kmconnector/KMConnectorUSB');
+    KMConnector.KMMotorOneUSBSerial.on(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
+       kMMotorOne.on(kMMotorOne.EVENT_TYPE.connect,function(kMDeviceInfo){
+           if(kMMotorOne.isConnect){
+               kMMotorOne.cmdLed(1,200,0,0);//led
+           }
+       });
+       kMMotorOne.connect();
+    });
+   
+    KMConnector.KMMotorOneBLE.startScanToCreateInstance();
+</code></pre>
+<h2>Examples(Browser Web Bluetooth Api)</h2>
+<h4>WebブラウザからBLE接続する例</h4>
+<ul>
+<li>WebBluetoothを使用する為、Android又はMac上のChromeでのみ動作します。</li>
+<li>Web Bluetoothはセキュリティの為、https://での接続が必須です。</li>
+</ul>
+<h5>html</h5>
+<pre><code>    &lt;head&gt;
+    &lt;script src=&quot;kmconnector/indexBrowser.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!--セキュリティ上の理由から、KMB.connect()は直接ユーザーのクリック操作が必要です。--&gt;
+        &lt;a href=&quot;javascript:KMB.connect();&quot;&gt;connect&lt;/a&gt;
+    &lt;/body&gt;
+</code></pre>
+<h5>javascript</h5>
+<pre><code>    const KMB=new KMMotorOneWebBLE();
+    KMB.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
+        KMB.cmdEnable();
+        KMB.cmdSpeed_rpm(10);
+        KMB.cmdRunForward();
+    });
+    
+    //KMB.connect();//セキュリティ上の理由から、エラーになる
+</code></pre>
+<h4>接続・切断</h4>
+<pre><code>    kMMotorOneWebBLE.connect()
+    kMMotorOneWebBLE.disConnect()
+</code></pre>
+<h3>イベント</h3>
+<h4>モーターの接続・初期化完了時 (Browser)</h4>
+<pre><code>    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
+        console.log(kMDeviceInfo.GetValObj());//{type,id,name,isConnect,manufacturerName,firmwareRevision}
+        kMMotorOneWebBLE.cmdEnable();//For safety, the motor operation at startup is disabled
+        kMMotorOneWebBLE.cmdSpeed_rpm(10);
+    });
+</code></pre>
+<h4>接続・切断(Browser)</h4>
+<pre><code>    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.connect,function(kMDeviceInfo){
+            console.log(&quot;onConnect:&quot;+kMDeviceInfo.isConnect);
+    });
+    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.disconnect,function(kMDeviceInfo){
+        console.log(&quot;onDisconnect:&quot;+kMDeviceInfo.isConnect);
+    });
+    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.connectFailure,function(kMDeviceInfo,err){
+        console.log(&quot;onConnectFailure:&quot;+err);
+    });
+</code></pre>
+<h4>モーター回転情報受信時(Browser)</h4>
+<pre><code>    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.motorMeasurement,function(kMRotState){
+        console.log(kMRotState.GetValObj());//{position,velocity,torque}
+    });
+</code></pre>
+<h4>ジャイロ情報受信時(Browser)</h4>
+<p>受信するには別途cmdEnableIMU()を有効にする必要があります。</p>
+<pre><code>    kMMotorOneWebBLE.on(KMB.EVENT_TYPE.imuMeasurement,function(kMImuState){
+        console.log(kMImuState.GetValObj());//{accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ}
+    });
+</code></pre>
+<h2>モーター操作コマンド(全接続方式で共通)</h2>
+<p>操作コマンドは「cmdコマンド名()」の書式になります。</p>
+<pre><code>    kMMotorOneBLE.cmdSpeed_rpm(10);//Set the speed 10rpm
+    kMMotorOneBLE.cmdEnable();//Enable motor action
+    kMMotorOneBLE.cmdRunForward();//Run forward (ccw)
+</code></pre>
+<h2>詳細なドキュメント</h2>
+<p>KeiganMotor javascript Libraryリファレンス<br>
+https://docs.keigan-motor.com/apiDocument/kmconnector-js/</p>
+<p>KeiganMotor ドキュメント<br>
+https://docs.keigan-motor.com/</p>
+<h2>Author</h2>
+<p><a href="https://keigan-motor.com/">Keigan Inc.</a></p>
+<h2>License</h2>
+<p><a href="http://b4b4r07.mit-license.org">MIT</a></p></article>
+    </section>
+
+
 
 
 
@@ -418,7 +384,7 @@ module.exports = {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 30 2020 14:57:58 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

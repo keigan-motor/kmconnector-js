@@ -15,7 +15,7 @@
 
     
     <meta charset="utf-8">
-    <title>KMComBLE.js - Documentation</title>
+    <title>KMUtl.js - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -52,7 +52,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMComBLE.js</h1>
+    <h1 class="page-title">KMUtl.js</h1>
     
 
     
@@ -63,621 +63,234 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/***
- * KMComBLE.js
- * Created by Harada Hiroshi on 2017/12/07.
+ * KMUtl.js
+ * CCreated by Harada Hiroshi on 2017/12/07.
  *
  * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
 'use strict';
-const KMUtl = require('./KMUtl');
-const KMComBase = require('./KMComBase');
-const KMStructures=require('./KMStructures');
 
 /**
- * @classdesc node.js用BLE通信クラス
- * @ignore
+ * @classdesc ユーティリティ
  */
-class KMComBLE extends KMComBase{
-    /********************************************
-     * 定数
-     ********************************************/
+class KMUtl{
 
     /**
-     * サービスUUID
-     * nobleはハイフン無しの文字列
-     * @readonly
-     * @type {string}
+     * 数値にキャストする関数
+     * 数値以外は0を返す&lt;br>
+     * Infinityも0とする
+     * @param {number} val
+     * @param {number} defaultval valが数値に変換出来ない場合のデフォルト
+     * @returns {number}
+     */
+    static toNumber(val, defaultval = 0) {
+        let v = parseFloat(val, 10);
+        return (!isFinite(v) ? defaultval : v);
+    };
+    /**
+     * 数値にキャストする関数 int固定
+     * 数値以外は0を返す&lt;br>
+     * Infinityも0とする
+     * @param {number} val
+     * @param {number} defaultval valが数値に変換出来ない場合のデフォルト
+     * @returns {number}
+     */
+    static toIntNumber(val, defaultval = 0) {
+        let v = parseInt(val, 10);
+        return (!isFinite(v) ? defaultval : v);
+    };
+    /**
+     * 角度の単位変換　degree >> radian
+     * @param {number} degree 度
+     * @returns {number} radian
+     */
+    static degreeToRadian(degree) {
+        return degree * 0.017453292519943295;
+    };
+
+    /**
+     * 角度の単位変換　radian >> degree
+     * @param {number} radian radian角
+     * @returns {number} 度
+     */
+    static radianToDegree(radian) {
+        return radian / 0.017453292519943295;
+    };
+
+    /**
+     * 速度 rpm ->radian/sec に変換
+     * @param {number} rpm
+     * @returns {number} radian/sec
+     */
+    static rpmToRadianSec(rpm) {
+        //速度 rpm ->radian/sec(Math.PI*2/60)
+        return rpm * 0.10471975511965977;
+    };
+    /**
+     * 2点間の距離と角度を求める
+     * @param {number} from_x
+     * @param {number} from_y
+     * @param {number} to_x
+     * @param {number} to_y
+     * @returns {number}
+     */
+    static twoPointDistanceAngle(from_x, from_y, to_x, to_y) {
+        let distance = Math.sqrt(Math.pow(from_x - to_x, 2) + Math.pow(from_y - to_y, 2));
+        let radian = Math.atan2(from_y - to_y, from_x - to_x);
+        return {dist: distance, radi: radian, deg: KMUtl.radianToDegree(radian)};
+    };
+
+    /**
+     * コマンドのチェックサムを計算
+     * @ignore
+     * @desc 右送り CRC-16-CCITT (x16 + x12 + x5 + 1) Start:0x0000 XOROut:0x0000 ByteOrder:Little-Endian
+     * @param uint8arrayBuffer
+     * @returns {number}
+     * @constructor
+     */
+    static CreateCommandCheckSumCRC16(uint8arrayBuffer){
+        const crc16table= __crc16table;
+        let crc = 0;// Start:0x0000
+        let len=uint8arrayBuffer.length;
+        for (let i = 0; i &lt; uint8arrayBuffer.length; i++) {
+            let c = uint8arrayBuffer[i];
+            crc = (crc >> 8) ^ crc16table[(crc ^ c) &amp; 0x00ff];
+        }
+        crc=((crc>>8)&amp;0xFF)|((crc&lt;&lt;8)&amp;0xFF00);// ByteOrder:Little-Endian
+        //crc=0xFFFF^crc;//XOROut:0x0000
+        return crc;
+    }
+
+    /**
+     * @# info:: KMComBLE.jsのDEVICE INFORMATION SERVICEのパースに使用
+     * utf.js - UTF-8 &lt;=> UTF-16 convertion
+     *
+     * @ignore
+     * @param array
+     * @returns {string}
+     * @constructor
+     *
+     * @desc
+     * Copyright (C) 1999 Masanao Izumo &lt;iz@onicos.co.jp>
+     * Version: 1.0
+     * LastModified: Dec 25 1999
+     * This library is free.  You can redistribute it and/or modify it.
+     */
+    static Utf8ArrayToStr(array) {
+        let out, i, len, c;
+        let char2, char3;
+
+        out = "";
+        len = array.length;
+        i = 0;
+        while(i &lt; len) {
+            c = array[i++];
+            switch(c >> 4)
+            {
+                case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+                // 0xxxxxxx
+                out += String.fromCharCode(c);
+                break;
+                case 12: case 13:
+                // 110x xxxx   10xx xxxx
+                char2 = array[i++];
+                out += String.fromCharCode(((c &amp; 0x1F) &lt;&lt; 6) | (char2 &amp; 0x3F));
+                break;
+                case 14:
+                    // 1110 xxxx  10xx xxxx  10xx xxxx
+                    char2 = array[i++];
+                    char3 = array[i++];
+                    out += String.fromCharCode(((c &amp; 0x0F) &lt;&lt; 12) |
+                        ((char2 &amp; 0x3F) &lt;&lt; 6) |
+                        ((char3 &amp; 0x3F) &lt;&lt; 0));
+                    break;
+            }
+        }
+        return out;
+    };
+
+    /**
+     * @# info:: デバッグ用
+     * uint8Array => UTF-16 Strings convertion
+     * @ignore
+     * @param uint8Array
+     * @returns {string}
+     * @constructor
+     */
+    static Uint8ArrayToHexStr(uint8Array){
+        if(!uint8Array instanceof Uint8Array){return;}
+        let ar=[];
+        for(let i=0;i&lt;uint8Array.length;i++){
+            ar.push(uint8Array[i].toString(16));
+        }
+        return ar.join(':');
+    }
+
+    /**
+     * @# info::Uint8のConcat
+     * Creates a new Uint8Array based on two different ArrayBuffers
+     * @param {ArrayBuffers} u8Array1 The first buffer.
+     * @param {ArrayBuffers} u8Array2 The second buffer.
+     * @return {ArrayBuffers} The new ArrayBuffer created out of the two.
      * @ignore
      */
-    static get MOTOR_BLE_SERVICE_UUID(){
-        return 'f140ea3589364d35a0eddfcd795baa8c';
-    }
-
-    /**
-     * キャラクタリスティクスUUID
-     * @readonly
-     * @enum {string}
-     * @property {string} MOTOR_CONTROL モーターへの設定、制御命令を取り扱う
-     * @property {string} MOTOR_MEASUREMENT モーターの位置・速度・トルク等測定値を取り扱う
-     * @property {string} MOTOR_IMU_MEASUREMENT モーターの加速度・ジャイロセンサー（IMU）を取り扱う
-     * @property {string} MOTOR_SETTING モーターの設定値を取り扱う
-     * @ignore
-     */
-    static get MOTOR_BLE_CRS(){
-        return {
-            'MOTOR_TX':'f140000189364d35a0eddfcd795baa8c',//旧 MOTOR_CONTROL
-            //'MOTOR_LED':'f140000389364d35a0eddfcd795baa8c',//モーターのLEDを取り扱う info:: MOTOR_CONTROL::bleLedで代用
-            'MOTOR_MEASUREMENT':'f140000489364d35a0eddfcd795baa8c',
-            'MOTOR_IMU_MEASUREMENT':'f140000589364d35a0eddfcd795baa8c',
-            'MOTOR_RX':'f140000689364d35a0eddfcd795baa8c',//旧 MOTOR_SETTING
-
-        };
-    }
-
-    /**
-     * Device Information Service
-     * @readonly
-     * @enum {string}
-     * @property {string} Service
-     * @property {string} ManufacturerNameString
-     * @property {string} HardwareRevisionString
-     * @property {string} FirmwareRevisionString
-     * @ignore
-     */
-    static get DEVICE_INFORMATION_SERVICE_UUIDS(){
-        return {
-            "Service":"180a"
-            ,"ManufacturerNameString":"2a29"
-            ,"HardwareRevisionString":"2a27"
-            ,"FirmwareRevisionString":"2a26"
-        };
+    static Uint8ArrayConcat(u8Array1, u8Array2) {
+        let tmp = new Uint8Array(u8Array1.byteLength + u8Array2.byteLength);
+        tmp.set(new Uint8Array(u8Array1), 0);
+        tmp.set(new Uint8Array(u8Array2), u8Array1.byteLength);
+        return tmp;
     }
 
 
-    /********************************************
-     * section::公開メソッド
-     ********************************************/
-    /**
-     * constructor　
-     * @param {object} peripheral noble peripheral object
-     *
-     */
-    constructor(peripheral){
-        super();
-        //this._queCount=0;
-        this._bleSendingQue=Promise.resolve(true);
-        this._peripheral=peripheral;
-        this._characteristics={};
-
-        this._deviceInfo.type="BLE";
-        this._deviceInfo.id=this._peripheral.id;
-        this._deviceInfo.name=peripheral.advertisement?peripheral.advertisement.localName:null;
-        if(!peripheral instanceof Object||!peripheral.uuid){
-            throw new Error('Type mismatch of peripheral device');
-        }
-        /********************************************
-         * イベント
-         ********************************************/
-        //this._peripheral.removeAllListeners('connect');
-        this._peripheral.removeAllListeners('disconnect');
-        this._peripheral.removeAllListeners('servicesDiscover');
-
-        // this._peripheral.on('connect', function() {
-        //     console.log('connect');
-        // }.bind(this));
-
-        this._peripheral.on('disconnect',  function(){
-            console.log('disconnect');
-            this._statusChange_isConnect(false);
-        }.bind(this));
-    }
-
-    /**
-     * BLEでの接続を開始する
-     *
-     */
-    connect(){
-        if ((this._peripheral&amp;&amp; this._peripheral.state==='connected'||this._peripheral.state==='connecting')) {
-            return;
-        }
-        this._peripheral.connect(function(error){
-            if(error){
-                this._onConnectFailureHandler(this,error);
-            }else {
-                this._discoverServices().then(()=>{
-                    console.log('BLE discoverServices comp');
-                    if(!this._isInit){
-                        //初回のみ(comp以前は発火しない為)
-                        this._statusChange_init(true);
-                        this._statusChange_isConnect(true);
-                    }else{
-                        this._statusChange_isConnect(true);
-                    }
-                }).catch(function(res){
-                    console.log(res);
-                });
-            }
-        }.bind(this));
-    }
-
-    /**
-     * BLEでの切断
-     */
-    disConnect(){
-        this._peripheral.disconnect();
-    }
-
-    /********************************************
-     * 内部
-     ********************************************/
-    _discoverServices(){
-        return new Promise((d_resolve,d_reject)=> {
-            this._peripheral.discoverServices([this.constructor.MOTOR_BLE_SERVICE_UUID,this.constructor.DEVICE_INFORMATION_SERVICE_UUIDS.Service],
-                (error,services)=>{
-                    if(error){
-                        d_reject(error);return;
-                    }
-                    console.log('servicesDiscover');
-                    let discMotorServiceFlg=false;
-                    Promise.all(services.map((service)=>{
-                        return new Promise((svresolve, svreject) => {
-                            if (service['uuid'] === this.constructor.MOTOR_BLE_SERVICE_UUID) {
-                                discMotorServiceFlg = true;
-                                service.discoverCharacteristics([],(err,characteristics) =>{
-                                    if(err){
-                                        svreject(errmsg);return;
-                                    }
-                                    let crs = {};
-                                    Object.keys(this.constructor.MOTOR_BLE_CRS).forEach((key) => {
-                                        for (let j = 0; j &lt; characteristics.length; j++) {
-                                            if (characteristics[j].uuid === this.constructor.MOTOR_BLE_CRS[key]) {
-                                                crs[key] = characteristics[j];
-                                                break;
-                                            }
-                                        }
-                                    });
-                                    this._characteristics = crs;
-                                    //start notify
-                                    new Promise((resolve, reject) => {
-                                        if (this._characteristics['MOTOR_MEASUREMENT']) {
-                                            this._characteristics['MOTOR_MEASUREMENT'].removeAllListeners('data');
-                                            this._characteristics['MOTOR_MEASUREMENT'].on('data', this._onBleMotorMeasurement.bind(this));
-                                            this._characteristics['MOTOR_MEASUREMENT'].subscribe((error) => {
-                                                if (error) {
-                                                    let errmsg = 'err:MOTOR_MEASUREMENT subscribe -> :' + error;
-                                                    console.log(errmsg);
-                                                    reject(errmsg);
-                                                } else {
-                                                    resolve();
-                                                }
-                                            });
-                                        }
-                                    }).then(() => {
-                                        return new Promise((resolve, reject) => {
-                                            if (this._characteristics['MOTOR_IMU_MEASUREMENT']) {
-                                                this._characteristics['MOTOR_IMU_MEASUREMENT'].removeAllListeners('data');
-                                                this._characteristics['MOTOR_IMU_MEASUREMENT'].on('data', this._onBleImuMeasurement.bind(this));
-                                                this._characteristics['MOTOR_IMU_MEASUREMENT'].subscribe((error) => {
-                                                    if (error) {
-                                                        let errmsg = 'err:MOTOR_IMU_MEASUREMENT subscribe -> :' + error;
-                                                        console.log(errmsg);
-                                                        reject(errmsg);
-                                                    } else {
-                                                        resolve();
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }).then(() => {
-                                        return new Promise((resolve, reject) => {
-                                            if (this._characteristics['MOTOR_RX']) {
-                                                this._characteristics['MOTOR_RX'].removeAllListeners('data');
-                                                this._characteristics['MOTOR_RX'].on('data', this._onBleMotorSetting.bind(this));
-                                                this._characteristics['MOTOR_RX'].on('data', this._onBleMotorLog.bind(this));
-
-                                                this._characteristics['MOTOR_RX'].subscribe((error) => {
-                                                    if (error) {
-                                                        let errmsg = 'err:MOTOR_RX subscribe -> :' + error;
-                                                        console.log(errmsg);
-                                                        reject(errmsg);
-                                                    } else {
-                                                        resolve();
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }).then(() => {
-                                        svresolve(true);
-                                    }).catch((errmsg) => {
-                                        console.log(errmsg);
-                                        svreject(errmsg);
-                                    });
-                                });
-                            }
-                            else if (service['uuid'] === this.constructor.DEVICE_INFORMATION_SERVICE_UUIDS.Service) {
-                                service.discoverCharacteristics([], (err,characteristics) =>{
-                                    if(err){
-                                        svreject(errmsg);return;
-                                    }
-                                    Promise.all(characteristics.map((characteristic)=>{
-                                        return new Promise((resolve, reject)=>{
-                                            switch (characteristic.uuid) {
-                                                case this.constructor.DEVICE_INFORMATION_SERVICE_UUIDS.ManufacturerNameString:
-                                                    characteristic.read((error, data) => {
-                                                        this._deviceInfo.manufacturerName = KMUtl.Utf8ArrayToStr(data);
-                                                        resolve(true);
-                                                    });
-                                                    break;
-                                                case this.constructor.DEVICE_INFORMATION_SERVICE_UUIDS.HardwareRevisionString:
-                                                    characteristic.read((error, data) => {
-                                                        this._deviceInfo.hardwareRevision = KMUtl.Utf8ArrayToStr(data);
-                                                        resolve(true);
-                                                    });
-                                                    break;
-                                                case this.constructor.DEVICE_INFORMATION_SERVICE_UUIDS.FirmwareRevisionString:
-                                                    characteristic.read((error, data) => {
-                                                        this._deviceInfo.firmwareRevision = KMUtl.Utf8ArrayToStr(data);
-                                                        resolve(true);
-                                                    });
-                                                    break;
-                                                default:
-                                                    resolve(true);
-                                                    break;
-                                            }
-                                        });
-                                    })).then(()=>{
-                                        svresolve(true);
-                                    }).catch((errmsg)=>{
-                                        svreject(errmsg);
-                                    });
-                                });
-                            }else{
-                                svresolve(true);
-                            }
-                        });
-                    })).then(()=>{
-                        if(!discMotorServiceFlg){
-                            console.log('Type mismatch of motor peripheral device:'+this._deviceInfo.name);
-                            this._peripheral.disconnect();
-                        }else{
-                            d_resolve(true);
-                        }
-                    }).catch((errmsg)=>{
-                        console.log('Err servicesDiscover:'+errmsg);
-                        d_resolve(true);
-                    });
-             });
-        });
-    }
-
-    /**
-     * @#---------------------------------------------------------
-     * @summary モーター回転情報受信
-     * @param {Buffer} data
-     * @private
-     * @#
-     * ---------------------------------------------------------
-     * Notify Value
-     *  byte[0]-byte[3]	    byte[4]-byte[7]	        byte[8]-byte[11]
-     *  float * 		        float *                 float *
-     *  position:radians	    speed:radians/second	torque:N・m
-     */
-    _onBleMotorMeasurement(data){
-        if(! data instanceof Buffer){return;}
-        let u8=new Uint8Array(data);//info::一旦コピーする必要がある https://stackoverflow.com/questions/37794803/node-js-buffer-to-typed-array
-        let dv=new DataView(u8.buffer);
-        let position=dv.getFloat32(0,false);
-        let velocity=dv.getFloat32(4,false);
-        let torque=dv.getFloat32(8,false);
-        this._onMotorMeasurementCB(new KMStructures.KMRotState(position,velocity,torque));
-    }
-    /**
-     * @#---------------------------------------------------------
-     * @summary モーターIMU情報受信
-     * @param {Buffer} data
-     * @private
-     *
-     * @# Notify したときの返り値)---------------------------------------------
-     * accel_x, accel_y, accel_z, temp, gyro_x, gyro_y, gyro_z が全て返ってくる。取得間隔は100ms 固定
-     * byte(BigEndian)  [0][1] [2][3]  [4][5]   [6][7]	    [8][9]	[10][11]    [12][13]
-     *                  int16_t int16_t int16_t int16_t     int16_t int16_t int16_t
-     *                  accel-x accel-y accel-z temp	    gyro-x	gyro-y	gyro-z
-     *
-     * int16_t:-32,768〜32,768
-     * 机の上にモーターを置いた場合、加速度　z = 16000 程度となる。（重力方向のため）
-     *
-     * 単位変換）---------------------------------------------------------
-     * 　加速度 value [G] = raw_value * 2 / 32,767
-     * 　温度 value [℃] = raw_value / 333.87 + 21.00
-     * 　角速度
-     * 　　value [degree/second] = raw_value * 250 / 32,767
-     * 　　value [radians/second] = raw_value * 0.00013316211
-     *
-     */
-    _onBleImuMeasurement(data){
-        if(! data instanceof Buffer){return;}
-        let u8=new Uint8Array(data);//info::一旦コピーする必要がある
-        let dv=new DataView(u8.buffer);
-        let tempCalibration=-5.7;//温度校正値
-        //単位を扱い易いように変換
-        let accelX=dv.getInt16(0,false)*2/32767;
-        let accelY=dv.getInt16(2,false)*2/32767;
-        let accelZ=dv.getInt16(4,false)*2/32767;
-        let temp=(dv.getInt16(6,false)) / 333.87 + 21.00+tempCalibration;
-        let gyroX=dv.getInt16(8,false)*250/32767;
-        let gyroY=dv.getInt16(10,false)*250/32767;
-        let gyroZ=dv.getInt16(12,false)*250/32767;
-
-        this._onImuMeasurementCB(new KMStructures.KMImuState(accelX,accelY,accelZ,temp,gyroX,gyroY,gyroZ));
-    }
-
-    /**
-     * @#---------------------------------------------------------
-     * モーターログ情報取得
-     * @param {Buffer} data
-     * @private
-     * @#---------------------------------------------------------
-     * Notify value
-     * byte[0]	byte[1-2]	byte[3]	byte[4-7]	byte[8-11]	byte[12-13]
-     * uint8_t:tx_type	uint16_t:id	uint8_t:command	uint32_t:errorCode	uint32_t:info	uint16_t:CRC
-     */
-    _onBleMotorLog(data){
-        //-------------
-        //データのparse
-        //-------------
-        if(! data instanceof Buffer){return;}
-        let uint8Array=new Uint8Array(data);//info::一旦コピーする必要がある
-        let dv=new DataView(uint8Array.buffer);//6+nバイト　
-        let txType=dv.getUint8(0);//エラーログタイプ:0xBE固定
-        if(txType!==0xBE){return;}
-
-        let id=dv.getUint16(1,false);//送信ID
-        let cmdID=dv.getUint8(3,false);
-        let errCode=dv.getUint32(4,false);
-        let info=dv.getUint32(8,false);
-        //ログ取得
-        this._onMotorLogCB(new KMStructures.KMMotorLog(id,null,cmdID,this._MOTOR_LOG_ERRORCODE[errCode].id,this._MOTOR_LOG_ERRORCODE[errCode].type,this._MOTOR_LOG_ERRORCODE[errCode].msg,info));
-    }
-    /**
-     * @#---------------------------------------------------------
-     * モーター設定情報取得
-     * @param {Buffer} data
-     * @private
-     * @#---------------------------------------------------------
-     * Notify したときの返り値
-     * byte[0]	byte[1]	byte[2]	byte[3] byte[4]以降	byte[n-2]	byte[n-1]
-     * uint8_t:log_type	uint16_t:id	uint8_t:register	uint8_t:value	uint16_t:CRC
-     * 0x40	uint16_t (2byte) 0～65535	レジスタコマンド	レジスタの値（コマンドによって変わる）	uint16_t (2byte) 0～65535
-     */
-    _onBleMotorSetting(data){
-        if(! data instanceof Buffer){return;}
-        let uint8Array=new Uint8Array(data);//info::一旦コピーする必要がある
-        let dv=new DataView(uint8Array.buffer);//5+nバイト　データ仕様　
-
-        //-------------
-        //データのparse
-        //-------------
-        let txLen=dv.byteLength;
-        let txType=dv.getUint8(0);//レジスタ情報通知コマンドID 0x40固定
-        if(txType!==0x40||txLen&lt;5){return;}//レジスタ情報を含まないデータの破棄
-
-        let id=dv.getUint16(1,false);//送信ID
-        let registerCmd=dv.getUint8(3);//レジスタコマンド
-        let crc=dv.getUint16(txLen-2,false);//CRCの値 最後から2dyte
-        let res={};
-        //コマンド別によるレジスタの値の取得[4-n byte]
-        let startOffset=4;
-
-        switch(registerCmd){
-            case this._MOTOR_RX_READREGISTER_COMMAND.maxSpeed:
-                res.maxSpeed=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.minSpeed:
-                res.minSpeed=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.curveType:
-                res.curveType=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.acc:
-                res.acc=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.dec:
-                res.dec=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.maxTorque:
-                res.maxTorque=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.teachingInterval:
-                res.teachingInterval=dv.getUint8(startOffset,false);//todo::バイト不足 Uint32->Uint8  2.24
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.playbackInterval:
-                res.playbackInterval=dv.getUint8(startOffset,false);//todo::バイト不足 Uint32->Uint8  2.24
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.qCurrentP:
-                res.qCurrentP=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.qCurrentI:
-                res.qCurrentI=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.qCurrentD:
-                res.qCurrentD=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.speedP:
-                res.speedP=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.speedI:
-                res.speedI=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.speedD:
-                res.speedD=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.positionP:
-                res.positionP=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.positionI:
-                res.positionI=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.positionD:
-                res.positionD=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.posControlThreshold:
-                res.posControlThreshold=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.motorMeasurementInterval:
-                res.motorMeasurementInterval=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.motorMeasurementByDefault:
-                res.motorMeasurementByDefault=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.interface:
-                res.interface=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.response://todo::値が取得出来ない 2.24
-                res.response=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.ownColor:
-                res.ownColor=('#000000' +Number(dv.getUint8(startOffset)&lt;&lt;16|dv.getUint8(startOffset+1)&lt;&lt;8|dv.getUint8(startOffset+2)).toString(16)).substr(-6);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.iMUMeasurementInterval:
-                res.iMUMeasurementInterval=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.iMUMeasurementByDefault:
-                res.iMUMeasurementByDefault=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.deviceName:
-                res.deviceName=String.fromCharCode.apply("", uint8Array.slice(startOffset,-2));//可変バイト文字
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.deviceInfo:
-                res.deviceInfo=String.fromCharCode.apply("", uint8Array.slice(startOffset,-2));//可変バイト文字
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.speed:
-                res.speed=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.positionOffset:
-                res.positionOffset=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.moveTo:
-                res.moveTo=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.hold:
-                res.hold=dv.getFloat32(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.status:
-                res.status=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.tasksetName:
-                res.tasksetName=String.fromCharCode.apply("", uint8Array.slice(startOffset,-2));//可変バイト文字
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.tasksetInfo:
-                res.tasksetInfo=dv.getUint16(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.tasksetUsage:
-                res.tasksetUsage=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.motionName:
-                res.motionName=String.fromCharCode.apply("", uint8Array.slice(startOffset,-2));//可変バイト文字
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.motionInfo:
-                res.motionInfo=dv.getUint16(startOffset,false);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.motionUsage:
-                res.motionUsage=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.i2CSlaveAddress:
-                res.i2CSlaveAddress=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.uartBaudRate:
-                res.uartBaudRate=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.led:
-                res.led={state:dv.getUint8(startOffset),r:dv.getUint8(startOffset+1),g:dv.getUint8(startOffset+2),b:dv.getUint8(startOffset+3)};
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.enableCheckSum:
-                res.enableCheckSum=dv.getUint8(startOffset);
-                break;
-            case this._MOTOR_RX_READREGISTER_COMMAND.deviceSerial:
-                res.deviceSerial=String.fromCharCode.apply("", uint8Array.slice(startOffset,-2));//可変バイト文字
-                break;
-        }
-        this._onMotorSettingCB(registerCmd,res);
-
-    }
-
-    /**
-     * BLEコマンドの送信
-     * @param commandCategory コマンド種別のString BLEのキャラクタリスティクスの指定で使用する
-     * @param commandNum
-     * @param arraybuffer
-     * @param notifyPromis cmdReadRegister等のBLE呼び出し後にnotifyで取得する値をPromisで帰す必要のあるコマンド用
-     * @param cid シーケンスID
-     * @returns {number} cid シーケンスID
-     * @private
-     * @#---------------------------------------------------------
-     */
-    _sendMotorCommand(commandCategory, commandNum, arraybuffer=new ArrayBuffer(0), notifyPromis=null,cid=null){
-        let characteristics=this._characteristics[commandCategory];
-        let ab=new DataView(arraybuffer);
-        let buffer = new ArrayBuffer(arraybuffer.byteLength+5);
-        new DataView(buffer).setUint8(0,commandNum);
-        cid=cid===null?this.createCommandID:cid;//シーケンスID(ユニーク値)
-        new DataView(buffer).setUint16(1,cid);
-        //データの書き込み
-        for(let i=0;i&lt;arraybuffer.byteLength;i++){
-            new DataView(buffer).setUint8(3+i,ab.getUint8(i));
-        }
-        let crc=KMUtl.CreateCommandCheckSumCRC16(new Uint8Array(buffer.slice(0,buffer.byteLength-2)));
-        new DataView(buffer).setUint16(arraybuffer.byteLength+3,crc);//info::CRC計算
-
-        //queに追加
-       // ++this._queCount;
-        this._bleSendingQue= this._bleSendingQue.then((res)=>{
-         // console.log("_sendMotorCommand queCount:"+(--this._queCount));
-            if(notifyPromis){
-                notifyPromis.startRejectTimeOutCount();
-            }
-            return new Promise((resolve,reject)=> {
-                characteristics.write(this._toBuffer(buffer),
-                    true,//withoutResponseFlg
-                    function(error){
-                        if(!error){
-                            resolve(true);
-                        }else{
-                            reject("ERR:characteristics.write");
-                        }
-                });
-            })
-        }).catch(function(res){
-            //失敗時　//info::後続のコマンドは引き続き実行される
-          //console.log("ERR _sendMotorCommand:"+res+" queCount:"+(--this._queCount));
-            if(notifyPromis){
-                notifyPromis.callReject(res);
-            }
-        });
-        return cid;
-    }
-
-    /**
-     * ArrayBuffer to Buffer
-     * @param ab
-     * @returns {Buffer}
-     * @private
-     */
-    _toBuffer(ab) {
-        let buf = new Buffer(ab.byteLength);
-        let view = new Uint8Array(ab);
-        for (let i = 0; i &lt; buf.length; ++i) {
-            buf[i] = view[i];
-        }
-        return buf;
-    }
-
-
-//////class//
 }
 
-module.exports =KMComBLE;</code></pre>
+/**
+ * CreateCommandCheckSumCRC16用 CRCテーブル
+ * @ignore
+ * @type {Uint16Array}
+ * @private
+ */
+const __crc16table=new Uint16Array([
+    0 , 0x1189 , 0x2312 , 0x329b , 0x4624 , 0x57ad , 0x6536 , 0x74bf ,
+    0x8c48 , 0x9dc1 , 0xaf5a , 0xbed3 , 0xca6c , 0xdbe5 , 0xe97e , 0xf8f7 ,
+    0x1081 , 0x0108 , 0x3393 , 0x221a , 0x56a5 , 0x472c , 0x75b7 , 0x643e ,
+    0x9cc9 , 0x8d40 , 0xbfdb , 0xae52 , 0xdaed , 0xcb64 , 0xf9ff , 0xe876 ,
+    0x2102 , 0x308b , 0x0210 , 0x1399 , 0x6726 , 0x76af , 0x4434 , 0x55bd ,
+    0xad4a , 0xbcc3 , 0x8e58 , 0x9fd1 , 0xeb6e , 0xfae7 , 0xc87c , 0xd9f5 ,
+    0x3183 , 0x200a , 0x1291 , 0x0318 , 0x77a7 , 0x662e , 0x54b5 , 0x453c ,
+    0xbdcb , 0xac42 , 0x9ed9 , 0x8f50 , 0xfbef , 0xea66 , 0xd8fd , 0xc974 ,
+
+    0x4204 , 0x538d , 0x6116 , 0x709f , 0x0420 , 0x15a9 , 0x2732 , 0x36bb ,
+    0xce4c , 0xdfc5 , 0xed5e , 0xfcd7 , 0x8868 , 0x99e1 , 0xab7a , 0xbaf3 ,
+    0x5285 , 0x430c , 0x7197 , 0x601e , 0x14a1 , 0x0528 , 0x37b3 , 0x263a ,
+    0xdecd , 0xcf44 , 0xfddf , 0xec56 , 0x98e9 , 0x8960 , 0xbbfb , 0xaa72 ,
+    0x6306 , 0x728f , 0x4014 , 0x519d , 0x2522 , 0x34ab , 0x0630 , 0x17b9 ,
+    0xef4e , 0xfec7 , 0xcc5c , 0xddd5 , 0xa96a , 0xb8e3 , 0x8a78 , 0x9bf1 ,
+    0x7387 , 0x620e , 0x5095 , 0x411c , 0x35a3 , 0x242a , 0x16b1 , 0x0738 ,
+    0xffcf , 0xee46 , 0xdcdd , 0xcd54 , 0xb9eb , 0xa862 , 0x9af9 , 0x8b70 ,
+
+    0x8408 , 0x9581 , 0xa71a , 0xb693 , 0xc22c , 0xd3a5 , 0xe13e , 0xf0b7 ,
+    0x0840 , 0x19c9 , 0x2b52 , 0x3adb , 0x4e64 , 0x5fed , 0x6d76 , 0x7cff ,
+    0x9489 , 0x8500 , 0xb79b , 0xa612 , 0xd2ad , 0xc324 , 0xf1bf , 0xe036 ,
+    0x18c1 , 0x0948 , 0x3bd3 , 0x2a5a , 0x5ee5 , 0x4f6c , 0x7df7 , 0x6c7e ,
+    0xa50a , 0xb483 , 0x8618 , 0x9791 , 0xe32e , 0xf2a7 , 0xc03c , 0xd1b5 ,
+    0x2942 , 0x38cb , 0x0a50 , 0x1bd9 , 0x6f66 , 0x7eef , 0x4c74 , 0x5dfd ,
+    0xb58b , 0xa402 , 0x9699 , 0x8710 , 0xf3af , 0xe226 , 0xd0bd , 0xc134 ,
+    0x39c3 , 0x284a , 0x1ad1 , 0x0b58 , 0x7fe7 , 0x6e6e , 0x5cf5 , 0x4d7c ,
+
+    0xc60c , 0xd785 , 0xe51e , 0xf497 , 0x8028 , 0x91a1 , 0xa33a , 0xb2b3 ,
+    0x4a44 , 0x5bcd , 0x6956 , 0x78df , 0x0c60 , 0x1de9 , 0x2f72 , 0x3efb ,
+    0xd68d , 0xc704 , 0xf59f , 0xe416 , 0x90a9 , 0x8120 , 0xb3bb , 0xa232 ,
+    0x5ac5 , 0x4b4c , 0x79d7 , 0x685e , 0x1ce1 , 0x0d68 , 0x3ff3 , 0x2e7a ,
+    0xe70e , 0xf687 , 0xc41c , 0xd595 , 0xa12a , 0xb0a3 , 0x8238 , 0x93b1 ,
+    0x6b46 , 0x7acf , 0x4854 , 0x59dd , 0x2d62 , 0x3ceb , 0x0e70 , 0x1ff9 ,
+    0xf78f , 0xe606 , 0xd49d , 0xc514 , 0xb1ab , 0xa022 , 0x92b9 , 0x8330 ,
+    0x7bc7 , 0x6a4e , 0x58d5 , 0x495c , 0x3de3 , 0x2c6a , 0x1ef1 , 0x0f78
+]);
+
+module.exports = KMUtl;</code></pre>
         </article>
     </section>
 
@@ -691,7 +304,7 @@ module.exports =KMComBLE;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 30 2020 14:57:58 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -15,7 +15,7 @@
 
     
     <meta charset="utf-8">
-    <title>KMDeviceInfo - Documentation</title>
+    <title>KMMotorOneUSBSerial.js - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -52,1025 +52,322 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMDeviceInfo</h1>
-    
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>
-        KMDeviceInfo
-        </h2>
-        
-            <div class="class-description"><p>デバイス情報</p></div>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="KMDeviceInfo"><span class="type-signature"></span>new KMDeviceInfo<span class="signature">(type, id, name, isConnect, manufacturerName, hardwareRevision, firmwareRevision)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line295">line 295</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>constructor</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="KMMotorCommandKMOne.html#.KM_CONNECT_TYPE">KMMotorCommandKMOne.KM_CONNECT_TYPE</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    <code>0</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>接続方式</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>デバイスUUID</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>モーター名(形式 ID LEDColor)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>isConnect</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>接続状態</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>manufacturerName</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    <code>null</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>製造会社名</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>hardwareRevision</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    <code>null</code>
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>firmwareRevision</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    <code>null</code>
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        </div>
-    
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="KMStructureBase.html">KMStructureBase</a></li>
-    </ul>
-
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="Clone"><span class="type-signature"></span>Clone<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line41">line 41</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#Clone">KMStructureBase#Clone</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>複製</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>複製された構造体</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="EQ"><span class="type-signature"></span>EQ<span class="signature">(tar)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#EQ">KMStructureBase#EQ</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>同じ値を持つかの比較</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>tar</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>比較する構造体</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>結果</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="GetValArray"><span class="type-signature"></span>GetValArray<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line56">line 56</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#GetValArray">KMStructureBase#GetValArray</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>値の取得（配列）</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="GetValObj"><span class="type-signature"></span>GetValObj<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line48">line 48</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#GetValObj">KMStructureBase#GetValObj</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>値の取得（Obj）</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="SetValObj"><span class="type-signature"></span>SetValObj<span class="signature">(propsObj)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line69">line 69</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KMStructureBase.html#SetValObj">KMStructureBase#SetValObj</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>値の一括設定（Obj）</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>propsObj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>設定するプロパティ</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <h1 class="page-title">KMMotorOneUSBSerial.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/***
+ *KMMotorOneUSBSerial.js
+ * Created by Harada Hiroshi on 2018/02/27.
+ *
+ * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+
+'use strict';
+
+const EventEmitter = require("events").EventEmitter;
+const KMUtl= require('./KMUtl');
+const KMComUSBSerial = require('./KMComUSBSerial');
+const KMMotorCommandKMOne=require('./KMMotorCommandKMOne.js');
+const serialport = require('serialport');
+const {performance} = require('perf_hooks');
+/**
+ * @typedef {Object&lt; motorUUID,KMMotorOneUSBSerial >} _motorsByUUID
+ * @ignore
+ */
+let _motorsByUUID={};
+/**
+ * @typedef {Object&lt; motorName,KMMotorOneUSBSerial >} _motorsByName
+ * @ignore
+ */
+let _motorsByName={};
+let _KMMotorOneUSBSerialStaticEventEmitter=new EventEmitter(null);
+
+process.on('exit', function() {
+    //todo::プロセス終了時のUSBデバイス切断 必要なら
+});
+
+/**
+ * @classdesc KM-1のUSBシリアル接続用 仮想デバイス
+ */
+class KMMotorOneUSBSerial extends KMMotorCommandKMOne{
+    /********************************************
+     * static　events
+     ********************************************/
+    /**
+     * イベントリスナを追加する. Synonym for EventEmitter
+     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     * @param {function(object)} listener 追加するイベントリスナ.
+     */
+    static on(type, listener){
+        _KMMotorOneUSBSerialStaticEventEmitter.on(type,listener);
+    }
+    /**
+     * 1回限りのイベントリスナを追加する. Synonym for EventEmitter
+     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     * @param {function(object)} listener 追加するイベントリスナ.
+     */
+    static once(type, listener){
+        _KMMotorOneUSBSerialStaticEventEmitter.once(type,listener);
+    }
+    /**
+     * イベントリスナを削除する Synonym for EventEmitter
+     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ
+     * @param {function(object)} listener 削除するイベントリスナ
+     */
+    static removeListener(type, listener){
+        _KMMotorOneUSBSerialStaticEventEmitter.removeListener(type,listener);
+    }
+    /**
+     * 全てのイベントリスナを削除する Synonym for EventEmitter
+     * @param {KMMotorOneUSBSerial.EVENT_TYPE} type イベントのタイプ.
+     */
+    static removeAllListeners(type){
+        _KMMotorOneUSBSerialStaticEventEmitter.removeAllListeners(type);
+    }
+
+    /**
+     * イベントタイプ定数
+     * @readonly
+     * @enum {string}
+     * @property {string} discoverMotor - モーター発見時(毎回)
+     * &lt;br>return:function({@link KMMotorOneUSBSerial})
+     * @property {string} discoverNewMotor - 新規モーターの発見時(1回のみ)
+     * &lt;br>return:function({@link KMMotorOneUSBSerial})
+     * @property {string} scanTimeout - スキャンのタイムアウトで終了時
+     * &lt;br>return:function()
+     */
+    static get EVENT_TYPE(){
+        return {
+            discoverMotor:"discoverMotor",
+            discoverNewMotor:"discoverNewMotor",
+            scanTimeout:"scanTimeout"
+        };
+    }
+    /********************************************
+     * static Method
+     ********************************************/
+    /**
+     * USBデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する
+     */
+    static startScanToCreateInstance(){
+       return new Promise((resolve,reject)=> {
+           serialport.list().then((ports)=>{
+               let pmar=[];
+               ports.forEach((port)=> {
+                   let portName=port.comName;
+                   if(port.manufacturer!=="FTDI"||(parseInt(port.productId,16)).toString(16)!=="6015"){//KM1 USBchip
+                       return;
+                   }
+                   let serialNumber=port.serialNumber;//info::デバイス固有ID識別用。 UUID的な
+
+                   if(!_motorsByUUID[serialNumber]){
+                       let pm=new Promise(function(s_resolve, s_reject) {
+                           KMMotorOneUSBSerial._getMotorNameSerial(portName).then((name)=>{
+                               let motor= new KMMotorOneUSBSerial(portName,serialNumber,name);//info::検出したモーターは全てインスタンス化
+
+                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,_motorsByUUID[serialNumber]);
+                               /**
+                                * 新規モーターの発見時
+                                * @event KMMotorOneUSBSerial#discoverNewMotor
+                                * @type {KMMotorOneUSBSerial}
+                                * @property {object} KMMotorOneUSBSerial {@link KMMotorOneUSBSerial}
+                                * @example
+                                *
+                                * KMMotorOneUSBSerial.on(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
+                                *      console.log('onDiscoverNewMotor:'+kMMotorOne.deviceInfo.name);
+                                * });
+                                */
+
+                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
+                               /**
+                                * モーターの発見時
+                                * @event KMMotorOneUSBSerial#discoverMotor
+                                * @type {KMMotorOneUSBSerial}
+                                * @property {object} KMMotorOneUSBSerial {@link KMMotorOneUSBSerial}
+                                * @example
+                                *
+                                * KMMotorOneUSBSerial.on(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
+                                *      console.log('onDiscoverMotor:'+kMMotorOne.deviceInfo.name);
+                                * });
+                                */
+                               s_resolve(true);
+                           }).catch((e)=>{
+                               console.log("getMotorName Err",e);
+                               let motor= new KMMotorOneUSBSerial(portName,serialNumber);//info::検出したモーターは全てインスタンス化
+                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverNewMotor,_motorsByUUID[serialNumber]);
+                               _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
+                               s_resolve(true);
+                           });
+                       });
+                       pmar.push(pm);
+                   }
+                   if(_motorsByUUID[serialNumber]){
+                       _KMMotorOneUSBSerialStaticEventEmitter.emit(KMMotorOneUSBSerial.EVENT_TYPE.discoverMotor,_motorsByUUID[serialNumber]);
+                   }
+               });
+
+               Promise.all(pmar).then(()=>{
+                   KMMotorOneUSBSerial._restructMotorsByName();
+                   resolve(_motorsByUUID);
+               });
+           }).catch((err)=>{
+               console.log(err);
+               reject(err);
+           });
+        });
+    }
+
+    /**
+     * Motor名取得用にコマンド発行->受信
+     * @param comName
+     * @returns {Promise&lt;any>}
+     * @private
+     * @ignore
+     */
+    static _getMotorNameSerial(comName){
+        return new Promise((resolve,reject)=> {
+            let execTimeoutms=5000;
+
+            //motorNameの取得の為、一度接続する
+            let kcom= new KMComUSBSerial(comName);
+
+            let timeOutIntevalID=setTimeout(()=>{
+                kcom.disConnect();
+                reject("getMotorName timeout");
+            },execTimeoutms);
+
+            kcom.onConnect=(connector)=>{
+                setTimeout(()=>{
+                    kcom._sendMotorCommand('MOTOR_SETTING',kcom._MOTOR_RX_READREGISTER_COMMAND.deviceName);//DeviceName
+                },500);
+            };
+            kcom.onConnectFailure=(connector, err)=>{
+                reject("getMotorName connectFailure");
+            };
+
+            kcom.onMotorSetting=(registerCmd,res)=>{
+                //名前の取得
+                if(registerCmd===kcom._MOTOR_RX_READREGISTER_COMMAND.deviceName){
+                    let rName=typeof res.deviceName==="string"?res.deviceName.split('#')[0]:null;
+                    kcom.disConnect();
+                    clearTimeout(timeOutIntevalID);
+                    resolve(rName);
+                }
+            };
+
+            kcom.connect();
+
+        });
+    }
+    /**
+     * 全てのモーターのUSB接続を解除
+     */
+    static allDisConnect(){
+        Object.keys(_motorsByUUID).forEach((key)=> {
+            _motorsByUUID[key]._KMCom.disConnect();
+        });
+    }
+
+    /**
+     *  全ての仮想モーターを消去
+     */
+    static clearMotors(){
+        KMMotorOneUSBSerial.allDisConnect();
+        _motorsByUUID={};
+        KMMotorOneUSBSerial._restructMotorsByName();
+    }
+    /**
+     * APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
+     * &lt;br>ex) {&lt;motorName1>:{@link KMMotorOneUSBSerial},&lt;motorName2>:{@link KMMotorOneUSBSerial},,,}
+     * &lt;br>一度作成された仮想モーターは物理的に取り外してもclearMotors()を行うまで消えない
+     * @readonly
+     * @type {_motorsByName}
+     */
+    static get motors(){
+        return _motorsByName;
+    }
+
+    /**
+     * APIが認識しているモーターのインスタンスリスト(プロパティはUUID)
+     * &lt;br>ex) {&lt;motorUUID1>:{@link KMMotorOneUSBSerial},&lt;motorUUID2>:{@link KMMotorOneUSBSerial},,,}
+     * &lt;br>一度作成された仮想モーターは物理的に取り外してもclearMotors()を行うまで消えない
+     * @readonly
+     * @type {_motorsByUUID}
+     */
+    static get motorsByUUID(){
+        return _motorsByUUID;
+    }
+    /**
+     * モーターのリストを再インデックス
+     * @private
+     * @ignore
+     */
+    static _restructMotorsByName(){
+        let list={};
+        Object.keys(_motorsByUUID).forEach((key)=>{
+            let name=  _motorsByUUID[key].deviceInfo.name? _motorsByUUID[key].deviceInfo.name.split('#')[0]:null;
+            if(name){
+                list[name]=_motorsByUUID[key];
+            }else{
+                console.log('Err motor name not found');
+            }
+        });
+        _motorsByName=list;
+    }
+    /********************************************
+     * instance Method
+     ********************************************/
+    /**
+     * KMMotorOneUSBSerial
+     * @constructor
+     * @extends {KMMotorCommandKMOne}
+     * @param portName
+     * @param id UniqueID デバイスのユニーク名 内部生成用。通常は指定しない (手動接続時は常にnull)
+     * @param defaultMotorName string 内部生成用。通常は指定しない (手動接続時は常にnull)
+     */
+    constructor(portName,id=null,defaultMotorName=null){
+        let cid=!id?"id_"+String(performance.now()).split(".").join("")+"_"+portName:id;
+        super(KMMotorCommandKMOne.KM_CONNECT_TYPE.SERIAL,new KMComUSBSerial(portName,cid,defaultMotorName));
+        if(!_motorsByUUID[cid]){
+            _motorsByUUID[cid]=this;
+        }
+
+        this.on(this.EVENT_TYPE.init,(kMDeviceInfo)=>{
+            KMMotorOneUSBSerial._restructMotorsByName();
+        });
+    }
+
+    /**
+     * モーターと接続する
+     */
+    connect(){
+       this._KMCom.connect();
+    }
+
+    /**
+     * モーターと切断
+     */
+    disConnect(){
+        this._KMCom.disConnect();
+    }
+
+
+}
+
+module.exports =KMMotorOneUSBSerial;
+
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -1082,7 +379,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 30 2020 14:57:58 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

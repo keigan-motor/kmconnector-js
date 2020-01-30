@@ -15,7 +15,7 @@
 
     
     <meta charset="utf-8">
-    <title>KMMotorOneBLE.js - Documentation</title>
+    <title>KMLedState - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -52,317 +52,1114 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMMotorOneBLE.js</h1>
+    <h1 class="page-title">KMLedState</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/***
- *KMMotorOneBLE.js
- * Created by Harada Hiroshi on 2017/12/07.
- *
- * Copyright (c) 2017 Keigan Inc. https://keigan-motor.com/
- * This software is released under the MIT License.
- * http://opensource.org/licenses/mit-license.php
- */
+        <h2>
+        KMLedState
+        </h2>
+        
+            <div class="class-description"><p>モーターLED　点灯・色状態</p></div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="KMLedState"><span class="type-signature"></span>new KMLedState<span class="signature">(state, colorR, colorG, colorB)</span><span class="type-signature"></span></h4>
+
+    
 
 
 
-'use strict';
 
-let EventEmitter = require("events").EventEmitter;
-let KMComBLE = require('./KMComBLE');
-let KMMotorCommandKMOne=require('./KMMotorCommandKMOne.js');
+<dl class="details">
 
-let noble = require('@abandonware/noble');
-/**
- * @typedef {Object&lt; motorUUID,KMMotorOneBLE >} _motorsByUUID
- * @ignore
- */
-let _motorsByUUID={};
-/**
- * @typedef {Object&lt; motorName,KMMotorOneBLE >} _motorsByName
- * @ignore
- */
-let _motorsByName={};
-let _startScanTimeoutID=0;
-let _KMMotorOneBLEStaticEventEmitter=new EventEmitter(null);
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line213">line 213</a>
+    </li></ul></dd>
+    
 
-process.on('exit', function() {
-    KMMotorOneBLE.allDisConnect();
-});
+    
 
+    
 
-noble.once('stateChange', function(){
-    _KMMotorOneBLEStaticEventEmitter.emit("adapterStateChange",noble.state);
-});
+    
 
-/**
- * @classdesc KM-1のBLE接続用 仮想デバイス
- */
-class KMMotorOneBLE extends KMMotorCommandKMOne{
-    /********************************************
-     * static　events
-     ********************************************/
-    /**
-     * イベントリスナを追加する. Synonym for EventEmitter
-     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
-     * @param {function(object)} listener 追加するイベントリスナ.
-     */
-    static on(type, listener){
-        _KMMotorOneBLEStaticEventEmitter.on(type,listener);
-    }
-    /**
-     * 1回限りのイベントリスナを追加する. Synonym for EventEmitter
-     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
-     * @param {function(object)} listener 追加するイベントリスナ.
-     */
-    static once(type, listener){
-        _KMMotorOneBLEStaticEventEmitter.once(type,listener);
-    }
-    /**
-     * イベントリスナを削除する Synonym for EventEmitter
-     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ
-     * @param {function(object)} listener 削除するイベントリスナ
-     */
-    static removeListener(type, listener){
-        _KMMotorOneBLEStaticEventEmitter.removeListener(type,listener);
-    }
-    /**
-     * 全てのイベントリスナを削除する Synonym for EventEmitter
-     * @param {KMMotorOneBLE.EVENT_TYPE} type イベントのタイプ.
-     */
-    static removeAllListeners(type){
-        _KMMotorOneBLEStaticEventEmitter.removeAllListeners(type);
-    }
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
 
 
-    /**
-     * イベントタイプ定数
-     * @readonly
-     * @enum {string}
-     * @property {string} adapterStateChange - BLEアダプターの有効無効の変化
-     * &lt;br>return:"poweredOn"||"unknown"
-     * @property {string} discoverMotor - モーター発見時(毎回)
-     * &lt;br>return:function({@link KMMotorOneBLE})
-     * @property {string} discoverNewMotor - 新規モーターの発見時(1回のみ)
-     * &lt;br>return:function({@link KMMotorOneBLE})
-     * @property {string} scanTimeout - スキャンのタイムアウトで終了時
-     * &lt;br>return:function()
-     */
-    static get EVENT_TYPE(){
-          return {
-             adapterStateChange:"adapterStateChange",
-             discoverMotor:"discoverMotor",
-             discoverNewMotor:"discoverNewMotor",
-             scanTimeout:"scanTimeout"
-          };
-    }
 
-    /********************************************
-     * static Scanning
-     ********************************************/
-    /**
-     * BLEアダプターの状態
-     * @readonly
-     * @returns {*}
-     */
-    static get bleState(){
-        return noble.state;
-    }
-    /**
-     * APIが認識しているモーターのインスタンスリスト(プロパティはモーター名)
-     * &lt;br>ex) {&lt;motorName1>:{@link KMMotorOneBLE},&lt;motorName2>:{@link KMMotorOneBLE},,,}
-     * @readonly
-     * @type {_motorsByName}
-     */
-    static get motors(){
-        return _motorsByName;
-    }
 
-    /**
-     * APIが認識しているモーターのインスタンスリスト(プロパティはUUID)
-     * &lt;br>ex) {&lt;motorUUID1>:{@link KMMotorOneBLE},&lt;motorUUID2>:{@link KMMotorOneBLE},,,}
-     * @readonly
-     * @type {_motorsByUUID}
-     */
-    static get motorsByUUID(){
-        return _motorsByUUID;
-    }
 
-    /**
-     * BLEデバイスのスキャンを開始し、検出したモーターを全てインスタンス化する
-     * @param {number} time スキャンの継続時間(ms)
-     * @param {boolean} allowDuplicates 重複検出を許可
-     */
-    static startScanToCreateInstance(time = 2000,allowDuplicates=false){
-        clearTimeout(_startScanTimeoutID);
-        if(noble.state === 'poweredOn'){
-            noble.removeListener('discover',KMMotorOneBLE._discoverLis);
-            noble.on('discover',KMMotorOneBLE._discoverLis);
-            console.log('startScanToCreateInstance');
-            noble.startScanning([KMComBLE.MOTOR_BLE_SERVICE_UUID],allowDuplicates);//info::UUIDを指定しないとスキャン時にadvertisement.serviceUuidsが取得出来ない
-            _startScanTimeoutID=setTimeout(()=>{
-                KMMotorOneBLE.stopScan();
-                _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.scanTimeout);
-                /**
-                 * BLEスキャナーのタイムアウト時
-                 * @event KMMotorOneBLE#scanTimeout
-                 * @type {KMMotorOneBLE}
-                 * @example
-                 *
-                 * KMMotorOneBLE.on(KMMotorOneBLE.EVENT_TYPE.scanTimeout,function(){
-                 *      console.log('scanTimeout');
-                 * });
-                 */
-            },time);
-        }else if(noble.state === 'unknown') {
-            noble.once('stateChange', function(){
-                KMMotorOneBLE.startScanToCreateInstance(time,allowDuplicates);
-            });
-        }else{
-            //BLE無効時
-            console.log('Could not start scanning, state is:'+noble.state);
-        }
-    }
+<div class="description">
+    <p>constructor</p>
+</div>
 
-    /**
-     * BLEデバイスのスキャンの停止
-     */
-    static stopScan(){
-        clearTimeout(_startScanTimeoutID);
-        noble.removeListener('discover',KMMotorOneBLE._discoverLis);
-        if(noble.state === 'poweredOn') {
-            noble.stopScanning();
-            console.log('stopScan');
-        }
-    }
 
-    /**
-     * 全てのモーターのBLE接続を解除
-     */
-    static allDisConnect(){
-        Object.keys(_motorsByUUID).forEach((key)=> {
-            _motorsByUUID[key]._KMCom.disConnect();
-        });
-    }
 
-    /**
-     *  全ての仮想モーターを消去
-     */
-    static clearMotors(){
-        KMMotorOneBLE.allDisConnect();
-        _motorsByUUID={};
-        KMMotorOneBLE._restructMotorsByName();
-    }
 
-    /**
-     * 検出時リスナー
-     * 既に同じpheralのデバイスが存在する場合は、それを返す
-     * @param nobleperipheral
-     * @private
-     */
-    static _discoverLis(nobleperipheral){
-        //info::デバイスを選別する。startScanToCreateInstance中に別のクラスからnoble.startScanningした場合、Motor以外のデバイスも拾う可能性がある為。
-        if(!(nobleperipheral.advertisement&amp;&amp;nobleperipheral.advertisement.serviceUuids&amp;&amp;nobleperipheral.advertisement.serviceUuids[0]===KMComBLE.MOTOR_BLE_SERVICE_UUID)){
-            return;
-        }
 
-        console.log('Discover device:'+nobleperipheral.uuid);
 
-        if(!_motorsByUUID[nobleperipheral.uuid]){
-           let motor= new KMMotorOneBLE(nobleperipheral);//info::検出したモーターは全てインスタンス化
-            _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,_motorsByUUID[nobleperipheral.uuid]);
-            /**
-             * 新規モーターの発見時
-             * @event KMMotorOneBLE#discoverNewMotor
-             * @type {KMMotorOneBLE}
-             * @property {object} KMMotorOneBLE {@link KMMotorOneBLE}
-             * @example
-             *
-             * KMMotorOneBLE.on(KMMotorOneBLE.EVENT_TYPE.discoverNewMotor,function(kMMotorOne){
-             *      console.log('onDiscoverNewMotor:'+kMMotorOne.deviceInfo.name);
-             * });
-             */
 
-        }
-        if(_motorsByUUID[nobleperipheral.uuid]){
-            _KMMotorOneBLEStaticEventEmitter.emit(KMMotorOneBLE.EVENT_TYPE.discoverMotor,_motorsByUUID[nobleperipheral.uuid]);
-            /**
-             * モーターの発見時
-             * @event KMMotorOneBLE#discoverMotor
-             * @type {KMMotorOneBLE}
-             * @property {object} KMMotorOneBLE {@link KMMotorOneBLE}
-             * @example
-             *
-             * KMMotorOneBLE.on(KMMotorOneBLE.EVENT_TYPE.discoverMotor,function(kMMotorOne){
-             *      console.log('discoverMotor:'+kMMotorOne.deviceInfo.name);
-             * });
-             */
-        }
 
-    }
 
-    /**
-     * モーターのリストを再インデックス
-     * @private
-     */
-    static _restructMotorsByName(){
-        let list={};
-        Object.keys(_motorsByUUID).forEach((key)=>{
-            let name=  _motorsByUUID[key].deviceInfo.name? _motorsByUUID[key].deviceInfo.name.split('#')[0]:null;
-              if(name){
-                  list[name]=_motorsByUUID[key];
-              }else{
-                  console.log('Err motor name not found');
-              }
-        });
-        _motorsByName=list;
-    }
-    /********************************************
-     * instance Method
-     ********************************************/
-    /**
-     * KMMotorOneBLE
-     * @constructor
-     * @extends {KMMotorCommandKMOne}
-     * @param {object} noblePeripheral noble Peripheralオブジェクト
-     * @description 通常はstartScanToCreateInstance()メソッドから自動生成される為、単体では使用しない。&lt;br>
-     * モーター以外のデバイスの接続等でnoble APIをプログラム全体で使用している場合にnoblePeripheralと仮想モーターを関連付ける場合に使用。
-     */
-    constructor(noblePeripheral){
-        super(KMMotorCommandKMOne.KM_CONNECT_TYPE.BLE,new KMComBLE(noblePeripheral));
-        if(!_motorsByUUID[noblePeripheral.uuid]){
-            _motorsByUUID[noblePeripheral.uuid]=this;
-            KMMotorOneBLE._restructMotorsByName();
-        }
-    }
 
-    /**
-     * モーターと接続する
-     */
-    connect(){
-       this._KMCom.connect();
-    }
 
-    /**
-     * モーターと切断
-     */
-    disConnect(){
-        this._KMCom.disConnect();
-    }
-}
+    <h5>Parameters:</h5>
+    
 
-module.exports =KMMotorOneBLE;
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-</code></pre>
-        </article>
-    </section>
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KMLedState.html#.MOTOR_LED_STATE">KMLedState.MOTOR_LED_STATE</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colorR</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int [0-255]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colorG</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int [0-255]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colorB</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>int [0-255]</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="KMStructureBase.html">KMStructureBase</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".MOTOR_LED_STATE"><span class="type-signature">(static, readonly) </span>MOTOR_LED_STATE<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line195">line 195</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>MOTOR_LED_STATE_OFF</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>0:LED消灯</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>MOTOR_LED_STATE_ON_SOLID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>1:LED点灯</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>MOTOR_LED_STATE_ON_FLASH</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>2:LED点滅（一定間隔で点滅）</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>MOTOR_LED_STATE_ON_DIM</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>3:LEDがゆっくり輝度変化する</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description">
+    <p>モーターのLED状態</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="Clone"><span class="type-signature"></span>Clone<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KMStructureBase.html#Clone">KMStructureBase#Clone</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>複製</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>複製された構造体</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="EQ"><span class="type-signature"></span>EQ<span class="signature">(tar)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KMStructureBase.html#EQ">KMStructureBase#EQ</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>同じ値を持つかの比較</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tar</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>比較する構造体</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>結果</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="GetValArray"><span class="type-signature"></span>GetValArray<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KMStructureBase.html#GetValArray">KMStructureBase#GetValArray</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>値の取得（配列）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="GetValObj"><span class="type-signature"></span>GetValObj<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KMStructureBase.html#GetValObj">KMStructureBase#GetValObj</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>値の取得（Obj）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="SetValObj"><span class="type-signature"></span>SetValObj<span class="signature">(propsObj)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line69">line 69</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KMStructureBase.html#SetValObj">KMStructureBase#SetValObj</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>値の一括設定（Obj）</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>propsObj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>設定するプロパティ</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -374,7 +1171,7 @@ module.exports =KMMotorOneBLE;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 30 2020 14:57:58 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -15,7 +15,7 @@
 
     
     <meta charset="utf-8">
-    <title>KMImuState - Documentation</title>
+    <title>KMRotState - Documentation</title>
     
     
     <meta property="og:title" content="kmconnector-js"/>
@@ -52,7 +52,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">KMImuState</h1>
+    <h1 class="page-title">KMRotState</h1>
     
 
     
@@ -65,10 +65,10 @@
 <header>
     
         <h2>
-        KMImuState
+        KMRotState
         </h2>
         
-            <div class="class-description"><p>ジャイロセンサー値</p></div>
+            <div class="class-description"><p>モーター回転情報</p></div>
         
     
 </header>
@@ -83,7 +83,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="KMImuState"><span class="type-signature"></span>new KMImuState<span class="signature">(accelX, accelY, accelZ, temp, gyroX, gyroY, gyroZ)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="KMRotState"><span class="type-signature"></span>new KMRotState<span class="signature">(position, velocity, torque)</span><span class="type-signature"></span></h4>
 
     
 
@@ -95,7 +95,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line163">line 163</a>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line269">line 269</a>
     </li></ul></dd>
     
 
@@ -173,7 +173,7 @@
 
         <tr>
             
-                <td class="name"><code>accelX</code></td>
+                <td class="name"><code>position</code></td>
             
 
             <td class="type">
@@ -189,14 +189,14 @@
 
             
 
-            <td class="description last"><p>加速度(x) [± 1]</p></td>
+            <td class="description last"><p>座標</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>accelY</code></td>
+                <td class="name"><code>velocity</code></td>
             
 
             <td class="type">
@@ -212,14 +212,14 @@
 
             
 
-            <td class="description last"><p>加速度(y) [± 1]</p></td>
+            <td class="description last"><p>速度</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>accelZ</code></td>
+                <td class="name"><code>torque</code></td>
             
 
             <td class="type">
@@ -235,99 +235,7 @@
 
             
 
-            <td class="description last"><p>加速度(z) [± 1]</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>temp</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>温度 C</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>gyroX</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>角速度(x) [± 1]</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>gyroY</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>角速度(y) [± 1]</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>gyroZ</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>角速度(z) [± 1]</p></td>
+            <td class="description last"><p>トルク</p></td>
         </tr>
 
     
@@ -379,6 +287,302 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".MAX_POSITION"><span class="type-signature">(static, readonly) </span>MAX_POSITION<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line256">line 256</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>最大座標定数</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".MAX_SPEED_RADIAN"><span class="type-signature">(static, readonly) </span>MAX_SPEED_RADIAN<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line248">line 248</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>最大速度定数(radian/sec)</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".MAX_SPEED_RPM"><span class="type-signature">(static, readonly) </span>MAX_SPEED_RPM<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line240">line 240</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>最大速度定数(rpm)</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".MAX_TORQUE"><span class="type-signature">(static, readonly) </span>MAX_TORQUE<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="KMStructures.js.html">KMStructures.js</a>, <a href="KMStructures.js.html#line231">line 231</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>最大トルク定数</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
     
 
     
@@ -1042,7 +1246,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 16:04:29 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 30 2020 14:57:58 GMT+0900 (GMT+09:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
