@@ -30,7 +30,8 @@ KMB.on(KMB.EVENT_TYPE.init,function(kMDeviceInfo){
     });
     $("#kmName").html(infost.join('<br/>'));
     $("#control").toggleClass("disable",false);
-    allRegisterInfoUpdate();
+    $("#allRegisterInfoUpdateBtn").prop('disabled', false);
+    //allRegisterInfoUpdate();
 });
 KMB.on(KMB.EVENT_TYPE.connect,function(kMDeviceInfo){
     console.log("onConnect:"+kMDeviceInfo.isConnect);
